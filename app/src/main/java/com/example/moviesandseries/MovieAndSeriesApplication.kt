@@ -1,6 +1,7 @@
 package com.example.moviesandseries
 
 import android.app.Application
+import android.content.Context
 import com.example.moviesandseries.data.AppContainer
 import com.example.moviesandseries.data.DefaultAppContainer
 
@@ -9,6 +10,11 @@ class MovieAndSeriesApplication : Application() {
     lateinit var container: AppContainer
     override fun onCreate() {
         super.onCreate()
+        appContext = this // this has to be done before initializing the container as it uses appContext
         container = DefaultAppContainer()
+
+    }
+    companion object {
+        lateinit var appContext: Context
     }
 }
