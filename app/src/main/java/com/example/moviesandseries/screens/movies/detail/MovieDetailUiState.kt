@@ -1,4 +1,4 @@
-package com.example.moviesandseries.screens.series.detail.movies.detail
+package com.example.moviesandseries.screens.movies.detail
 
 import com.example.moviesandseries.model.movie.MovieDetail
 

@@ -16,12 +16,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.moviesandseries.screens.home.HomeScreen
-import com.example.moviesandseries.screens.series.detail.movies.detail.MovieDetailsScreen
-import com.example.moviesandseries.screens.series.detail.movies.list.MovieViewModel
-import com.example.moviesandseries.screens.series.detail.movies.list.MoviesScreen
+import com.example.moviesandseries.screens.movies.detail.MovieDetailsScreen
+import com.example.moviesandseries.screens.movies.list.MovieViewModel
+import com.example.moviesandseries.screens.movies.list.MoviesScreen
 import com.example.moviesandseries.screens.series.detail.SeriesDetailScreen
 import com.example.moviesandseries.screens.series.detail.SeriesDetailViewModel
-import com.example.moviesandseries.screens.series.detail.movies.detail.MovieDetailViewModel
+import com.example.moviesandseries.screens.movies.detail.MovieDetailViewModel
 import com.example.moviesandseries.screens.series.list.SeriesScreen
 import com.example.moviesandseries.screens.series.list.SeriesViewModel
 import com.example.templateapplication.screens.appBar.MyBottomAppBar

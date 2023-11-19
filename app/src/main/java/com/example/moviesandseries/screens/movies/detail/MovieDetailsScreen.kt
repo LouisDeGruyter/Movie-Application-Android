@@ -1,4 +1,4 @@
-package com.example.moviesandseries.screens.series.detail.movies.detail
+package com.example.moviesandseries.screens.movies.detail
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.animateContentSize
