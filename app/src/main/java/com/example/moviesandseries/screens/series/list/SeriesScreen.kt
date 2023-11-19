@@ -1,4 +1,4 @@
-package com.example.moviesandseries.screens.series
+package com.example.moviesandseries.screens.series.list
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.lazy.LazyColumn
@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import com.example.moviesandseries.model.series.SeriesIndex
 
 @Composable
-fun SeriesScreen(seriesUiState: SeriesUiState,onSeriesClick: (Int) -> Unit) {
+fun SeriesScreen(seriesUiState: SeriesUiState, onSeriesClick: (Int) -> Unit) {
     when (seriesUiState) {
         is SeriesUiState.Success -> {
             displaySeries(seriesUiState.series, onSeriesClick)

@@ -7,11 +7,11 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Network(
     @Json(name = "id")
-    val id: Int,
+    val id: Int?,
     @Json(name = "logo_path")
-    val logoPath: String,
+    val logoPath: String?,
     @Json(name = "name")
-    val name: String,
+    val name: String?,
     @Json(name = "origin_country")
-    val originCountry: String
+    val originCountry: String?
 )

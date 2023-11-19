@@ -16,12 +16,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.moviesandseries.screens.home.HomeScreen
-import com.example.moviesandseries.screens.movies.MovieDetailsScreen
-import com.example.moviesandseries.screens.movies.MovieViewModel
-import com.example.moviesandseries.screens.movies.MoviesScreen
-import com.example.moviesandseries.screens.series.SeriesDetailScreen
-import com.example.moviesandseries.screens.series.SeriesScreen
-import com.example.moviesandseries.screens.series.SeriesViewModel
+import com.example.moviesandseries.screens.series.detail.movies.detail.MovieDetailsScreen
+import com.example.moviesandseries.screens.series.detail.movies.list.MovieViewModel
+import com.example.moviesandseries.screens.series.detail.movies.list.MoviesScreen
+import com.example.moviesandseries.screens.series.detail.SeriesDetailScreen
+import com.example.moviesandseries.screens.series.detail.SeriesDetailViewModel
+import com.example.moviesandseries.screens.series.detail.movies.detail.MovieDetailViewModel
+import com.example.moviesandseries.screens.series.list.SeriesScreen
+import com.example.moviesandseries.screens.series.list.SeriesViewModel
 import com.example.templateapplication.screens.appBar.MyBottomAppBar
 import com.example.templateapplication.screens.appBar.MyTopAppBar
 
@@ -42,6 +44,9 @@ fun MovieAndSeriesApp() {
     //viewmodels
     val movieViewModel: MovieViewModel = viewModel(factory = MovieViewModel.Factory)
     val seriesViewModel: SeriesViewModel = viewModel(factory = SeriesViewModel.Factory)
+    //viewmodel details
+    val seriesDetailViewModel: SeriesDetailViewModel = viewModel(factory = SeriesDetailViewModel.Factory)
+    val movieDetailViewModel: MovieDetailViewModel = viewModel(factory = MovieDetailViewModel.Factory)
     //navigation
     val navController = rememberNavController()
     val currentBackStackEntry by navController.currentBackStackEntryAsState()
@@ -78,7 +83,7 @@ fun MovieAndSeriesApp() {
                 HomeScreen()
             }
             composable(Destinations.Movies.route) {
-                MoviesScreen(movieUiState = movieViewModel.movieUiState, onMovieClick = { movieId: Int ->
+                MoviesScreen(movieViewModel = movieViewModel, onMovieClick = { movieId: Int ->
                     navController.navigate(Destinations.MovieDetails.createRoute(movieId.toString()))
                 })
             }
@@ -88,10 +93,10 @@ fun MovieAndSeriesApp() {
                 })
             }
             composable("${Destinations.MovieDetails.route}/{id}") {
-                backStackEntry -> MovieDetailsScreen(movieId = backStackEntry.arguments?.getString("id"))
+                backStackEntry -> MovieDetailsScreen(viewModel=movieDetailViewModel,movieId = backStackEntry.arguments?.getString("id"))
             }
             composable("${Destinations.SeriesDetail.route}/{id}") {
-                backStackEntry -> SeriesDetailScreen(seriesId = backStackEntry.arguments?.getString("id"))
+                backStackEntry -> SeriesDetailScreen(viewModel=seriesDetailViewModel,seriesId = backStackEntry.arguments?.getString("id"))
             }
         }
     }

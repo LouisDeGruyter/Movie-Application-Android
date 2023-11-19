@@ -1,5 +1,6 @@
-package com.example.moviesandseries.screens.series
+package com.example.moviesandseries.screens.series.detail.movies.list
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -10,32 +11,36 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.moviesandseries.MovieAndSeriesApplication
-import com.example.moviesandseries.repository.SeriesRepository
+import com.example.moviesandseries.repository.MovieRepository
 import kotlinx.coroutines.launch
 
-class SeriesViewModel(private val seriesRepository: SeriesRepository):ViewModel() {
-    var seriesUiState: SeriesUiState by mutableStateOf(SeriesUiState.Loading)
+class MovieViewModel(private val movieRepository: MovieRepository): ViewModel() {
+    var movieUiState: MovieUiState by mutableStateOf(MovieUiState.Loading)
         private set
+    private var currentPage = 1
+
     init {
-        getSeries()
+        getMovies(1)
     }
 
-    fun getSeries(){
+    fun getMovies(page:Int) {
         viewModelScope.launch {
-            seriesUiState = SeriesUiState.Loading
-            seriesUiState = try {
-                SeriesUiState.Success(seriesRepository.getSeries())
+            movieUiState = MovieUiState.Loading
+            movieUiState = try {
+                MovieUiState.Success(movieRepository.getMovies(page))
             } catch (e: Exception) {
-                SeriesUiState.Error(e.message ?: "An unknown error occured")
+                MovieUiState.Error(e.message ?: "An unknown error occured")
             }
         }
     }
+
+
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = (this[APPLICATION_KEY] as MovieAndSeriesApplication)
-                val seriesRepository = application.container.seriesRepository
-                SeriesViewModel(seriesRepository)
+                val movieRepository = application.container.movieRepository
+                MovieViewModel(movieRepository)
             }
         }
     }

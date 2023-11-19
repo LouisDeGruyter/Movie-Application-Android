@@ -1,4 +1,4 @@
-package com.example.moviesandseries.model.series
+package com.example.moviesandseries.model.series.season
 
 
 import com.squareup.moshi.Json
@@ -17,7 +17,7 @@ data class Season(
     @Json(name = "overview")
     val overview: String,
     @Json(name = "poster_path")
-    val posterPath: String,
+    val posterPath: String?,
     @Json(name = "season_number")
     val seasonNumber: Int,
     @Json(name = "vote_average")

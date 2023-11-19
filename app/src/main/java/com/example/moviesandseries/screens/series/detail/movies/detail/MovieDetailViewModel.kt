@@ -1,4 +1,4 @@
-package com.example.moviesandseries.screens.movies
+package com.example.moviesandseries.screens.series.detail.movies.detail
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -13,21 +13,16 @@ import com.example.moviesandseries.MovieAndSeriesApplication
 import com.example.moviesandseries.repository.MovieRepository
 import kotlinx.coroutines.launch
 
-class MovieViewModel(private val movieRepository: MovieRepository): ViewModel() {
-    var movieUiState: MovieUiState by mutableStateOf(MovieUiState.Loading)
+class MovieDetailViewModel(private val movieRepository: MovieRepository): ViewModel() {
+    var movieDetailUiState: MovieDetailUiState by mutableStateOf(MovieDetailUiState.Loading)
         private set
-
-    init {
-        getMovies()
-    }
-
-    fun getMovies() {
+    fun getMovieDetail(movieId: Int){
         viewModelScope.launch {
-            movieUiState = MovieUiState.Loading
-            movieUiState = try {
-                MovieUiState.Success(movieRepository.getMovies())
+            movieDetailUiState = MovieDetailUiState.Loading
+            movieDetailUiState = try {
+                MovieDetailUiState.Success(movieRepository.getMovieDetail(movieId))
             } catch (e: Exception) {
-                MovieUiState.Error(e.message ?: "An unknown error occured")
+                MovieDetailUiState.Error(e.message ?: "An unknown error occured")
             }
         }
     }
@@ -37,7 +32,7 @@ class MovieViewModel(private val movieRepository: MovieRepository): ViewModel() 
             initializer {
                 val application = (this[APPLICATION_KEY] as MovieAndSeriesApplication)
                 val movieRepository = application.container.movieRepository
-                MovieViewModel(movieRepository)
+                MovieDetailViewModel(movieRepository)
             }
         }
     }

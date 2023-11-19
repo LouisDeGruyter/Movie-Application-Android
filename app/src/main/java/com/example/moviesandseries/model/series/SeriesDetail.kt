@@ -5,51 +5,53 @@ import com.example.moviesandseries.model.Genre
 import com.example.moviesandseries.model.ProductionCompany
 import com.example.moviesandseries.model.ProductionCountry
 import com.example.moviesandseries.model.SpokenLanguage
+import com.example.moviesandseries.model.series.episode.Episode
+import com.example.moviesandseries.model.series.season.Season
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class SeriesDetail(
     @Json(name = "adult")
-    val adult: Boolean,
+    val adult: Boolean?,
     @Json(name = "backdrop_path")
-    val backdropPath: String,
+    val backdropPath: String?,
     @Json(name = "created_by")
-    val createdBy: List<CreatedBy>,
+    val createdBy: List<CreatedBy?>,
     @Json(name = "episode_run_time")
     val episodeRunTime: List<Int>,
     @Json(name = "first_air_date")
-    val firstAirDate: String,
+    val firstAirDate: String?,
     @Json(name = "genres")
-    val genres: List<Genre>,
+    val genres: List<Genre?>,
     @Json(name = "homepage")
-    val homepage: String,
+    val homepage: String?,
     @Json(name = "id")
     val id: Int,
     @Json(name = "in_production")
     val inProduction: Boolean,
     @Json(name = "languages")
-    val languages: List<String>,
+    val languages: List<String?>,
     @Json(name = "last_air_date")
-    val lastAirDate: String,
+    val lastAirDate: String?,
     @Json(name = "last_episode_to_air")
-    val lastEpisodeToAir: LastEpisodeToAir,
+    val lastEpisodeToAir: Episode?,
     @Json(name = "name")
     val name: String,
     @Json(name = "networks")
-    val networks: List<Network>,
+    val networks: List<Network?>,
     @Json(name = "next_episode_to_air")
-    val nextEpisodeToAir: Any,
+    val nextEpisodeToAir: Episode?,
     @Json(name = "number_of_episodes")
     val numberOfEpisodes: Int,
     @Json(name = "number_of_seasons")
     val numberOfSeasons: Int,
     @Json(name = "origin_country")
-    val originCountry: List<String>,
+    val originCountry: List<String?>,
     @Json(name = "original_language")
-    val originalLanguage: String,
+    val originalLanguage: String?,
     @Json(name = "original_name")
-    val originalName: String,
+    val originalName: String?,
     @Json(name = "overview")
     val overview: String,
     @Json(name = "popularity")

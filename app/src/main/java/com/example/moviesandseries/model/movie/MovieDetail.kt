@@ -15,13 +15,13 @@ data class MovieDetail(
     @Json(name = "backdrop_path")
     val backdropPath: String,
     @Json(name = "belongs_to_collection")
-    val belongsToCollection: Any,
+    val belongsToCollection: Collection?,
     @Json(name = "budget")
     val budget: Int,
     @Json(name = "genres")
     val genres: List<Genre>,
     @Json(name = "homepage")
-    val homepage: String,
+    val homepage: String?,
     @Json(name = "id")
     val id: Int,
     @Json(name = "imdb_id")
@@ -37,13 +37,13 @@ data class MovieDetail(
     @Json(name = "poster_path")
     val posterPath: String,
     @Json(name = "production_companies")
-    val productionCompanies: List<ProductionCompany>,
+    val productionCompanies: List<ProductionCompany?>,
     @Json(name = "production_countries")
-    val productionCountries: List<ProductionCountry>,
+    val productionCountries: List<ProductionCountry?>,
     @Json(name = "release_date")
     val releaseDate: String,
     @Json(name = "revenue")
-    val revenue: Int,
+    val revenue: Int?,
     @Json(name = "runtime")
     val runtime: Int,
     @Json(name = "spoken_languages")

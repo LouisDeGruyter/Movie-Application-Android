@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface SeriesApiService {
     @GET(ApiEndpoints.Series)
-    suspend fun getSeriesContainer(): SeriesContainer
+    suspend fun getSeriesContainer(@Query("page") page: Int): SeriesContainer
     @GET(ApiEndpoints.SeriesDetail)
 
     suspend fun getSeriesDetail(@Path("series_id") seriesId: Int): SeriesDetail

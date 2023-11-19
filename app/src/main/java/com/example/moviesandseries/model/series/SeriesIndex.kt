@@ -7,7 +7,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class SeriesIndex(
     @Json(name = "backdrop_path")
-    val backdropPath: String,
+    val backdropPath: String?,
     @Json(name = "first_air_date")
     val firstAirDate: String,
     @Json(name = "genre_ids")

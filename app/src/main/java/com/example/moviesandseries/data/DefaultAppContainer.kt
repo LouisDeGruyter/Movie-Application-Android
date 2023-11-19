@@ -11,7 +11,6 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
-import android.util.Log
 import com.example.moviesandseries.network.SeriesApiService
 import com.example.moviesandseries.repository.NetworkSeriesRepository
 import com.example.moviesandseries.repository.SeriesRepository
@@ -23,7 +22,6 @@ fun getMetadata(context: Context, key: String?): String? {
                 context.packageName,
                 PackageManager.GET_META_DATA
             ).metaData
-        val value = metaData?.getString(key)
         return metaData?.getString(key)
     } catch (e: PackageManager.NameNotFoundException) {
         e.printStackTrace()
@@ -37,8 +35,6 @@ private class LoggingInterceptorHeaders : Interceptor {
     override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
         val request: Request =
             chain.request().newBuilder().addHeader("Authorization","Bearer "+ TMDB_API_KEY).build()
-        Log.d("LoggingInterceptor", "api-key: $TMDB_API_KEY")
-        Log.d("LoggingInterceptor", "request: $request")
         return chain.proceed(request)
     }
 }

@@ -1,4 +1,4 @@
-package com.example.moviesandseries.screens.series
+package com.example.moviesandseries.screens.series.list
 
 import com.example.moviesandseries.model.series.SeriesIndex
 
