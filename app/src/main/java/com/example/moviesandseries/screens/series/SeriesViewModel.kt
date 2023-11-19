@@ -1,4 +1,4 @@
-package com.example.moviesandseries.screens.movies
+package com.example.moviesandseries.screens.series
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -10,34 +10,32 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.moviesandseries.MovieAndSeriesApplication
-import com.example.moviesandseries.repository.MovieRepository
+import com.example.moviesandseries.repository.SeriesRepository
 import kotlinx.coroutines.launch
 
-class MovieViewModel(private val movieRepository: MovieRepository): ViewModel() {
-    var movieUiState: MovieUiState by mutableStateOf(MovieUiState.Loading)
+class SeriesViewModel(private val seriesRepository: SeriesRepository):ViewModel() {
+    var seriesUiState: SeriesUiState by mutableStateOf(SeriesUiState.Loading)
         private set
-
     init {
-        getMovies()
+        getSeries()
     }
 
-    fun getMovies() {
+    fun getSeries(){
         viewModelScope.launch {
-            movieUiState = MovieUiState.Loading
-            movieUiState = try {
-                MovieUiState.Success(movieRepository.getMovies())
+            seriesUiState = SeriesUiState.Loading
+            seriesUiState = try {
+                SeriesUiState.Success(seriesRepository.getSeries())
             } catch (e: Exception) {
-                MovieUiState.Error(e.message ?: "An unknown error occured")
+                SeriesUiState.Error(e.message ?: "An unknown error occured")
             }
         }
     }
-
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = (this[APPLICATION_KEY] as MovieAndSeriesApplication)
-                val movieRepository = application.container.movieRepository
-                MovieViewModel(movieRepository)
+                val seriesRepository = application.container.seriesRepository
+                SeriesViewModel(seriesRepository)
             }
         }
     }

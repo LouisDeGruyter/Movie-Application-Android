@@ -12,6 +12,10 @@ import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
 import android.util.Log
+import com.example.moviesandseries.network.SeriesApiService
+import com.example.moviesandseries.repository.NetworkSeriesRepository
+import com.example.moviesandseries.repository.SeriesRepository
+
 fun getMetadata(context: Context, key: String?): String? {
     try {
         val metaData = context.packageManager
@@ -71,6 +75,9 @@ class DefaultAppContainer : AppContainer {
     private val movieApiService: MovieApiService by lazy {
         retrofit.create(MovieApiService::class.java)
     }
+    private val seriesApiService: SeriesApiService by lazy {
+        retrofit.create(SeriesApiService::class.java)
+    }
 
 
     /**
@@ -78,5 +85,8 @@ class DefaultAppContainer : AppContainer {
      */
     override val movieRepository: MovieRepository by lazy{
         NetworkMovieRepository(movieApiService)
+    }
+    override val seriesRepository: SeriesRepository by lazy{
+        NetworkSeriesRepository(seriesApiService)
     }
 }
