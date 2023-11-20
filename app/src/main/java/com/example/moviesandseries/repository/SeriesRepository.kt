@@ -38,5 +38,5 @@ class NetworkSeriesRepository(private val seriesApiService: SeriesApiService) : 
     override suspend fun getSeriesTopRated(page: Int) = seriesApiService.getSeriesTopRated(page)
     override suspend fun getSeriesOnTheAir(page: Int) = seriesApiService.getSeriesOnTheAir(page)
     override suspend fun getSeriesAiringToday(page: Int) = seriesApiService.getSeriesAiringToday(page)
-    
+
 }

@@ -1,6 +1,5 @@
-package com.example.moviesandseries.paging
+package com.example.moviesandseries.paging.movies
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.moviesandseries.model.movie.MovieIndex
