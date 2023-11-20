@@ -21,6 +21,7 @@ class MovieDetailViewModel(private val movieRepository: MovieRepository): ViewMo
             movieDetailUiState = MovieDetailUiState.Loading
             movieDetailUiState = try {
                 MovieDetailUiState.Success(movieRepository.getMovieDetail(movieId))
+
             } catch (e: Exception) {
                 MovieDetailUiState.Error(e.message ?: "An unknown error occured")
             }

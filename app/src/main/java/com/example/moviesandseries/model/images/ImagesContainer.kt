@@ -1,4 +1,4 @@
-package com.example.moviesandseries.model
+package com.example.moviesandseries.model.images
 
 
 import com.squareup.moshi.Json

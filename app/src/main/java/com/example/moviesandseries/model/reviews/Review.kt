@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Result(
+data class Review(
     @Json(name = "author")
     val author: String,
     @Json(name = "author_details")

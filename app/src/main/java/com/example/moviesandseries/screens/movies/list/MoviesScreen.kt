@@ -1,39 +1,15 @@
 package com.example.moviesandseries.screens.movies.list
 
-import androidx.compose.animation.animateColor
-import androidx.compose.animation.core.updateTransition
-import androidx.compose.animation.fadeIn
+import android.graphics.Paint
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import com.example.moviesandseries.model.movie.MovieIndex
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import android.graphics.Paint
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.geometry.CornerRadius
-import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.unit.dp
-
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -43,41 +19,29 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BrokenImage
 import androidx.compose.material.icons.filled.LocalMovies
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.PaintingStyle.Companion.Stroke
-import androidx.compose.ui.graphics.compositeOver
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalConsumer
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.TextLayoutResult
-import androidx.compose.ui.text.drawText
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.paging.compose.itemsIndexed
-import coil.compose.AsyncImage
 import coil.compose.rememberAsyncImagePainter
+import com.example.moviesandseries.model.movie.MovieIndex
 import com.example.moviesandseries.network.ApiEndpoints
 
 private const val COLUMN_COUNT = 3
@@ -138,7 +102,8 @@ fun MovieItem(movie: MovieIndex, onMovieClick: (Int) -> Unit) {
         shape = RoundedCornerShape(12.dp),
 
     ) {
-        RatingComposable(rating = movie.voteAverage, modifier = Modifier.zIndex(2f).padding(8.dp))
+        Box(){
+            RatingComposable(rating = movie.voteAverage, modifier = Modifier.zIndex(2f))
 
             val painter= rememberAsyncImagePainter(model = ApiEndpoints.Poster+movie.posterPath,
                 error = rememberVectorPainter(image = Icons.Filled.BrokenImage),
@@ -147,41 +112,29 @@ fun MovieItem(movie: MovieIndex, onMovieClick: (Int) -> Unit) {
             Image(painter = painter, contentDescription = movie.title, contentScale = ContentScale.FillWidth, modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(2 / 3f), alignment = Alignment.Center)
+        }
+
     }
 }
 
-@Composable
-fun MovieRating(rating: Double) {
 
-}
 @Composable
 fun RatingComposable(rating: Double,modifier: Modifier = Modifier) {
-    var animatedRating by remember { mutableStateOf(rating) }
+    var adjustedRating = (rating * 10).toInt()
 
-    LaunchedEffect(key1 = rating){
-        animatedRating = rating
-    }
-
-    val transition = updateTransition(targetState = animatedRating)
-    val color by transition.animateColor(label = "") {
-        when {
-            it >= 75.0 -> Color.Green
-            it >= 50.0 -> {
-                Color.Yellow
-            }
-            it<50.0 -> Color.Red
-            else -> Color.Red
-        }
+    val color = when {
+        adjustedRating >= 75 -> Color.Green
+        adjustedRating >= 50 -> Color.Yellow
+        else -> Color.Red
     }
 
 
     val circleSize = 30.dp
-    val progress = (animatedRating / 100.0).toFloat()
+    val progress = (rating / 10).toFloat()
 
     Box(
         modifier = modifier
             .fillMaxSize(),
-        contentAlignment = Alignment.BottomStart
     ) {
         Canvas(
             modifier = Modifier.size(circleSize)
@@ -192,7 +145,7 @@ fun RatingComposable(rating: Double,modifier: Modifier = Modifier) {
             drawCircle(
                 color = Color.Black,
                 radius = innerCircleRadius,
-                center = Offset(size.width / 2, size.height / 2),
+                center = Offset(innerCircleRadius, innerCircleRadius),
                 style = androidx.compose.ui.graphics.drawscope.Fill
             )
             drawArc(
@@ -201,8 +154,8 @@ fun RatingComposable(rating: Double,modifier: Modifier = Modifier) {
                 sweepAngle = 360f * progress,
                 useCenter = false,
                 style = Stroke(strokeWidth,cap = StrokeCap.Round),
-                topLeft = Offset(strokeWidth, strokeWidth),
-                size = Size((innerCircleRadius-strokeWidth) * 2, (innerCircleRadius-strokeWidth) * 2),
+                topLeft = Offset(strokeWidth/2, strokeWidth/2),
+                size = Size((innerCircleRadius-strokeWidth/2) * 2, (innerCircleRadius-strokeWidth/2) * 2),
             )
             drawArc(
                 color = color.copy(alpha = 0.5f), // Adjust the alpha for transparency
@@ -210,8 +163,8 @@ fun RatingComposable(rating: Double,modifier: Modifier = Modifier) {
                 sweepAngle = 360f,
                 useCenter = false,
                 style = Stroke(strokeWidth,cap = StrokeCap.Round),
-                topLeft = Offset(strokeWidth, strokeWidth),
-                size = Size((innerCircleRadius-strokeWidth) * 2, (innerCircleRadius-strokeWidth) * 2),
+                topLeft = Offset(strokeWidth/2, strokeWidth/2),
+                size = Size((innerCircleRadius-strokeWidth/2) * 2, (innerCircleRadius-strokeWidth/2) * 2),
 
             )
 
@@ -220,7 +173,7 @@ fun RatingComposable(rating: Double,modifier: Modifier = Modifier) {
 
             // Draw text in the center
             drawIntoCanvas {
-                val text = (animatedRating.toInt()).toString()
+                val text = (adjustedRating).toString()
                 val textSize = 14.dp.toPx()
                 val paint = Paint()
                 paint.textSize = textSize
@@ -237,6 +190,6 @@ fun RatingComposable(rating: Double,modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun PreviewRatingComposable() {
-    RatingComposable(rating = 80.0)
+    RatingComposable(rating = 8.0)
 }
 

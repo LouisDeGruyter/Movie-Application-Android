@@ -1,11 +1,12 @@
 package com.example.moviesandseries.model.movie
 
 
+import com.example.moviesandseries.model.Dates
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class MovieInTheaterContainer(
+data class MovieContainerWithDates(
     @Json(name = "dates")
     val dates: Dates,
     @Json(name = "page")
