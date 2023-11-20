@@ -106,4 +106,7 @@ dependencies {
     //paging
     implementation ("androidx.paging:paging-runtime:3.1.1")
     implementation ("androidx.paging:paging-compose:1.0.0-alpha16")
+
+    //images
+    implementation("io.coil-kt:coil-compose:2.5.0")
 }

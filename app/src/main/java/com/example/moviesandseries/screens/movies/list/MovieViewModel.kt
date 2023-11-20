@@ -24,25 +24,10 @@ import kotlinx.coroutines.launch
 class MovieViewModel(private val movieRepository: MovieRepository): ViewModel() {
     var movieUiState: MovieUiState by mutableStateOf(MovieUiState.Loading)
         private set
+
     val moviePager: Flow<PagingData<MovieIndex>> = Pager(PagingConfig(pageSize = 20)) {
         MoviePagingSource(movieRepository)
     }.flow.cachedIn(viewModelScope)
-
-
-    init {
-        getMovies(1)
-    }
-
-    fun getMovies(page:Int) {
-        viewModelScope.launch {
-            movieUiState = MovieUiState.Loading
-            movieUiState = try {
-                MovieUiState.Success(movieRepository.getMovies(page))
-            } catch (e: Exception) {
-                MovieUiState.Error(e.message ?: "An unknown error occured")
-            }
-        }
-    }
 
 
     companion object {

@@ -17,15 +17,15 @@ data class MovieIndex(
     @Json(name = "original_language")
     val originalLanguage: String,
     @Json(name = "original_title")
-    val originalTitle: String,
+    val originalTitle: String?,
     @Json(name = "overview")
-    val overview: String,
+    val overview: String?,
     @Json(name = "popularity")
     val popularity: Double,
     @Json(name = "poster_path")
     val posterPath: String,
     @Json(name = "release_date")
-    val releaseDate: String,
+    val releaseDate: String?,
     @Json(name = "title")
     val title: String,
     @Json(name = "video")

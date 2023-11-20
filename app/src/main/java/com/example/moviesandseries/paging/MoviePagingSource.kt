@@ -11,11 +11,12 @@ class MoviePagingSource(private val movieRepository: MovieRepository) : PagingSo
         return try {
             val page = params.key ?: 1
             val response = movieRepository.getMoviesContainer(page)
-            Log.d("MoviePagingSource", "load: ${response.results}")
+            val response2 = movieRepository.getMoviesContainer(page + 1)
+
             LoadResult.Page(
-                data = response.results,
-                prevKey = if (page == 1) null else page - 1,
-                nextKey = if (page >= response.totalPages) null else page + 1
+                data = response.results + response2.results,
+                prevKey = if (page == 1||page ==2) null else page - 2,
+                nextKey = if (page >= response.totalPages-1) null else page + 2
             )
         } catch (e: Exception) {
             LoadResult.Error(e)
