@@ -31,9 +31,8 @@ fun LazyGridMovies(movies: LazyPagingItems<MovieIndex>, onMovieClick: (movieId: 
         verticalArrangement = Arrangement.spacedBy(GRID_SPACING, Alignment.CenterVertically),
         content = {
             items(movies.itemCount) { movie ->
-                movie?.let {
-                    movies[it]?.let { it1 -> MediaCard(movie = it1, onMovieClick = onMovieClick) }
-                }
+                    movies[movie]?.let {MediaCard(movie = it, onMovieClick = onMovieClick) }
+
             }
         },
     )

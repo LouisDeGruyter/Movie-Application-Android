@@ -26,9 +26,7 @@ fun LazyMoviesRow(
         verticalAlignment = Alignment.CenterVertically,
         content = {
             items(movies.itemCount) { movie ->
-                movie?.let {
-                    movies[it]?.let { it1 -> MediaCard(movie = it1, onMovieClick = onMovieClick) }
-                }
+                movies[movie]?.let { MediaCard(movie = it, onMovieClick = onMovieClick) }
             }
         },
     )

@@ -22,9 +22,7 @@ fun LazySeriesRow(series: LazyPagingItems<SeriesIndex>, onSeriesClick: (seriesId
         verticalAlignment = Alignment.CenterVertically,
         content = {
             items(series.itemCount) { serie ->
-                serie?.let {
-                    series[it]?.let { it1 -> SeriesCard(series = it1, onSeriesClick = onSeriesClick) }
-                }
+                    series[serie]?.let { SeriesCard(series = it, onSeriesClick = onSeriesClick) }
             }
         },
     )

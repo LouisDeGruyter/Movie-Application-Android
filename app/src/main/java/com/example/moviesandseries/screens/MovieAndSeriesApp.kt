@@ -10,21 +10,15 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.moviesandseries.screens.home.HomeScreen
-import com.example.moviesandseries.screens.home.HomeViewModel
-import com.example.moviesandseries.screens.movies.detail.MovieDetailViewModel
 import com.example.moviesandseries.screens.movies.detail.MovieDetailsScreen
-import com.example.moviesandseries.screens.movies.list.MovieViewModel
 import com.example.moviesandseries.screens.movies.list.MoviesScreen
 import com.example.moviesandseries.screens.series.detail.SeriesDetailScreen
-import com.example.moviesandseries.screens.series.detail.SeriesDetailViewModel
 import com.example.moviesandseries.screens.series.list.SeriesScreen
-import com.example.moviesandseries.screens.series.list.SeriesViewModel
 import com.example.templateapplication.screens.appBar.MyBottomAppBar
 import com.example.templateapplication.screens.appBar.MyTopAppBar
 
@@ -86,7 +80,7 @@ fun MovieAndSeriesApp() {
                 MoviesScreen(onMovieClick = ::onMovieClick)
             }
             composable(Destinations.Series.route) {
-                SeriesScreen( onSeriesClick = ::onSeriesClick)
+                SeriesScreen(onSeriesClick = ::onSeriesClick)
             }
             composable("${Destinations.MovieDetails.route}/{id}") {
                     backStackEntry ->
