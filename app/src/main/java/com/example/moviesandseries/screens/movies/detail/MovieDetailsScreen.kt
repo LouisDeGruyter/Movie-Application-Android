@@ -13,11 +13,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.moviesandseries.domain.movie.MovieDetail
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun MovieDetailsScreen(movieId: String?, viewModel: MovieDetailViewModel) {
-    when (val movieDetailUiState = viewModel.movieDetailUiState) {
+fun MovieDetailsScreen(movieId: String?, movieDetailViewModel: MovieDetailViewModel = viewModel(factory = MovieDetailViewModel.Factory)) {
+    when (val movieDetailUiState = movieDetailViewModel.movieDetailUiState) {
         is MovieDetailUiState.Success -> {
             displayMovieDetail(movieDetail = (movieDetailUiState as MovieDetailUiState.Success).movieDetail)
         }
@@ -32,7 +34,7 @@ fun MovieDetailsScreen(movieId: String?, viewModel: MovieDetailViewModel) {
     // Trigger the getMovieDetail function when the screen is initially displayed
     LaunchedEffect(key1 = movieId) {
         if (movieId != null) {
-            viewModel.getMovieDetail(movieId.toInt())
+            movieDetailViewModel.getMovieDetail(movieId.toInt())
         }
     }
 }

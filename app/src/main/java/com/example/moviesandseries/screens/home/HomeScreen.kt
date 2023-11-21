@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -24,7 +25,7 @@ private val ROW_PADDING = 12.dp
 
 @Composable
 fun HomeScreen(
-    homeViewModel: HomeViewModel,
+    homeViewModel: HomeViewModel = viewModel(factory = HomeViewModel.Factory),
     onMovieClick: (movieId: Int) -> Unit,
     onSeriesClick: (seriesId: Int) -> Unit,
 ) {

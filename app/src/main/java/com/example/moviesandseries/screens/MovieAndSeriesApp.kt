@@ -42,13 +42,6 @@ enum class Destinations(val route: String) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MovieAndSeriesApp() {
-    // viewmodels
-    val movieViewModel: MovieViewModel = viewModel(factory = MovieViewModel.Factory)
-    val seriesViewModel: SeriesViewModel = viewModel(factory = SeriesViewModel.Factory)
-    val homeViewModel: HomeViewModel = viewModel(factory = HomeViewModel.Factory)
-    // viewmodel details
-    val seriesDetailViewModel: SeriesDetailViewModel = viewModel(factory = SeriesDetailViewModel.Factory)
-    val movieDetailViewModel: MovieDetailViewModel = viewModel(factory = MovieDetailViewModel.Factory)
     // navigation
     val navController = rememberNavController()
     val currentBackStackEntry by navController.currentBackStackEntryAsState()
@@ -87,21 +80,21 @@ fun MovieAndSeriesApp() {
                 navController.navigate(Destinations.SeriesDetail.createRoute(seriesId.toString()))
             }
             composable(Destinations.Home.route) {
-                HomeScreen(homeViewModel = homeViewModel, onMovieClick = ::onMovieClick, onSeriesClick = ::onSeriesClick)
+                HomeScreen(onMovieClick = ::onMovieClick, onSeriesClick = ::onSeriesClick)
             }
             composable(Destinations.Movies.route) {
-                MoviesScreen(movieViewModel = movieViewModel, onMovieClick = ::onMovieClick)
+                MoviesScreen(onMovieClick = ::onMovieClick)
             }
             composable(Destinations.Series.route) {
-                SeriesScreen(seriesUiState = seriesViewModel.seriesUiState, onSeriesClick = ::onSeriesClick)
+                SeriesScreen( onSeriesClick = ::onSeriesClick)
             }
             composable("${Destinations.MovieDetails.route}/{id}") {
                     backStackEntry ->
-                MovieDetailsScreen(viewModel = movieDetailViewModel, movieId = backStackEntry.arguments?.getString("id"))
+                MovieDetailsScreen(movieId = backStackEntry.arguments?.getString("id"))
             }
             composable("${Destinations.SeriesDetail.route}/{id}") {
                     backStackEntry ->
-                SeriesDetailScreen(viewModel = seriesDetailViewModel, seriesId = backStackEntry.arguments?.getString("id"))
+                SeriesDetailScreen(seriesId = backStackEntry.arguments?.getString("id"))
             }
         }
     }
