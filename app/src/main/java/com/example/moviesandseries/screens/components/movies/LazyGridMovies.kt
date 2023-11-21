@@ -9,11 +9,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
+import com.example.moviesandseries.domain.movie.MovieIndex
 import com.example.moviesandseries.screens.components.MediaCard
 
-private val GRID_SPACING= 10.dp
+private val GRID_SPACING = 10.dp
+
 @Composable
-fun LazyGridMovies(movies: LazyPagingItems<MovieIndex>, onMovieClick: (movieId: Int) -> Unit, columns:Int) {
+fun LazyGridMovies(movies: LazyPagingItems<MovieIndex>, onMovieClick: (movieId: Int) -> Unit, columns: Int) {
     val lazyGridState = rememberLazyGridState()
 
     LazyVerticalGrid(
@@ -23,7 +25,7 @@ fun LazyGridMovies(movies: LazyPagingItems<MovieIndex>, onMovieClick: (movieId: 
             start = GRID_SPACING,
             end = GRID_SPACING,
             top = GRID_SPACING,
-            bottom = GRID_SPACING
+            bottom = GRID_SPACING,
         ),
         horizontalArrangement = Arrangement.spacedBy(GRID_SPACING, Alignment.CenterHorizontally),
         verticalArrangement = Arrangement.spacedBy(GRID_SPACING, Alignment.CenterVertically),
@@ -33,8 +35,6 @@ fun LazyGridMovies(movies: LazyPagingItems<MovieIndex>, onMovieClick: (movieId: 
                     movies[it]?.let { it1 -> MediaCard(movie = it1, onMovieClick = onMovieClick) }
                 }
             }
-
-        }
+        },
     )
-
 }

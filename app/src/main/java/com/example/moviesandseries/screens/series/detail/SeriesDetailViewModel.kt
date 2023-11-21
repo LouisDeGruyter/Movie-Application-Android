@@ -13,10 +13,10 @@ import com.example.moviesandseries.MovieAndSeriesApplication
 import com.example.moviesandseries.repository.SeriesRepository
 import kotlinx.coroutines.launch
 
-class SeriesDetailViewModel(private val seriesRepository: SeriesRepository): ViewModel() {
+class SeriesDetailViewModel(private val seriesRepository: SeriesRepository) : ViewModel() {
     var seriesDetailUiState: SeriesDetailUiState by mutableStateOf(SeriesDetailUiState.Loading)
         private set
-    fun getSeriesDetail(seriesId: Int){
+    fun getSeriesDetail(seriesId: Int) {
         viewModelScope.launch {
             seriesDetailUiState = SeriesDetailUiState.Loading
             seriesDetailUiState = try {

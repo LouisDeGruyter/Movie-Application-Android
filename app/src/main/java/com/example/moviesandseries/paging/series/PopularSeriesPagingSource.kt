@@ -2,17 +2,18 @@ package com.example.moviesandseries.paging.series
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.example.moviesandseries.domain.series.SeriesIndex
 import com.example.moviesandseries.repository.SeriesRepository
 
-class PopularSeriesPagingSource (private val seriesRepository: SeriesRepository): PagingSource<Int, SeriesIndex>(){
+class PopularSeriesPagingSource(private val seriesRepository: SeriesRepository) : PagingSource<Int, SeriesIndex>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, SeriesIndex> {
         return try {
             val page = params.key ?: 1
-            val response = seriesRepository.getSeriesPopular(page=page)
+            val response = seriesRepository.getSeriesPopular(page = page)
             LoadResult.Page(
                 data = response.results,
                 prevKey = if (page == 1) null else page - 1,
-                nextKey = if (page >= response.totalPages) null else page + 1
+                nextKey = if (page >= response.totalPages) null else page + 1,
             )
         } catch (e: Exception) {
             LoadResult.Error(e)

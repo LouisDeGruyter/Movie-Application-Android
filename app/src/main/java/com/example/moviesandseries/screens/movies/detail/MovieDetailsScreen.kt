@@ -1,9 +1,7 @@
 package com.example.moviesandseries.screens.movies.detail
 
 import androidx.compose.animation.animateContentSize
-
 import androidx.compose.foundation.layout.Column
-
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
@@ -15,22 +13,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
+import com.example.moviesandseries.domain.movie.MovieDetail
 
 @Composable
 fun MovieDetailsScreen(movieId: String?, viewModel: MovieDetailViewModel) {
-    val movieDetailUiState= viewModel.movieDetailUiState
-        when (movieDetailUiState) {
-            is MovieDetailUiState.Success -> {
-                displayMovieDetail(movieDetail = (movieDetailUiState as MovieDetailUiState.Success).movieDetail)
-            }
-            is MovieDetailUiState.Loading -> {
-                LoadingAnimation()
-            }
-            is MovieDetailUiState.Error -> {
-                ErrorText(message = (movieDetailUiState as MovieDetailUiState.Error).message)
-            }
-
+    when (val movieDetailUiState = viewModel.movieDetailUiState) {
+        is MovieDetailUiState.Success -> {
+            displayMovieDetail(movieDetail = (movieDetailUiState as MovieDetailUiState.Success).movieDetail)
+        }
+        is MovieDetailUiState.Loading -> {
+            LoadingAnimation()
+        }
+        is MovieDetailUiState.Error -> {
+            ErrorText(message = (movieDetailUiState as MovieDetailUiState.Error).message)
+        }
     }
 
     // Trigger the getMovieDetail function when the screen is initially displayed
@@ -47,7 +43,7 @@ fun displayMovieDetail(movieDetail: MovieDetail) {
     Column(
         modifier = Modifier
             .animateContentSize()
-            .padding(8.dp)
+            .padding(8.dp),
     ) {
         Text(text = movieDetail.title, fontWeight = FontWeight.Bold, fontSize = 20.sp)
         // Add more UI components for other details

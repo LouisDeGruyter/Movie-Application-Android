@@ -11,6 +11,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.moviesandseries.MovieAndSeriesApplication
+import com.example.moviesandseries.domain.movie.MovieIndex
+import com.example.moviesandseries.domain.series.SeriesIndex
 import com.example.moviesandseries.paging.movies.MoviesInTheaterPagingSource
 import com.example.moviesandseries.paging.movies.PopularMoviesPagingSource
 import com.example.moviesandseries.paging.movies.TopRatedMoviesPagingSource

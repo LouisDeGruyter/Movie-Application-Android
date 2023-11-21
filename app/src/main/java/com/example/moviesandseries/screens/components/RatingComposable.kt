@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun RatingComposable(rating: Double,modifier: Modifier = Modifier) {
+fun RatingComposable(rating: Double, modifier: Modifier = Modifier) {
     var adjustedRating = (rating * 10).toInt()
 
     val color = when {
@@ -27,7 +27,6 @@ fun RatingComposable(rating: Double,modifier: Modifier = Modifier) {
         adjustedRating >= 50 -> Color.Yellow
         else -> Color.Red
     }
-
 
     val circleSize = 30.dp
     val progress = (rating / 10).toFloat()
@@ -37,7 +36,7 @@ fun RatingComposable(rating: Double,modifier: Modifier = Modifier) {
             .fillMaxSize(),
     ) {
         Canvas(
-            modifier = Modifier.size(circleSize)
+            modifier = Modifier.size(circleSize),
         ) {
             // Draw inner circle with a black border
             val innerCircleRadius = size.width / 2
@@ -46,7 +45,7 @@ fun RatingComposable(rating: Double,modifier: Modifier = Modifier) {
                 color = Color.Black,
                 radius = innerCircleRadius,
                 center = Offset(innerCircleRadius, innerCircleRadius),
-                style = Fill
+                style = Fill,
             )
             drawArc(
                 color = color,
@@ -57,7 +56,7 @@ fun RatingComposable(rating: Double,modifier: Modifier = Modifier) {
                 topLeft = Offset(strokeWidth / 2, strokeWidth / 2),
                 size = Size(
                     (innerCircleRadius - strokeWidth / 2) * 2,
-                    (innerCircleRadius - strokeWidth / 2) * 2
+                    (innerCircleRadius - strokeWidth / 2) * 2,
                 ),
             )
             drawArc(
@@ -69,13 +68,12 @@ fun RatingComposable(rating: Double,modifier: Modifier = Modifier) {
                 topLeft = Offset(strokeWidth / 2, strokeWidth / 2),
                 size = Size(
                     (innerCircleRadius - strokeWidth / 2) * 2,
-                    (innerCircleRadius - strokeWidth / 2) * 2
+                    (innerCircleRadius - strokeWidth / 2) * 2,
                 ),
 
-                )
+            )
 
             // Draw the actual inner circle (to cover the black border)
-
 
             // Draw text in the center
             drawIntoCanvas {
@@ -88,7 +86,6 @@ fun RatingComposable(rating: Double,modifier: Modifier = Modifier) {
                 val yOffset = (size.height + textSize - 10) / 2
                 it.nativeCanvas.drawText(text, xOffset, yOffset, paint)
             }
-
         }
     }
 }

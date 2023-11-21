@@ -13,15 +13,14 @@ import com.example.moviesandseries.MovieAndSeriesApplication
 import com.example.moviesandseries.repository.MovieRepository
 import kotlinx.coroutines.launch
 
-class MovieDetailViewModel(private val movieRepository: MovieRepository): ViewModel() {
+class MovieDetailViewModel(private val movieRepository: MovieRepository) : ViewModel() {
     var movieDetailUiState: MovieDetailUiState by mutableStateOf(MovieDetailUiState.Loading)
         private set
-    fun getMovieDetail(movieId: Int){
+    fun getMovieDetail(movieId: Int) {
         viewModelScope.launch {
             movieDetailUiState = MovieDetailUiState.Loading
             movieDetailUiState = try {
                 MovieDetailUiState.Success(movieRepository.getMovieDetail(movieId))
-
             } catch (e: Exception) {
                 MovieDetailUiState.Error(e.message ?: "An unknown error occured")
             }

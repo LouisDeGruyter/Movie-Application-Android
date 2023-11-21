@@ -19,7 +19,7 @@ data class SeriesContainerApi(
 fun SeriesContainerApi.asDomainObject(): SeriesContainer {
     return SeriesContainer(
         page = page,
-        results = results.map { it?.asDomainObject() },
+        results = results.map { it.asDomainObject() },
         totalPages = totalPages,
         totalResults = totalResults,
     )

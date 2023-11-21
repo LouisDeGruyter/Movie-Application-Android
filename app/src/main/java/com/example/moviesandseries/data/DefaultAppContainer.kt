@@ -4,23 +4,23 @@ import android.content.Context
 import android.content.pm.PackageManager
 import com.example.moviesandseries.MovieAndSeriesApplication
 import com.example.moviesandseries.network.MovieApiService
+import com.example.moviesandseries.network.SeriesApiService
 import com.example.moviesandseries.repository.MovieRepository
 import com.example.moviesandseries.repository.NetworkMovieRepository
+import com.example.moviesandseries.repository.NetworkSeriesRepository
+import com.example.moviesandseries.repository.SeriesRepository
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
-import com.example.moviesandseries.network.SeriesApiService
-import com.example.moviesandseries.repository.NetworkSeriesRepository
-import com.example.moviesandseries.repository.SeriesRepository
 
 fun getMetadata(context: Context, key: String?): String? {
     try {
         val metaData = context.packageManager
             .getApplicationInfo(
                 context.packageName,
-                PackageManager.GET_META_DATA
+                PackageManager.GET_META_DATA,
             ).metaData
         return metaData?.getString(key)
     } catch (e: PackageManager.NameNotFoundException) {
@@ -34,7 +34,7 @@ private class LoggingInterceptorHeaders : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
         val request: Request =
-            chain.request().newBuilder().addHeader("Authorization","Bearer "+ TMDB_API_KEY).build()
+            chain.request().newBuilder().addHeader("Authorization", "Bearer " + TMDB_API_KEY).build()
         return chain.proceed(request)
     }
 }
@@ -47,7 +47,6 @@ class DefaultAppContainer : AppContainer {
         .build()
 
     // create logging interceptor
-
 
     private val logger =
         HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.HEADERS }
@@ -75,14 +74,13 @@ class DefaultAppContainer : AppContainer {
         retrofit.create(SeriesApiService::class.java)
     }
 
-
     /**
      * DI implementation for blog post repository.
      */
-    override val movieRepository: MovieRepository by lazy{
+    override val movieRepository: MovieRepository by lazy {
         NetworkMovieRepository(movieApiService)
     }
-    override val seriesRepository: SeriesRepository by lazy{
+    override val seriesRepository: SeriesRepository by lazy {
         NetworkSeriesRepository(seriesApiService)
     }
 }

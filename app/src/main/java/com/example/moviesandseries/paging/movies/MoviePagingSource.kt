@@ -2,6 +2,7 @@ package com.example.moviesandseries.paging.movies
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.example.moviesandseries.domain.movie.MovieIndex
 import com.example.moviesandseries.repository.MovieRepository
 
 class MoviePagingSource(private val movieRepository: MovieRepository) : PagingSource<Int, MovieIndex>() {
@@ -13,8 +14,8 @@ class MoviePagingSource(private val movieRepository: MovieRepository) : PagingSo
 
             LoadResult.Page(
                 data = response.results + response2.results,
-                prevKey = if (page == 1||page ==2) null else page - 2,
-                nextKey = if (page >= response.totalPages-1) null else page + 2
+                prevKey = if (page == 1 || page == 2) null else page - 2,
+                nextKey = if (page >= response.totalPages - 1) null else page + 2,
             )
         } catch (e: Exception) {
             LoadResult.Error(e)

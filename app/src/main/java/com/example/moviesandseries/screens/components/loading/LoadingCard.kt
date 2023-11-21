@@ -19,7 +19,7 @@ import com.example.moviesandseries.screens.components.RatingComposable
 
 @Composable
 fun LoadingCard() {
-    ElevatedCard(shape = RoundedCornerShape(12.dp),) {
+    ElevatedCard(shape = RoundedCornerShape(12.dp)) {
         Box {
             RatingComposable(rating = 7.5, modifier = Modifier.zIndex(2f))
             Image(
@@ -29,9 +29,8 @@ fun LoadingCard() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(2 / 3f),
-                alignment = Alignment.Center
+                alignment = Alignment.Center,
             )
         }
-
     }
 }

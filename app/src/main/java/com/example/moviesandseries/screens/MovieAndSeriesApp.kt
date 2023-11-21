@@ -17,50 +17,49 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.moviesandseries.screens.home.HomeScreen
 import com.example.moviesandseries.screens.home.HomeViewModel
+import com.example.moviesandseries.screens.movies.detail.MovieDetailViewModel
 import com.example.moviesandseries.screens.movies.detail.MovieDetailsScreen
 import com.example.moviesandseries.screens.movies.list.MovieViewModel
 import com.example.moviesandseries.screens.movies.list.MoviesScreen
 import com.example.moviesandseries.screens.series.detail.SeriesDetailScreen
 import com.example.moviesandseries.screens.series.detail.SeriesDetailViewModel
-import com.example.moviesandseries.screens.movies.detail.MovieDetailViewModel
 import com.example.moviesandseries.screens.series.list.SeriesScreen
 import com.example.moviesandseries.screens.series.list.SeriesViewModel
 import com.example.templateapplication.screens.appBar.MyBottomAppBar
 import com.example.templateapplication.screens.appBar.MyTopAppBar
 
-enum class Destinations(val route: String){
+enum class Destinations(val route: String) {
     Home("Home"),
     Movies("Movies"),
     Series("Series"),
     MovieDetails("MovieDetails"),
-    SeriesDetail("SeriesDetail");
+    SeriesDetail("SeriesDetail"),
+    ;
 
     fun createRoute(id: String) = "$route/$id"
 }
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MovieAndSeriesApp() {
-    //viewmodels
+    // viewmodels
     val movieViewModel: MovieViewModel = viewModel(factory = MovieViewModel.Factory)
     val seriesViewModel: SeriesViewModel = viewModel(factory = SeriesViewModel.Factory)
     val homeViewModel: HomeViewModel = viewModel(factory = HomeViewModel.Factory)
-    //viewmodel details
+    // viewmodel details
     val seriesDetailViewModel: SeriesDetailViewModel = viewModel(factory = SeriesDetailViewModel.Factory)
     val movieDetailViewModel: MovieDetailViewModel = viewModel(factory = MovieDetailViewModel.Factory)
-    //navigation
+    // navigation
     val navController = rememberNavController()
     val currentBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = currentBackStackEntry?.destination?.route
-    val currentEnumDestination:Destinations? = currentDestination?.let { route ->
+    val currentEnumDestination: Destinations? = currentDestination?.let { route ->
         enumValues<Destinations>().find { it.route == route }
     }
     val currentPage = currentEnumDestination?.route ?: "Home"
-    Scaffold (
-        topBar= {
+    Scaffold(
+        topBar = {
             MyTopAppBar(currentpage = currentPage) {
-
                 if (currentDestination != Destinations.Home.route) {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.Filled.ArrowBack, contentDescription = "Localized description")
@@ -70,16 +69,16 @@ fun MovieAndSeriesApp() {
         },
         bottomBar = {
             MyBottomAppBar(
-                onHome = { navController.popBackStack(Destinations.Home.route, inclusive= false) },
+                onHome = { navController.popBackStack(Destinations.Home.route, inclusive = false) },
                 onMovies = { navController.navigate(Destinations.Movies.route) },
                 onSeries = { navController.navigate(Destinations.Series.route) },
             )
-        }
+        },
     ) { innerPadding ->
         NavHost(
             navController = navController,
             startDestination = Destinations.Home.route,
-            Modifier.padding(innerPadding)
+            Modifier.padding(innerPadding),
         ) {
             fun onMovieClick(movieId: Int) {
                 navController.navigate(Destinations.MovieDetails.createRoute(movieId.toString()))
@@ -88,23 +87,22 @@ fun MovieAndSeriesApp() {
                 navController.navigate(Destinations.SeriesDetail.createRoute(seriesId.toString()))
             }
             composable(Destinations.Home.route) {
-                HomeScreen(homeViewModel = homeViewModel, onMovieClick= ::onMovieClick, onSeriesClick= ::onSeriesClick)
+                HomeScreen(homeViewModel = homeViewModel, onMovieClick = ::onMovieClick, onSeriesClick = ::onSeriesClick)
             }
             composable(Destinations.Movies.route) {
-                MoviesScreen(movieViewModel = movieViewModel, onMovieClick= ::onMovieClick )
+                MoviesScreen(movieViewModel = movieViewModel, onMovieClick = ::onMovieClick)
             }
             composable(Destinations.Series.route) {
-                SeriesScreen (seriesUiState= seriesViewModel.seriesUiState,onSeriesClick= ::onSeriesClick)
+                SeriesScreen(seriesUiState = seriesViewModel.seriesUiState, onSeriesClick = ::onSeriesClick)
             }
             composable("${Destinations.MovieDetails.route}/{id}") {
-                backStackEntry -> MovieDetailsScreen(viewModel=movieDetailViewModel,movieId = backStackEntry.arguments?.getString("id"))
+                    backStackEntry ->
+                MovieDetailsScreen(viewModel = movieDetailViewModel, movieId = backStackEntry.arguments?.getString("id"))
             }
             composable("${Destinations.SeriesDetail.route}/{id}") {
-                backStackEntry -> SeriesDetailScreen(viewModel=seriesDetailViewModel,seriesId = backStackEntry.arguments?.getString("id"))
+                    backStackEntry ->
+                SeriesDetailScreen(viewModel = seriesDetailViewModel, seriesId = backStackEntry.arguments?.getString("id"))
             }
         }
     }
-
-
 }
-

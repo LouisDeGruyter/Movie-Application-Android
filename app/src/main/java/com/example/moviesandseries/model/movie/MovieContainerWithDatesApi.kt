@@ -24,7 +24,7 @@ fun MovieContainerWithDatesApi.asDomainObject(): MovieContainerWithDates {
     return MovieContainerWithDates(
         dates = dates.asDomainObject(),
         page = page,
-        results = results.map { it?.asDomainObject() },
+        results = results.map { it.asDomainObject() },
         totalPages = totalPages,
         totalResults = totalResults,
     )

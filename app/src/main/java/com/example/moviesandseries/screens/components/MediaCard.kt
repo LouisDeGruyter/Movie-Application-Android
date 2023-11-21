@@ -18,6 +18,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import coil.compose.rememberAsyncImagePainter
+import com.example.moviesandseries.domain.movie.MovieIndex
 import com.example.moviesandseries.network.ApiEndpoints
 
 @Composable
@@ -28,14 +29,14 @@ fun MediaCard(movie: MovieIndex, onMovieClick: (Int) -> Unit) {
             .clickable(onClick = { onMovieClick(movie.id) }),
         shape = RoundedCornerShape(12.dp),
 
-        ) {
+    ) {
         Box() {
             RatingComposable(rating = movie.voteAverage, modifier = Modifier.zIndex(2f))
 
             val painter = rememberAsyncImagePainter(
                 model = ApiEndpoints.Poster + movie.posterPath,
                 error = rememberVectorPainter(image = Icons.Filled.BrokenImage),
-                placeholder = rememberVectorPainter(image = Icons.Filled.LocalMovies)
+                placeholder = rememberVectorPainter(image = Icons.Filled.LocalMovies),
             )
             Image(
                 painter = painter,
@@ -44,10 +45,8 @@ fun MediaCard(movie: MovieIndex, onMovieClick: (Int) -> Unit) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(2 / 3f),
-                alignment = Alignment.Center
+                alignment = Alignment.Center,
             )
         }
-
     }
 }
-

@@ -7,16 +7,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
-private val ROW_SPACING= 12.dp
+private val ROW_SPACING = 12.dp
+
 @Composable
 fun LoadingMediaRow(numberOfItems: Int, modifier: Modifier) {
-    LazyRow(modifier = modifier,
+    LazyRow(
+        modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(ROW_SPACING, Alignment.CenterHorizontally),
         verticalAlignment = Alignment.CenterVertically,
         content = {
-        items(numberOfItems) {
-            LoadingCard()
-        }
-    })
+            items(numberOfItems) {
+                LoadingCard()
+            }
+        },
+    )
 }
-

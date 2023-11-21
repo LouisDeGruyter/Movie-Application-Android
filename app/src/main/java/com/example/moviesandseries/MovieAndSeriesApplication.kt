@@ -12,7 +12,6 @@ class MovieAndSeriesApplication : Application() {
         super.onCreate()
         appContext = this // this has to be done before initializing the container as it uses appContext
         container = DefaultAppContainer()
-
     }
     companion object {
         lateinit var appContext: Context
