@@ -14,7 +14,6 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.moviesandseries.MovieAndSeriesApplication
-import com.example.moviesandseries.model.movie.MovieIndex
 import com.example.moviesandseries.paging.movies.MoviePagingSource
 import com.example.moviesandseries.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow

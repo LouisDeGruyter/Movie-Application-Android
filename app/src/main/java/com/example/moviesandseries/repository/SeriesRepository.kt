@@ -1,12 +1,6 @@
 package com.example.moviesandseries.repository
 
-import com.example.moviesandseries.model.credits.CreditsContainer
-import com.example.moviesandseries.model.images.ImagesContainer
-import com.example.moviesandseries.model.recommendations.RecommendationContainer
-import com.example.moviesandseries.model.reviews.ReviewContainer
-import com.example.moviesandseries.model.series.SeriesContainer
-import com.example.moviesandseries.model.series.SeriesDetail
-import com.example.moviesandseries.model.series.SeriesIndex
+import com.example.moviesandseries.model.recommendations.RecommendationContainerApi
 import com.example.moviesandseries.network.SeriesApiService
 
 interface SeriesRepository {
@@ -17,7 +11,7 @@ interface SeriesRepository {
 
     suspend fun getSeriesImages(seriesId: Int) : ImagesContainer
     suspend fun getSimilarSeries(seriesId: Int, page: Int) : SeriesContainer
-    suspend fun getRecommendedSeries(seriesId: Int,page: Int) : RecommendationContainer
+    suspend fun getRecommendedSeries(seriesId: Int,page: Int) : RecommendationContainerApi
     suspend fun getSeriesReviews(seriesId: Int,page: Int): ReviewContainer
     suspend fun getSeriesPopular(page: Int): SeriesContainer
     suspend fun getSeriesTopRated(page: Int) : SeriesContainer

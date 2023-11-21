@@ -2,7 +2,6 @@ package com.example.moviesandseries.paging.series
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.moviesandseries.model.series.SeriesIndex
 import com.example.moviesandseries.repository.SeriesRepository
 
 class SeriesPagingSource (private val seriesRepository: SeriesRepository): PagingSource<Int, SeriesIndex>(){

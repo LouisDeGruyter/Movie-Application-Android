@@ -2,12 +2,11 @@ package com.example.moviesandseries.paging.series
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.moviesandseries.model.recommendations.RecommendationMedia
-import com.example.moviesandseries.model.series.SeriesIndex
+import com.example.moviesandseries.model.recommendations.RecommendationMediaApi
 import com.example.moviesandseries.repository.SeriesRepository
 
-class RecommendedSeriesPagingSource (private val seriesRepository: SeriesRepository, private val seriesId: Int): PagingSource<Int, RecommendationMedia>(){
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RecommendationMedia> {
+class RecommendedSeriesPagingSource (private val seriesRepository: SeriesRepository, private val seriesId: Int): PagingSource<Int, RecommendationMediaApi>(){
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RecommendationMediaApi> {
         return try {
             val page = params.key ?: 1
             val response = seriesRepository.getRecommendedSeries(seriesId=seriesId,page=page)
@@ -21,7 +20,7 @@ class RecommendedSeriesPagingSource (private val seriesRepository: SeriesReposit
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, RecommendationMedia>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, RecommendationMediaApi>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)

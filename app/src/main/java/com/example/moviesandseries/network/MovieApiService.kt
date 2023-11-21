@@ -1,12 +1,6 @@
 package com.example.moviesandseries.network
 
-import com.example.moviesandseries.model.credits.CreditsContainer
-import com.example.moviesandseries.model.images.ImagesContainer
-import com.example.moviesandseries.model.movie.MovieContainer
-import com.example.moviesandseries.model.movie.MovieContainerWithDates
-import com.example.moviesandseries.model.movie.MovieDetail
-import com.example.moviesandseries.model.recommendations.RecommendationContainer
-import com.example.moviesandseries.model.reviews.ReviewContainer
+import com.example.moviesandseries.model.recommendations.RecommendationContainerApi
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -40,7 +34,7 @@ interface MovieApiService {
     suspend fun getRecommendedMovies(
         @Path("movie_id") movieId: Int,
         @Query("page") page: Int,
-    ): RecommendationContainer
+    ): RecommendationContainerApi
 
     @GET(ApiEndpoints.MovieDetail + "/reviews")
     suspend fun getMovieReviews(

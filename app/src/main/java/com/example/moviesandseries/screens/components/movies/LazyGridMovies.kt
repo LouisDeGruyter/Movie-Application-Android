@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
-import com.example.moviesandseries.model.movie.MovieIndex
 import com.example.moviesandseries.screens.components.MediaCard
 
 private val GRID_SPACING= 10.dp

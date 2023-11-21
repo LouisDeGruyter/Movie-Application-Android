@@ -2,13 +2,11 @@ package com.example.moviesandseries.paging.movies
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.moviesandseries.model.movie.MovieIndex
-import com.example.moviesandseries.model.recommendations.RecommendationMedia
-import com.example.moviesandseries.model.reviews.Review
+import com.example.moviesandseries.model.recommendations.RecommendationMediaApi
 import com.example.moviesandseries.repository.MovieRepository
 
-class RecommendedMoviesPagingSource (private val movieRepository: MovieRepository, private val movieId: Int): PagingSource<Int, RecommendationMedia>() {
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RecommendationMedia> {
+class RecommendedMoviesPagingSource (private val movieRepository: MovieRepository, private val movieId: Int): PagingSource<Int, RecommendationMediaApi>() {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RecommendationMediaApi> {
         return try {
             val page = params.key ?: 1
             val response = movieRepository.getRecommendedMovies(movieId= movieId,page=page)
@@ -22,7 +20,7 @@ class RecommendedMoviesPagingSource (private val movieRepository: MovieRepositor
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, RecommendationMedia>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, RecommendationMediaApi>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
             anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)

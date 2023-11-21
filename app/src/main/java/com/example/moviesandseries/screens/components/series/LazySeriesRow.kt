@@ -1,7 +1,6 @@
 package com.example.moviesandseries.screens.components.movies
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
@@ -9,7 +8,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
-import com.example.moviesandseries.model.series.SeriesIndex
 import com.example.moviesandseries.screens.components.series.SeriesCard
 
 private val ROW_SPACING= 12.dp

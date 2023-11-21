@@ -3,8 +3,6 @@ package com.example.moviesandseries.screens.series.detail
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import com.example.moviesandseries.model.series.SeriesDetail
-import com.example.moviesandseries.screens.series.list.SeriesViewModel
 
 @Composable
 fun SeriesDetailScreen(seriesId: String?, viewModel: SeriesDetailViewModel) {

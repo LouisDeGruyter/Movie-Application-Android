@@ -1,7 +1,6 @@
 package com.example.moviesandseries.screens.movies.list
 
 import androidx.paging.PagingData
-import com.example.moviesandseries.model.movie.MovieIndex
 import kotlinx.coroutines.flow.Flow
 
 sealed interface MovieUiState{

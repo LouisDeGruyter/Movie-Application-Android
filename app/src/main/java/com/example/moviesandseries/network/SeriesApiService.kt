@@ -1,11 +1,6 @@
 package com.example.moviesandseries.network
 
-import com.example.moviesandseries.model.credits.CreditsContainer
-import com.example.moviesandseries.model.images.ImagesContainer
-import com.example.moviesandseries.model.recommendations.RecommendationContainer
-import com.example.moviesandseries.model.reviews.ReviewContainer
-import com.example.moviesandseries.model.series.SeriesContainer
-import com.example.moviesandseries.model.series.SeriesDetail
+import com.example.moviesandseries.model.recommendations.RecommendationContainerApi
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -37,7 +32,7 @@ interface SeriesApiService {
     suspend fun getRecommendedSeries(
         @Path("series_id") seriesId: Int,
         @Query("page") page: Int,
-    ): RecommendationContainer
+    ): RecommendationContainerApi
 
     @GET(ApiEndpoints.SeriesDetail + "/reviews")
     suspend fun getSeriesReviews(

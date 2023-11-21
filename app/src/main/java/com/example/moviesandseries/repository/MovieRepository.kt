@@ -1,13 +1,6 @@
 package com.example.moviesandseries.repository
 
-import com.example.moviesandseries.model.credits.CreditsContainer
-import com.example.moviesandseries.model.images.ImagesContainer
-import com.example.moviesandseries.model.movie.MovieContainer
-import com.example.moviesandseries.model.movie.MovieContainerWithDates
-import com.example.moviesandseries.model.movie.MovieDetail
-import com.example.moviesandseries.model.movie.MovieIndex
-import com.example.moviesandseries.model.recommendations.RecommendationContainer
-import com.example.moviesandseries.model.reviews.ReviewContainer
+import com.example.moviesandseries.model.recommendations.RecommendationContainerApi
 import com.example.moviesandseries.network.MovieApiService
 
 interface MovieRepository {
@@ -17,7 +10,7 @@ interface MovieRepository {
     suspend fun getMovieCredits(movieId: Int): CreditsContainer
     suspend fun getMovieImages(movieId: Int): ImagesContainer
     suspend fun getSimilarMovies(movieId: Int, page: Int): MovieContainer
-    suspend fun getRecommendedMovies(movieId: Int, page: Int): RecommendationContainer
+    suspend fun getRecommendedMovies(movieId: Int, page: Int): RecommendationContainerApi
     suspend fun getMovieReviews(movieId: Int, page: Int): ReviewContainer
     suspend fun getMoviesInTheaters(page: Int): MovieContainerWithDates
     suspend fun getMoviesPopular(page: Int): MovieContainer

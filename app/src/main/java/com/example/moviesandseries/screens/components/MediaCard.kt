@@ -18,9 +18,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import coil.compose.rememberAsyncImagePainter
-import com.example.moviesandseries.model.movie.MovieIndex
 import com.example.moviesandseries.network.ApiEndpoints
-import com.example.moviesandseries.screens.components.RatingComposable
 
 @Composable
 fun MediaCard(movie: MovieIndex, onMovieClick: (Int) -> Unit) {

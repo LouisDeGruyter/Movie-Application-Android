@@ -14,8 +14,6 @@ import androidx.compose.ui.unit.sp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.example.moviesandseries.model.movie.MovieIndex
-import com.example.moviesandseries.model.series.SeriesIndex
 import com.example.moviesandseries.screens.components.loading.LoadingMediaRow
 import com.example.moviesandseries.screens.components.movies.LazyMoviesRow
 import com.example.moviesandseries.screens.components.movies.LazySeriesRow
