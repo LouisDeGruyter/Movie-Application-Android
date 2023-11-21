@@ -10,6 +10,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
 import com.example.moviesandseries.model.movie.MovieIndex
+import com.example.moviesandseries.screens.components.MediaCard
+
 private val GRID_SPACING= 10.dp
 @Composable
 fun LazyGridMovies(movies: LazyPagingItems<MovieIndex>, onMovieClick: (movieId: Int) -> Unit, columns:Int) {
@@ -29,7 +31,7 @@ fun LazyGridMovies(movies: LazyPagingItems<MovieIndex>, onMovieClick: (movieId: 
         content = {
             items(movies.itemCount) { movie ->
                 movie?.let {
-                    movies[it]?.let { it1 -> MovieCard(movie = it1, onMovieClick = onMovieClick) }
+                    movies[it]?.let { it1 -> MediaCard(movie = it1, onMovieClick = onMovieClick) }
                 }
             }
 

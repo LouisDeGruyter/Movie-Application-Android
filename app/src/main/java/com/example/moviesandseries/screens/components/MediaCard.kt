@@ -1,4 +1,4 @@
-package com.example.moviesandseries.screens.components.movies
+package com.example.moviesandseries.screens.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

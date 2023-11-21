@@ -7,9 +7,9 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class Season(
     @Json(name = "air_date")
-    val airDate: String,
+    val airDate: String?,
     @Json(name = "episode_count")
-    val episodeCount: Int,
+    val episodeCount: Int?,
     @Json(name = "id")
     val id: Int,
     @Json(name = "name")
