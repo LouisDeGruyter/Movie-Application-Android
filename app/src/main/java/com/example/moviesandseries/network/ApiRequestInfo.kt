@@ -1,5 +1,5 @@
 package com.example.moviesandseries.network
 
-object ApiRequestInfo{
-    const val pageSize= 20
+object ApiRequestInfo {
+    const val pageSize = 20
 }

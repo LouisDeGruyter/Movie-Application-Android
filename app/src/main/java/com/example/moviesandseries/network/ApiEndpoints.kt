@@ -1,13 +1,13 @@
 package com.example.moviesandseries.network
 
 object ApiEndpoints {
-    const val Poster= "https://image.tmdb.org/t/p/original/"
+    const val Poster = "https://image.tmdb.org/t/p/w780/"
     const val Movies = "discover/movie"
     const val MovieDetail = "movie/{movie_id}"
     const val MoviesInTheaters = "movie/now_playing"
-    const val MoviesPopular= "movie/popular"
-    const val MoviesTopRated= "movie/top_rated"
-    const val MoviesUpcoming= "movie/upcoming"
+    const val MoviesPopular = "movie/popular"
+    const val MoviesTopRated = "movie/top_rated"
+    const val MoviesUpcoming = "movie/upcoming"
     const val Series = "discover/tv"
     const val SeriesDetail = "tv/{series_id}"
     const val SeriesPopular = "tv/popular"

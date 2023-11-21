@@ -14,6 +14,7 @@ import com.example.moviesandseries.MovieAndSeriesApplication
 import com.example.moviesandseries.model.movie.MovieIndex
 import com.example.moviesandseries.model.series.SeriesIndex
 import com.example.moviesandseries.paging.movies.MoviesInTheaterPagingSource
+import com.example.moviesandseries.paging.movies.PopularMoviesPagingSource
 import com.example.moviesandseries.paging.movies.TopRatedMoviesPagingSource
 import com.example.moviesandseries.paging.movies.UpcomingMoviesPagingSource
 import com.example.moviesandseries.paging.series.PopularSeriesPagingSource
@@ -24,18 +25,18 @@ import com.example.moviesandseries.repository.MovieRepository
 import com.example.moviesandseries.repository.SeriesRepository
 import kotlinx.coroutines.flow.Flow
 
-class HomeViewModel (private val movieRepository: MovieRepository, private val seriesRepository: SeriesRepository): ViewModel() {
+class HomeViewModel(private val movieRepository: MovieRepository, private val seriesRepository: SeriesRepository) : ViewModel() {
 
-    //movie pagers
+    // movie pagers
     val moviesInTheaterPager: Flow<PagingData<MovieIndex>> = Pager(PagingConfig(pageSize = 20)) {
         MoviesInTheaterPagingSource(movieRepository)
     }.flow.cachedIn(viewModelScope)
 
     val popularMoviesPagingSource: Flow<PagingData<MovieIndex>> = Pager(PagingConfig(pageSize = 20)) {
-        MoviesInTheaterPagingSource(movieRepository)
+        PopularMoviesPagingSource(movieRepository)
     }.flow.cachedIn(viewModelScope)
 
-    val TopRatedMoviesPagingSource: Flow<PagingData<MovieIndex>> = Pager(PagingConfig(pageSize = 20)) {
+    val topRatedMoviesPagingSource: Flow<PagingData<MovieIndex>> = Pager(PagingConfig(pageSize = 20)) {
         TopRatedMoviesPagingSource(movieRepository)
     }.flow.cachedIn(viewModelScope)
 
@@ -43,7 +44,7 @@ class HomeViewModel (private val movieRepository: MovieRepository, private val s
         UpcomingMoviesPagingSource(movieRepository)
     }.flow.cachedIn(viewModelScope)
 
-    //series pagers
+    // series pagers
     val popularSeriesPagingSource: Flow<PagingData<SeriesIndex>> = Pager(PagingConfig(pageSize = 20)) {
         PopularSeriesPagingSource(seriesRepository)
     }.flow.cachedIn(viewModelScope)
@@ -66,10 +67,8 @@ class HomeViewModel (private val movieRepository: MovieRepository, private val s
                 val application = (this[APPLICATION_KEY] as MovieAndSeriesApplication)
                 val movieRepository = application.container.movieRepository
                 val seriesRepository = application.container.seriesRepository
-                HomeViewModel(movieRepository,seriesRepository)
+                HomeViewModel(movieRepository, seriesRepository)
             }
         }
     }
-
-
 }

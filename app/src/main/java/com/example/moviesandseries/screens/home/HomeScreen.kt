@@ -19,19 +19,20 @@ import com.example.moviesandseries.model.series.SeriesIndex
 import com.example.moviesandseries.screens.components.loading.LoadingMediaRow
 import com.example.moviesandseries.screens.components.movies.LazyMoviesRow
 import com.example.moviesandseries.screens.components.movies.LazySeriesRow
-private val ROW_HEIGHT= 240.dp
-private val ROW_PADDING= 12.dp
+private val ROW_HEIGHT = 240.dp
+private val ROW_PADDING = 12.dp
+
 @Composable
 fun HomeScreen(
     homeViewModel: HomeViewModel,
     onMovieClick: (movieId: Int) -> Unit,
-    onSeriesClick: (seriesId: Int) -> Unit
+    onSeriesClick: (seriesId: Int) -> Unit,
 ) {
     // Getting lists using pagers
     // Movie lists
     val moviesInTheater = homeViewModel.moviesInTheaterPager.collectAsLazyPagingItems()
     val popularMovies = homeViewModel.popularMoviesPagingSource.collectAsLazyPagingItems()
-    val topRatedMovies = homeViewModel.TopRatedMoviesPagingSource.collectAsLazyPagingItems()
+    val topRatedMovies = homeViewModel.topRatedMoviesPagingSource.collectAsLazyPagingItems()
     val upcomingMovies = homeViewModel.upcomingMoviesPagingSource.collectAsLazyPagingItems()
     // Series lists
     val popularSeries = homeViewModel.popularSeriesPagingSource.collectAsLazyPagingItems()
@@ -42,19 +43,19 @@ fun HomeScreen(
     // Displaying
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(ROW_PADDING),
-        content ={
+        content = {
             item { HomeScreenSectionMovie(title = "Movies in Theater", onMovieClick = onMovieClick, movies = moviesInTheater) }
-            item{ HomeScreenSectionSeries(title = "Series Airing Today", onSeriesClick = onSeriesClick, series = airingTodaySeries) }
+            item { HomeScreenSectionSeries(title = "Series Airing Today", onSeriesClick = onSeriesClick, series = airingTodaySeries) }
 
             item { HomeScreenSectionMovie(title = "Popular Movies", onMovieClick = onMovieClick, movies = popularMovies) }
-            item{ HomeScreenSectionSeries(title = "Popular Series", onSeriesClick = onSeriesClick, series = popularSeries) }
+            item { HomeScreenSectionSeries(title = "Popular Series", onSeriesClick = onSeriesClick, series = popularSeries) }
 
             item { HomeScreenSectionMovie(title = "Top Rated Movies", onMovieClick = onMovieClick, movies = topRatedMovies) }
-            item{ HomeScreenSectionSeries(title = "Top Rated Series", onSeriesClick = onSeriesClick, series = topRatedSeries) }
+            item { HomeScreenSectionSeries(title = "Top Rated Series", onSeriesClick = onSeriesClick, series = topRatedSeries) }
 
             item { HomeScreenSectionMovie(title = "Upcoming Movies", onMovieClick = onMovieClick, movies = upcomingMovies) }
-            item{HomeScreenSectionSeries(title = "On the Air Series", onSeriesClick = onSeriesClick, series = onTheAirSeries) }
-        }
+            item { HomeScreenSectionSeries(title = "On the Air Series", onSeriesClick = onSeriesClick, series = onTheAirSeries) }
+        },
     )
 }
 
@@ -64,15 +65,19 @@ fun HomeScreenSectionMovie(title: String, onMovieClick: (movieId: Int) -> Unit, 
         is LoadState.Loading -> LoadingHomeScreenSection(mediaType = "Movies")
         is LoadState.Error -> Text(text = "Error")
         else -> {
-            Column (modifier=Modifier.padding(start = ROW_PADDING),verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            Column(modifier = Modifier.padding(start = ROW_PADDING), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(text = title, fontSize = 22.sp, fontWeight = FontWeight.Bold)
-                LazyMoviesRow(movies = movies, onMovieClick = onMovieClick,modifier= Modifier.height(
-                    ROW_HEIGHT))
+                LazyMoviesRow(
+                    movies = movies,
+                    onMovieClick = onMovieClick,
+                    modifier = Modifier.height(
+                        ROW_HEIGHT,
+                    ),
+                )
             }
         }
     }
 }
-
 
 @Composable
 fun HomeScreenSectionSeries(title: String, onSeriesClick: (seriesId: Int) -> Unit, series: LazyPagingItems<SeriesIndex>) {
@@ -80,16 +85,17 @@ fun HomeScreenSectionSeries(title: String, onSeriesClick: (seriesId: Int) -> Uni
         is LoadState.Loading -> LoadingHomeScreenSection(mediaType = "Series")
         is LoadState.Error -> Text(text = "Error")
         else -> {
-            Column (modifier=Modifier.padding(start = ROW_PADDING),verticalArrangement = Arrangement.spacedBy(4.dp)){
+            Column(modifier = Modifier.padding(start = ROW_PADDING), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(text = title, fontSize = 22.sp, fontWeight = FontWeight.Bold)
-                LazySeriesRow(series = series, onSeriesClick = onSeriesClick,modifier= Modifier.height(ROW_HEIGHT))
+                LazySeriesRow(series = series, onSeriesClick = onSeriesClick, modifier = Modifier.height(ROW_HEIGHT))
             }
         }
+    }
 }
-}
+
 @Composable
-fun LoadingHomeScreenSection(mediaType:String) {
-    Column (modifier=Modifier.padding(start = ROW_PADDING),verticalArrangement = Arrangement.spacedBy(4.dp)){
+fun LoadingHomeScreenSection(mediaType: String) {
+    Column(modifier = Modifier.padding(start = ROW_PADDING), verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Text(text = mediaType, fontSize = 22.sp, fontWeight = FontWeight.Bold)
         LoadingMediaRow(3, modifier = Modifier.height(ROW_HEIGHT))
     }
