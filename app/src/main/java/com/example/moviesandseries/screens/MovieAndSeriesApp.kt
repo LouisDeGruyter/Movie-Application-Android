@@ -16,6 +16,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.moviesandseries.screens.home.HomeScreen
+import com.example.moviesandseries.screens.home.HomeViewModel
 import com.example.moviesandseries.screens.movies.detail.MovieDetailsScreen
 import com.example.moviesandseries.screens.movies.list.MovieViewModel
 import com.example.moviesandseries.screens.movies.list.MoviesScreen
@@ -44,6 +45,7 @@ fun MovieAndSeriesApp() {
     //viewmodels
     val movieViewModel: MovieViewModel = viewModel(factory = MovieViewModel.Factory)
     val seriesViewModel: SeriesViewModel = viewModel(factory = SeriesViewModel.Factory)
+    val homeViewModel: HomeViewModel = viewModel(factory = HomeViewModel.Factory)
     //viewmodel details
     val seriesDetailViewModel: SeriesDetailViewModel = viewModel(factory = SeriesDetailViewModel.Factory)
     val movieDetailViewModel: MovieDetailViewModel = viewModel(factory = MovieDetailViewModel.Factory)
@@ -79,18 +81,20 @@ fun MovieAndSeriesApp() {
             startDestination = Destinations.Home.route,
             Modifier.padding(innerPadding)
         ) {
+            fun onMovieClick(movieId: Int) {
+                navController.navigate(Destinations.MovieDetails.createRoute(movieId.toString()))
+            }
+            fun onSeriesClick(seriesId: Int) {
+                navController.navigate(Destinations.SeriesDetail.createRoute(seriesId.toString()))
+            }
             composable(Destinations.Home.route) {
-                HomeScreen()
+                HomeScreen(homeViewModel = homeViewModel, onMovieClick= ::onMovieClick, onSeriesClick= ::onSeriesClick)
             }
             composable(Destinations.Movies.route) {
-                MoviesScreen(movieViewModel = movieViewModel, onMovieClick = { movieId: Int ->
-                    navController.navigate(Destinations.MovieDetails.createRoute(movieId.toString()))
-                })
+                MoviesScreen(movieViewModel = movieViewModel, onMovieClick= ::onMovieClick )
             }
             composable(Destinations.Series.route) {
-                SeriesScreen (seriesUiState= seriesViewModel.seriesUiState,onSeriesClick= {seriesId: Int ->
-                    navController.navigate(Destinations.SeriesDetail.createRoute(seriesId.toString()))
-                })
+                SeriesScreen (seriesUiState= seriesViewModel.seriesUiState,onSeriesClick= ::onSeriesClick)
             }
             composable("${Destinations.MovieDetails.route}/{id}") {
                 backStackEntry -> MovieDetailsScreen(viewModel=movieDetailViewModel,movieId = backStackEntry.arguments?.getString("id"))
@@ -100,5 +104,7 @@ fun MovieAndSeriesApp() {
             }
         }
     }
+
+
 }
 
