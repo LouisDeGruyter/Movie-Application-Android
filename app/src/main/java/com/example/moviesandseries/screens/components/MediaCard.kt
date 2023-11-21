@@ -23,7 +23,7 @@ import com.example.moviesandseries.network.ApiEndpoints
 import com.example.moviesandseries.screens.components.RatingComposable
 
 @Composable
-fun MovieCard(movie: MovieIndex, onMovieClick: (Int) -> Unit) {
+fun MediaCard(movie: MovieIndex, onMovieClick: (Int) -> Unit) {
     // Customize this composable based on how you want to display each movie item
     ElevatedCard(
         modifier = Modifier
