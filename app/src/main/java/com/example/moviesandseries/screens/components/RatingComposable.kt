@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun RatingComposable(rating: Double, modifier: Modifier = Modifier) {
-    var adjustedRating = (rating * 10).toInt()
+    val adjustedRating = (rating * 10).toInt()
 
     val color = when {
         adjustedRating >= 75 -> Color.Green

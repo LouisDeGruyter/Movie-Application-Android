@@ -1,4 +1,4 @@
-package com.example.moviesandseries.screens.components
+package com.example.moviesandseries.screens.components.movies
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -20,17 +20,17 @@ import androidx.compose.ui.zIndex
 import coil.compose.rememberAsyncImagePainter
 import com.example.moviesandseries.domain.movie.MovieIndex
 import com.example.moviesandseries.network.ApiEndpoints
+import com.example.moviesandseries.screens.components.RatingComposable
 
 @Composable
 fun MediaCard(movie: MovieIndex, onMovieClick: (Int) -> Unit) {
-    // Customize this composable based on how you want to display each movie item
     ElevatedCard(
         modifier = Modifier
             .clickable(onClick = { onMovieClick(movie.id) }),
         shape = RoundedCornerShape(12.dp),
 
     ) {
-        Box() {
+        Box {
             RatingComposable(rating = movie.voteAverage, modifier = Modifier.zIndex(2f))
 
             val painter = rememberAsyncImagePainter(

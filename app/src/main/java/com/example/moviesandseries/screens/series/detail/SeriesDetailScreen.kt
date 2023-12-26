@@ -10,7 +10,7 @@ import com.example.moviesandseries.domain.series.SeriesDetail
 fun SeriesDetailScreen(seriesId: String?, seriesDetailViewModel: SeriesDetailViewModel = viewModel(factory = SeriesDetailViewModel.Factory)) {
     when (val seriesDetailUiState = seriesDetailViewModel.seriesDetailUiState) {
         is SeriesDetailUiState.Success -> {
-            displaySeriesDetail(seriesDetail = seriesDetailUiState.seriesDetail)
+            DisplaySeriesDetail(seriesDetail = seriesDetailUiState.seriesDetail)
         }
         is SeriesDetailUiState.Loading -> {
             Text(text = "Loading")
@@ -27,6 +27,6 @@ fun SeriesDetailScreen(seriesId: String?, seriesDetailViewModel: SeriesDetailVie
 }
 
 @Composable
-fun displaySeriesDetail(seriesDetail: SeriesDetail) {
+fun DisplaySeriesDetail(seriesDetail: SeriesDetail) {
     Text(text = seriesDetail.name)
 }

@@ -24,14 +24,8 @@ import com.example.moviesandseries.screens.components.RatingComposable
 
 @Composable
 fun SeriesCard(series: SeriesIndex, onSeriesClick: (Int) -> Unit) {
-    // Customize this composable based on how you want to display each movie item
-    ElevatedCard(
-        modifier = Modifier
-            .clickable(onClick = { onSeriesClick(series.id) }),
-        shape = RoundedCornerShape(12.dp),
-
-    ) {
-        Box() {
+    ElevatedCard(modifier = Modifier.clickable(onClick = { onSeriesClick(series.id) }), shape = RoundedCornerShape(12.dp)) {
+        Box {
             RatingComposable(rating = series.voteAverage, modifier = Modifier.zIndex(2f))
 
             val painter = rememberAsyncImagePainter(

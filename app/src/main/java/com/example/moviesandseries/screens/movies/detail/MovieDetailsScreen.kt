@@ -15,19 +15,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.moviesandseries.domain.movie.MovieDetail
-import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun MovieDetailsScreen(movieId: String?, movieDetailViewModel: MovieDetailViewModel = viewModel(factory = MovieDetailViewModel.Factory)) {
     when (val movieDetailUiState = movieDetailViewModel.movieDetailUiState) {
         is MovieDetailUiState.Success -> {
-            displayMovieDetail(movieDetail = (movieDetailUiState as MovieDetailUiState.Success).movieDetail)
+            DisplayMovieDetail(movieDetail = (movieDetailUiState as MovieDetailUiState.Success).movieDetail)
         }
         is MovieDetailUiState.Loading -> {
             LoadingAnimation()
         }
         is MovieDetailUiState.Error -> {
-            ErrorText(message = (movieDetailUiState as MovieDetailUiState.Error).message)
+            ErrorText(message = movieDetailUiState.message)
         }
     }
 
@@ -40,7 +39,7 @@ fun MovieDetailsScreen(movieId: String?, movieDetailViewModel: MovieDetailViewMo
 }
 
 @Composable
-fun displayMovieDetail(movieDetail: MovieDetail) {
+fun DisplayMovieDetail(movieDetail: MovieDetail) {
     // Use animateContentSize to apply a simple fade-in/fade-out animation
     Column(
         modifier = Modifier

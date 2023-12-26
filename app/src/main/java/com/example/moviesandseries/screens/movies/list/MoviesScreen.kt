@@ -12,8 +12,7 @@ private const val COLUMN_COUNT = 3
 
 @Composable
 fun MoviesScreen(movieViewModel: MovieViewModel = viewModel(factory = MovieViewModel.Factory), onMovieClick: (movieId: Int) -> Unit) {
-    var movieUiState: MovieUiState = movieViewModel.movieUiState // if new variables get assigned to movieUiState
-    var moviesByPage = movieViewModel.moviePager.collectAsLazyPagingItems()
+    val moviesByPage = movieViewModel.moviePager.collectAsLazyPagingItems()
     when (moviesByPage.loadState.refresh) {
         is LoadState.Loading -> LoadingMediaGrid(numberOfItems = 12, columns = COLUMN_COUNT)
         is LoadState.Error -> Text(text = "Error")

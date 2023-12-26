@@ -1,8 +1,6 @@
 package com.example.moviesandseries.screens.movies.list
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
@@ -20,8 +18,6 @@ import com.example.moviesandseries.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 
 class MovieViewModel(private val movieRepository: MovieRepository) : ViewModel() {
-    var movieUiState: MovieUiState by mutableStateOf(MovieUiState.Loading)
-        private set
 
     val moviePager: Flow<PagingData<MovieIndex>> = Pager(PagingConfig(pageSize = 20)) {
         MoviePagingSource(movieRepository)

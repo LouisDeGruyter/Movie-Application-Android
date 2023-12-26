@@ -6,21 +6,22 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.unit.dp
-private val GRID_SPACING = 10.dp
+import androidx.compose.ui.res.dimensionResource
+import com.example.moviesandseries.R
 
 @Composable
 fun LoadingMediaGrid(numberOfItems: Int, columns: Int) {
+    val gridSpacing = dimensionResource(id = R.dimen.grid_spacing)
     LazyVerticalGrid(
         columns = GridCells.Fixed(columns),
         contentPadding = PaddingValues(
-            start = GRID_SPACING,
-            end = GRID_SPACING,
-            top = GRID_SPACING,
-            bottom = GRID_SPACING,
+            start = gridSpacing,
+            end = gridSpacing,
+            top = gridSpacing,
+            bottom = gridSpacing,
         ),
-        horizontalArrangement = Arrangement.spacedBy(GRID_SPACING, Alignment.CenterHorizontally),
-        verticalArrangement = Arrangement.spacedBy(GRID_SPACING, Alignment.CenterVertically),
+        horizontalArrangement = Arrangement.spacedBy(gridSpacing, Alignment.CenterHorizontally),
+        verticalArrangement = Arrangement.spacedBy(gridSpacing, Alignment.CenterVertically),
         content = {
             items(numberOfItems) {
                 LoadingCard()
