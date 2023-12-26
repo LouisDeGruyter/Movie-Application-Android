@@ -1,4 +1,4 @@
-package com.example.moviesandseries.screens.components.mediaCard
+package com.example.moviesandseries.screens.components.index.mediaCard
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
+import com.example.moviesandseries.screens.components.MediaImage
 
 @Composable
 fun MediaCard(title: String, imagePath: String, rating: Double, onMediaClick: () -> Unit) {

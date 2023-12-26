@@ -1,4 +1,4 @@
-package com.example.moviesandseries.screens.components.mediaCard
+package com.example.moviesandseries.screens.components.index.mediaCard
 
 import android.graphics.Paint
 import androidx.compose.foundation.Canvas

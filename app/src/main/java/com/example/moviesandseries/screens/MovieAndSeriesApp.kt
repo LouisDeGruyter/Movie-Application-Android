@@ -1,11 +1,7 @@
 package com.example.moviesandseries.screens
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -14,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.moviesandseries.screens.components.BackButton
 import com.example.moviesandseries.screens.home.HomeScreen
 import com.example.moviesandseries.screens.movies.detail.MovieDetailsScreen
 import com.example.moviesandseries.screens.movies.list.MoviesScreen
@@ -41,15 +38,26 @@ fun MovieAndSeriesApp() {
     val currentBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = currentBackStackEntry?.destination?.route
     val currentEnumDestination: Destinations? = currentDestination?.let { route ->
-        enumValues<Destinations>().find { it.route == route }
+        enumValues<Destinations>().find {
+            it.route == route.substring(
+                startIndex = 0,
+                endIndex = if ("/" in route) route.indexOf("/") else route.length,
+            )
+        }
     }
-    val currentPage = currentEnumDestination?.route ?: "Home"
+    val currentPage = currentEnumDestination?.route ?: ""
+    val noTopAppbarRoutes: List<String> = listOf(
+        Destinations.MovieDetails.route,
+        Destinations.SeriesDetail.route,
+    )
+    val navigateBack: () -> Unit = { navController.popBackStack() }
+
     Scaffold(
         topBar = {
-            MyTopAppBar(currentpage = currentPage) {
-                if (currentDestination != Destinations.Home.route) {
-                    IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.Filled.ArrowBack, contentDescription = "Localized description")
+            if (currentPage !in noTopAppbarRoutes) {
+                MyTopAppBar(currentpage = currentPage) {
+                    if (currentDestination != Destinations.Home.route) {
+                        BackButton(navigateBack)
                     }
                 }
             }
@@ -84,7 +92,7 @@ fun MovieAndSeriesApp() {
             }
             composable("${Destinations.MovieDetails.route}/{id}") {
                     backStackEntry ->
-                MovieDetailsScreen(movieId = backStackEntry.arguments?.getString("id"))
+                MovieDetailsScreen(movieId = backStackEntry.arguments?.getString("id"), backButton = { BackButton(navigateBack) })
             }
             composable("${Destinations.SeriesDetail.route}/{id}") {
                     backStackEntry ->

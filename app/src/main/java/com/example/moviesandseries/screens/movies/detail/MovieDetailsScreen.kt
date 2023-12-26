@@ -1,26 +1,21 @@
 package com.example.moviesandseries.screens.movies.detail
 
-import androidx.compose.animation.animateContentSize
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.moviesandseries.domain.movie.MovieDetail
+import com.example.moviesandseries.screens.components.detail.movie.MovieDetailComposable
 
 @Composable
-fun MovieDetailsScreen(movieId: String?, movieDetailViewModel: MovieDetailViewModel = viewModel(factory = MovieDetailViewModel.Factory)) {
+fun MovieDetailsScreen(movieId: String?, movieDetailViewModel: MovieDetailViewModel = viewModel(factory = MovieDetailViewModel.Factory), backButton: @Composable () -> Unit) {
     when (val movieDetailUiState = movieDetailViewModel.movieDetailUiState) {
         is MovieDetailUiState.Success -> {
-            DisplayMovieDetail(movieDetail = (movieDetailUiState as MovieDetailUiState.Success).movieDetail)
+            DisplayMovieDetail(movieDetail = (movieDetailUiState as MovieDetailUiState.Success).movieDetail, backButton = backButton)
         }
         is MovieDetailUiState.Loading -> {
             LoadingAnimation()
@@ -39,21 +34,12 @@ fun MovieDetailsScreen(movieId: String?, movieDetailViewModel: MovieDetailViewMo
 }
 
 @Composable
-fun DisplayMovieDetail(movieDetail: MovieDetail) {
-    // Use animateContentSize to apply a simple fade-in/fade-out animation
-    Column(
-        modifier = Modifier
-            .animateContentSize()
-            .padding(8.dp),
-    ) {
-        Text(text = movieDetail.title, fontWeight = FontWeight.Bold, fontSize = 20.sp)
-        // Add more UI components for other details
-    }
+fun DisplayMovieDetail(movieDetail: MovieDetail, backButton: @Composable () -> Unit) {
+    MovieDetailComposable(movie = movieDetail, backButton = backButton)
 }
 
 @Composable
 fun LoadingAnimation() {
-    // Placeholder for loading animation
     CircularProgressIndicator(modifier = Modifier.fillMaxSize())
 }
 

@@ -9,7 +9,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.paging.compose.LazyPagingItems
 import com.example.moviesandseries.R
 import com.example.moviesandseries.domain.MediaIndex
-import com.example.moviesandseries.screens.components.mediaCard.MediaCard
+import com.example.moviesandseries.screens.components.index.mediaCard.MediaCard
 
 @Composable
 fun LazyMediaRow(movies: LazyPagingItems<MediaIndex>, onMovieClick: (movieId: Int) -> Unit, modifier: Modifier) {
