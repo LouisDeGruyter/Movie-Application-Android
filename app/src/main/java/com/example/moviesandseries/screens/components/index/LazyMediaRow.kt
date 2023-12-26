@@ -1,4 +1,4 @@
-package com.example.moviesandseries.screens.components.movies
+package com.example.moviesandseries.screens.components.index
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyRow
@@ -8,19 +8,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.paging.compose.LazyPagingItems
 import com.example.moviesandseries.R
-import com.example.moviesandseries.domain.series.SeriesIndex
-import com.example.moviesandseries.screens.components.MediaCard
+import com.example.moviesandseries.domain.MediaIndex
+import com.example.moviesandseries.screens.components.mediaCard.MediaCard
 
 @Composable
-fun LazySeriesRow(series: LazyPagingItems<SeriesIndex>, onSeriesClick: (seriesId: Int) -> Unit, modifier: Modifier) {
+fun LazyMediaRow(movies: LazyPagingItems<MediaIndex>, onMovieClick: (movieId: Int) -> Unit, modifier: Modifier) {
     val rowSpacing = dimensionResource(id = R.dimen.row_spacing)
     LazyRow(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(rowSpacing, Alignment.CenterHorizontally),
         verticalAlignment = Alignment.CenterVertically,
         content = {
-            items(series.itemCount) { seriesItem ->
-                series[seriesItem]?.let { MediaCard(title = it.name, imagePath = it.posterPath ?: "", rating = it.voteAverage, onMediaClick = { onSeriesClick(it.id) }) }
+            items(movies.itemCount) { movie ->
+                movies[movie]?.let {
+                    MediaCard(title = it.title, imagePath = it.posterPath ?: "", rating = it.voteAverage, onMediaClick = { onMovieClick(it.id) })
+                }
             }
         },
     )

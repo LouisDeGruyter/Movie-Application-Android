@@ -2,18 +2,19 @@ package com.example.moviesandseries.paging.movies
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.moviesandseries.domain.movie.MovieIndex
+import com.example.moviesandseries.domain.MediaIndex
+import com.example.moviesandseries.domain.movie.asMediaIndexObject
 import com.example.moviesandseries.repository.MovieRepository
 
-class MoviePagingSource(private val movieRepository: MovieRepository) : PagingSource<Int, MovieIndex>() {
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieIndex> {
+class MoviePagingSource(private val movieRepository: MovieRepository) : PagingSource<Int, MediaIndex>() {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MediaIndex> {
         return try {
             val page = params.key ?: 1
             val response = movieRepository.getMoviesContainer(page)
             val response2 = movieRepository.getMoviesContainer(page + 1)
 
             LoadResult.Page(
-                data = response.results + response2.results,
+                data = response.results.map { it.asMediaIndexObject() } + response2.results.map { it.asMediaIndexObject() },
                 prevKey = if (page == 1 || page == 2) null else page - 2,
                 nextKey = if (page >= response.totalPages - 1) null else page + 2,
             )
@@ -22,7 +23,7 @@ class MoviePagingSource(private val movieRepository: MovieRepository) : PagingSo
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, MovieIndex>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, MediaIndex>): Int? {
         // Try to find the page key of the closest page to anchorPosition from
         // either the prevKey or the nextKey; you need to handle nullability
         // here.

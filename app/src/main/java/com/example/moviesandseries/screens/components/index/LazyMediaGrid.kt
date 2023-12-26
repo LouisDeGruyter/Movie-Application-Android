@@ -1,4 +1,4 @@
-package com.example.moviesandseries.screens.components.movies
+package com.example.moviesandseries.screens.components.index
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -10,11 +10,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.dimensionResource
 import androidx.paging.compose.LazyPagingItems
 import com.example.moviesandseries.R
-import com.example.moviesandseries.domain.movie.MovieIndex
-import com.example.moviesandseries.screens.components.MediaCard
+import com.example.moviesandseries.domain.MediaIndex
+import com.example.moviesandseries.screens.components.mediaCard.MediaCard
 
 @Composable
-fun LazyGridMovies(movies: LazyPagingItems<MovieIndex>, onMovieClick: (movieId: Int) -> Unit, columns: Int) {
+fun LazyMediaGrid(media: LazyPagingItems<MediaIndex>, onMediaClick: (movieId: Int) -> Unit, columns: Int) {
     val lazyGridState = rememberLazyGridState()
     val gridSpacing = dimensionResource(id = R.dimen.grid_spacing)
     LazyVerticalGrid(
@@ -29,8 +29,8 @@ fun LazyGridMovies(movies: LazyPagingItems<MovieIndex>, onMovieClick: (movieId: 
         horizontalArrangement = Arrangement.spacedBy(gridSpacing, Alignment.CenterHorizontally),
         verticalArrangement = Arrangement.spacedBy(gridSpacing, Alignment.CenterVertically),
         content = {
-            items(movies.itemCount) { movie ->
-                movies[movie]?.let { MediaCard(title = it.title, imagePath = it.posterPath, rating = it.voteAverage, onMediaClick = { onMovieClick(it.id) },) }
+            items(media.itemCount) { movie ->
+                media[movie]?.let { MediaCard(title = it.title, imagePath = it.posterPath ?: "", rating = it.voteAverage, onMediaClick = { onMediaClick(it.id) },) }
             }
         },
     )

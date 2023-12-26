@@ -15,7 +15,7 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import com.example.moviesandseries.screens.components.RatingComposable
+import com.example.moviesandseries.screens.components.mediaCard.RatingComposable
 
 @Composable
 fun LoadingCard() {

@@ -5,8 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.moviesandseries.screens.components.index.LazyMediaGrid
 import com.example.moviesandseries.screens.components.loading.LoadingMediaGrid
-import com.example.moviesandseries.screens.components.series.LazyGridSeries
 
 private const val COLUMN_COUNT = 3
 
@@ -17,7 +17,7 @@ fun SeriesScreen(seriesViewModel: SeriesViewModel = viewModel(factory = SeriesVi
         is LoadState.Loading -> LoadingMediaGrid(numberOfItems = 12, columns = COLUMN_COUNT)
         is LoadState.Error -> Text(text = "Error")
         else -> {
-            LazyGridSeries(series = seriesByPage, onSeriesClick = onSeriesClick, columns = COLUMN_COUNT)
+            LazyMediaGrid(media = seriesByPage, onMediaClick = onSeriesClick, columns = COLUMN_COUNT)
         }
     }
 }

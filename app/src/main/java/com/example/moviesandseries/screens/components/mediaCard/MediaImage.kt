@@ -1,4 +1,4 @@
-package com.example.moviesandseries.screens.components
+package com.example.moviesandseries.screens.components.mediaCard
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.aspectRatio

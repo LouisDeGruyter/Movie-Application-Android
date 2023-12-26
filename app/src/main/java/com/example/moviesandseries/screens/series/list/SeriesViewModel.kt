@@ -11,13 +11,13 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.moviesandseries.MovieAndSeriesApplication
-import com.example.moviesandseries.domain.series.SeriesIndex
+import com.example.moviesandseries.domain.MediaIndex
 import com.example.moviesandseries.paging.series.SeriesPagingSource
 import com.example.moviesandseries.repository.SeriesRepository
 import kotlinx.coroutines.flow.Flow
 
 class SeriesViewModel(private val seriesRepository: SeriesRepository) : ViewModel() {
-    val seriesPager: Flow<PagingData<SeriesIndex>> = Pager(PagingConfig(pageSize = 20)) {
+    val seriesPager: Flow<PagingData<MediaIndex>> = Pager(PagingConfig(pageSize = 20)) {
         SeriesPagingSource(seriesRepository)
     }.flow.cachedIn(viewModelScope)
 

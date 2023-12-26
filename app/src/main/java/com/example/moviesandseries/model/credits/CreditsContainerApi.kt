@@ -1,6 +1,5 @@
 package com.example.moviesandseries.model.credits
 
-
 import com.example.moviesandseries.domain.credits.CreditsContainer
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -12,7 +11,7 @@ data class CreditsContainerApi(
     @Json(name = "crew")
     val crew: List<CrewApi?>,
     @Json(name = "id")
-    val id: Int
+    val id: Int,
 )
 
 fun CreditsContainerApi.asDomainObject(): CreditsContainer {
