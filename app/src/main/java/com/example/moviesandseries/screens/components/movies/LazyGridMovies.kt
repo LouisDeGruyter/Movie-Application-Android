@@ -11,6 +11,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.paging.compose.LazyPagingItems
 import com.example.moviesandseries.R
 import com.example.moviesandseries.domain.movie.MovieIndex
+import com.example.moviesandseries.screens.components.MediaCard
 
 @Composable
 fun LazyGridMovies(movies: LazyPagingItems<MovieIndex>, onMovieClick: (movieId: Int) -> Unit, columns: Int) {
@@ -29,7 +30,7 @@ fun LazyGridMovies(movies: LazyPagingItems<MovieIndex>, onMovieClick: (movieId: 
         verticalArrangement = Arrangement.spacedBy(gridSpacing, Alignment.CenterVertically),
         content = {
             items(movies.itemCount) { movie ->
-                movies[movie]?.let { MediaCard(movie = it, onMovieClick = onMovieClick) }
+                movies[movie]?.let { MediaCard(title = it.title, imagePath = it.posterPath, rating = it.voteAverage, onMediaClick = { onMovieClick(it.id) },) }
             }
         },
     )

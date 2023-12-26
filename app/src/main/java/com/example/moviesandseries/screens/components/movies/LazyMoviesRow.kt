@@ -9,6 +9,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.paging.compose.LazyPagingItems
 import com.example.moviesandseries.R
 import com.example.moviesandseries.domain.movie.MovieIndex
+import com.example.moviesandseries.screens.components.MediaCard
 
 @Composable
 fun LazyMoviesRow(movies: LazyPagingItems<MovieIndex>, onMovieClick: (movieId: Int) -> Unit, modifier: Modifier) {
@@ -19,7 +20,9 @@ fun LazyMoviesRow(movies: LazyPagingItems<MovieIndex>, onMovieClick: (movieId: I
         verticalAlignment = Alignment.CenterVertically,
         content = {
             items(movies.itemCount) { movie ->
-                movies[movie]?.let { MediaCard(movie = it, onMovieClick = onMovieClick) }
+                movies[movie]?.let {
+                    MediaCard(title = it.title, imagePath = it.posterPath, rating = it.voteAverage, onMediaClick = { onMovieClick(it.id) },)
+                }
             }
         },
     )
