@@ -57,7 +57,7 @@ fun MovieAndSeriesApp() {
             if (currentPage !in noTopAppbarRoutes) {
                 MyTopAppBar(currentpage = currentPage) {
                     if (currentDestination != Destinations.Home.route) {
-                        BackButton(navigateBack)
+                        BackButton(onBackPressed = navigateBack)
                     }
                 }
             }
@@ -92,7 +92,7 @@ fun MovieAndSeriesApp() {
             }
             composable("${Destinations.MovieDetails.route}/{id}") {
                     backStackEntry ->
-                MovieDetailsScreen(movieId = backStackEntry.arguments?.getString("id"), backButton = { BackButton(navigateBack) })
+                MovieDetailsScreen(movieId = backStackEntry.arguments?.getString("id"), backButton = { BackButton(onBackPressed = navigateBack) })
             }
             composable("${Destinations.SeriesDetail.route}/{id}") {
                     backStackEntry ->

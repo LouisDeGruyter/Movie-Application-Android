@@ -1,10 +1,12 @@
 package com.example.moviesandseries.screens.components.index.mediaCard
 
-import android.graphics.Paint
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -13,34 +15,41 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
-import androidx.compose.ui.graphics.nativeCanvas
-import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.TextLayoutResult
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.drawText
+import androidx.compose.ui.text.rememberTextMeasurer
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun RatingComposable(rating: Double, modifier: Modifier = Modifier) {
     val adjustedRating = (rating * 10).toInt()
-
     val color = when {
         adjustedRating >= 75 -> Color.Green
         adjustedRating >= 50 -> Color.Yellow
         else -> Color.Red
     }
-
-    val circleSize = 30.dp
     val progress = (rating / 10).toFloat()
-
+    val text = adjustedRating.toString()
+    val textMeasurer = rememberTextMeasurer()
     Box(
         modifier = modifier
             .fillMaxSize(),
     ) {
         Canvas(
-            modifier = Modifier.size(circleSize),
+            modifier = Modifier.fillMaxWidth(0.2f).aspectRatio(1f),
         ) {
+            val fontsize = size.height / 2
+            val fontSizeSp = fontsize.toSp()
+            val style = TextStyle(fontSize = fontSizeSp, color = Color.White)
+            val textLayoutResult: TextLayoutResult =
+                textMeasurer.measure(text = AnnotatedString(text), style)
+            val textSize = textLayoutResult.size
             // Draw inner circle with a black border
             val innerCircleRadius = size.width / 2
-            val strokeWidth = 8f
+            val strokeWidth = size.height / 15
             drawCircle(
                 color = Color.Black,
                 radius = innerCircleRadius,
@@ -72,20 +81,16 @@ fun RatingComposable(rating: Double, modifier: Modifier = Modifier) {
                 ),
 
             )
-
-            // Draw the actual inner circle (to cover the black border)
-
             // Draw text in the center
-            drawIntoCanvas {
-                val text = (adjustedRating).toString()
-                val textSize = 14.dp.toPx()
-                val paint = Paint()
-                paint.textSize = textSize
-                paint.color = Color.White.toArgb()
-                val xOffset = (size.width - paint.measureText(text)) / 2
-                val yOffset = (size.height + textSize - 10) / 2
-                it.nativeCanvas.drawText(text, xOffset, yOffset, paint)
-            }
+            drawText(
+                textMeasurer = textMeasurer,
+                text = text,
+                style = style,
+                topLeft = Offset(
+                    center.x - textSize.width / 2f,
+                    center.y - textSize.height / 2f,
+                ),
+            )
         }
     }
 }

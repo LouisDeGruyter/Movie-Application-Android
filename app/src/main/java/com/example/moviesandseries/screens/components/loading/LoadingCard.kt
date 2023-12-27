@@ -21,7 +21,7 @@ import com.example.moviesandseries.screens.components.index.mediaCard.RatingComp
 fun LoadingCard() {
     ElevatedCard(shape = RoundedCornerShape(12.dp)) {
         Box {
-            RatingComposable(rating = 7.5, modifier = Modifier.zIndex(2f))
+            RatingComposable(rating = 7.5, modifier = Modifier.zIndex(2f).aspectRatio(2 / 3f))
             Image(
                 painter = rememberVectorPainter(image = Icons.Filled.LocalMovies),
                 contentDescription = "Loading",

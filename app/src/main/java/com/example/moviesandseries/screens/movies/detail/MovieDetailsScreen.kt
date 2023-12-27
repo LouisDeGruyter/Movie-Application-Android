@@ -12,10 +12,10 @@ import com.example.moviesandseries.domain.movie.MovieDetail
 import com.example.moviesandseries.screens.components.detail.movie.MovieDetailComposable
 
 @Composable
-fun MovieDetailsScreen(movieId: String?, movieDetailViewModel: MovieDetailViewModel = viewModel(factory = MovieDetailViewModel.Factory), backButton: @Composable () -> Unit) {
+fun MovieDetailsScreen(movieId: String?, movieDetailViewModel: MovieDetailViewModel = viewModel(factory = MovieDetailViewModel.Factory), backButton: @Composable (Modifier) -> Unit) {
     when (val movieDetailUiState = movieDetailViewModel.movieDetailUiState) {
         is MovieDetailUiState.Success -> {
-            DisplayMovieDetail(movieDetail = (movieDetailUiState as MovieDetailUiState.Success).movieDetail, backButton = backButton)
+            DisplayMovieDetail(movieDetail = movieDetailUiState.movieDetail, backButton = backButton)
         }
         is MovieDetailUiState.Loading -> {
             LoadingAnimation()
@@ -34,7 +34,7 @@ fun MovieDetailsScreen(movieId: String?, movieDetailViewModel: MovieDetailViewMo
 }
 
 @Composable
-fun DisplayMovieDetail(movieDetail: MovieDetail, backButton: @Composable () -> Unit) {
+fun DisplayMovieDetail(movieDetail: MovieDetail, backButton: @Composable (Modifier) -> Unit) {
     MovieDetailComposable(movie = movieDetail, backButton = backButton)
 }
 
@@ -48,3 +48,5 @@ fun ErrorText(message: String) {
     // Placeholder for error message
     Text(text = message, color = Color.Red, modifier = Modifier.fillMaxSize())
 }
+
+
