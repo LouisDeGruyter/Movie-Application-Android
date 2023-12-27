@@ -8,13 +8,13 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class ImagesContainerApi(
     @Json(name = "backdrops")
-    val backdrops: List<BackdropApi>,
+    val backdrops: List<ImageApi>,
     @Json(name = "id")
     val id: Int,
     @Json(name = "logos")
-    val logos: List<LogoApi>,
+    val logos: List<ImageApi>,
     @Json(name = "posters")
-    val posters: List<PosterApi>
+    val posters: List<ImageApi>
 )
 fun ImagesContainerApi.asDomainObject(): ImagesContainer {
     return ImagesContainer(

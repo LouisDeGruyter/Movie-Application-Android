@@ -20,7 +20,7 @@ class MovieDetailViewModel(private val movieRepository: MovieRepository) : ViewM
         viewModelScope.launch {
             movieDetailUiState = MovieDetailUiState.Loading
             movieDetailUiState = try {
-                MovieDetailUiState.Success(movieRepository.getMovieDetail(movieId))
+                MovieDetailUiState.Success(movieRepository.getMovieDetail(movieId), movieRepository.getMovieImages(movieId))
             } catch (e: Exception) {
                 MovieDetailUiState.Error(e.message ?: "An unknown error occured")
             }

@@ -24,14 +24,14 @@ fun BackgroundImage(imagePath: String, title: String) {
     val painter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)
             .data(ApiEndpoints.Poster + imagePath)
-            .crossfade(1500)
+            .crossfade(500)
             .build(),
         error = rememberVectorPainter(image = Icons.Filled.BrokenImage),
     )
-    val gradientColors = if (isSystemInDarkTheme()) {
-        listOf(Color.Transparent, Color.Black)
+    val fadeColor = if (isSystemInDarkTheme()) {
+        Color.Black
     } else {
-        listOf(Color.Transparent, Color.White)
+        Color.White
     }
 
     Box(
@@ -49,10 +49,7 @@ fun BackgroundImage(imagePath: String, title: String) {
             modifier = Modifier
                 .fillMaxSize()
                 .background(
-                    brush = Brush.verticalGradient(
-                        colors = gradientColors,
-                        startY = 500f, // Adjust the value to control the height of the fade
-                    ),
+                    brush = Brush.verticalGradient(0.7f to Color.Transparent, 1f to fadeColor),
                 ),
         )
     }
