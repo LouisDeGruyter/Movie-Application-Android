@@ -1,14 +1,17 @@
 package com.example.moviesandseries.screens.components.detail
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BrokenImage
-import androidx.compose.material.icons.filled.LocalMovies
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -19,13 +22,38 @@ import com.example.moviesandseries.network.ApiEndpoints
 @Composable
 fun BackgroundImage(imagePath: String, title: String) {
     val painter = rememberAsyncImagePainter(
-        model = ImageRequest.Builder(LocalContext.current).data(ApiEndpoints.Poster + imagePath).crossfade(1500).build(),
+        model = ImageRequest.Builder(LocalContext.current)
+            .data(ApiEndpoints.Poster + imagePath)
+            .crossfade(1500)
+            .build(),
         error = rememberVectorPainter(image = Icons.Filled.BrokenImage),
     )
-    Image(
-        painter = painter,
-        contentDescription = title,
-        contentScale = ContentScale.FillHeight,
+    val gradientColors = if (isSystemInDarkTheme()) {
+        listOf(Color.Transparent, Color.Black)
+    } else {
+        listOf(Color.Transparent, Color.White)
+    }
+
+    Box(
         modifier = Modifier.fillMaxSize(),
-    )
+    ) {
+        Image(
+            painter = painter,
+            contentDescription = title,
+            contentScale = ContentScale.FillHeight,
+            modifier = Modifier.fillMaxSize(),
+        )
+
+        // Add a gradient to create a fading effect at the bottom
+        Spacer(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    brush = Brush.verticalGradient(
+                        colors = gradientColors,
+                        startY = 500f, // Adjust the value to control the height of the fade
+                    ),
+                ),
+        )
+    }
 }
