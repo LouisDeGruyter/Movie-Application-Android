@@ -76,6 +76,7 @@ import com.example.moviesandseries.network.ApiEndpoints
 import com.example.moviesandseries.screens.components.TwoByThreeAspectRatioImage
 import com.example.moviesandseries.screens.components.detail.BackgroundImage
 import com.example.moviesandseries.screens.components.index.mediaCard.MediaCard
+import com.example.moviesandseries.screens.components.videoplayer.VideoThumbnail
 
 val normalTextStyleCentered = TextStyle(
     fontFamily = FontFamily(Font(R.font.sourcesanspro_black)),
@@ -134,6 +135,7 @@ fun MovieDetailComposable(
             ExpandableDescription(catchPhrase = movie.tagline, description = movie.overview, modifier = Modifier.fillMaxWidth(0.9f))
             ActorList(actors = credits.cast)
             ProductionCompanies(productionCompanies = movie.productionCompanies)
+            VideoThumbnail(videoUrl = "1t4BE7FA-rM", videoTitle = "", modifier = Modifier.height(200.dp))
         }
     }
 }
@@ -245,7 +247,7 @@ fun ProductionCompanies(modifier: Modifier = Modifier, productionCompanies: List
         LazyRow(modifier = modifier.fillMaxWidth()) {
             items(productionCompanies.size) {
                 productionCompanies[it]?.let { it1 ->
-                    Spacer(modifier = Modifier.width(16.dp))
+                    Spacer(modifier = Modifier.width(18.dp))
                     ProductionCompanyCard(
                         productionCompany = it1,
                         modifier = Modifier.width(140.dp),
@@ -308,7 +310,7 @@ fun ActorList(modifier: Modifier = Modifier, actors: List<Credit?>) {
         )
         LazyRow(modifier = modifier) {
             items(actors.size) {
-                Spacer(modifier = Modifier.width(16.dp))
+                Spacer(modifier = Modifier.width(18.dp))
                 actorsSorted[it]?.let { it1 -> ActorCard(actor = it1, modifier = Modifier.width(150.dp)) }
             }
         }

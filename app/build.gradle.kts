@@ -116,4 +116,6 @@ dependencies {
 
     // images
     implementation("io.coil-kt:coil-compose:2.5.0")
+    //video
+    implementation("io.coil-kt:coil-video:2.5.0")
 }
