@@ -127,10 +127,11 @@ fun MovieDetailComposable(
         Box(modifier = Modifier.constrainAs(backButtonRef) { absoluteRight.linkTo(mediaCard.absoluteLeft); absoluteLeft.linkTo(parent.absoluteLeft); top.linkTo(backdrop.bottom, margin = 15.dp) }) {
             backButton(Modifier.height(40.dp))
         }
-        Column(modifier = Modifier.constrainAs(movieContent) { top.linkTo(mediaCard.bottom); absoluteLeft.linkTo(parent.absoluteLeft); absoluteRight.linkTo(parent.absoluteRight) }.fillMaxWidth(0.9f), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            TitleHeader(title = movie.title, releaseDate = movie.releaseDate, runtime = movie.runtime)
-            Genres(genres = movie.genres.map { it?.name ?: "" }, modifier = Modifier.align(Alignment.CenterHorizontally))
-            ExpandableDescription(catchPhrase = movie.tagline, description = movie.overview)
+
+        Column(modifier = Modifier.constrainAs(movieContent) { top.linkTo(mediaCard.bottom); absoluteLeft.linkTo(parent.absoluteLeft); absoluteRight.linkTo(parent.absoluteRight) }, verticalArrangement = Arrangement.spacedBy(12.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+            TitleHeader(title = movie.title, releaseDate = movie.releaseDate, runtime = movie.runtime, modifier = Modifier.fillMaxWidth(0.9f))
+            Genres(genres = movie.genres.map { it?.name ?: "" }, modifier = Modifier.fillMaxWidth(0.9f))
+            ExpandableDescription(catchPhrase = movie.tagline, description = movie.overview, modifier = Modifier.fillMaxWidth(0.9f))
             ActorList(actors = credits.cast)
             ProductionCompanies(productionCompanies = movie.productionCompanies)
         }
@@ -210,7 +211,7 @@ fun TitleHeader(modifier: Modifier = Modifier, title: String, releaseDate: Strin
 
 @Composable
 fun Genres(modifier: Modifier = Modifier, genres: List<String>) {
-    Row(modifier = modifier, horizontalArrangement = Arrangement.Center) {
+    Row(modifier = modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
         genres.forEach {
                 genre ->
             if (genre.isEmpty()) return
@@ -233,20 +234,47 @@ fun Genres(modifier: Modifier = Modifier, genres: List<String>) {
 
 @Composable
 fun ProductionCompanies(modifier: Modifier = Modifier, productionCompanies: List<ProductionCompany?>) {
-    LazyRow(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-        items(productionCompanies.size) {
-            productionCompanies[it]?.let { it1 -> ProductionCompanyCard(productionCompany = it1, modifier = Modifier) }
+    Column(modifier = modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp), horizontalAlignment = Alignment.End) {
+        Text(
+            text = "Production Companies",
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 28.sp,
+            fontFamily = FontFamily(Font(R.font.sourcesanspro_black)),
+            modifier = modifier.fillMaxWidth(0.95f),
+        )
+        LazyRow(modifier = modifier.fillMaxWidth()) {
+            items(productionCompanies.size) {
+                productionCompanies[it]?.let { it1 ->
+                    Spacer(modifier = Modifier.width(16.dp))
+                    ProductionCompanyCard(
+                        productionCompany = it1,
+                        modifier = Modifier.width(140.dp),
+                    )
+                }
+            }
         }
     }
 }
 
 @Composable
 fun ProductionCompanyCard(modifier: Modifier = Modifier, productionCompany: ProductionCompany) {
-    Card(shape = RoundedCornerShape(12.dp), modifier = modifier, elevation = CardDefaults.cardElevation(8.dp)) {
-        Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+    var expanded by remember { mutableStateOf(false) }
+    Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
+        ElevatedCard(modifier = Modifier.fillMaxHeight(0.8f).aspectRatio(1f), shape = RoundedCornerShape(12.dp), elevation = CardDefaults.cardElevation(12.dp)) {
             ProductionCompanyImage(imagePath = productionCompany.logoPath ?: "", name = productionCompany.name)
-            Text(text = productionCompany.name, modifier = Modifier.padding(8.dp), fontWeight = FontWeight.SemiBold, color = MaterialTheme.colorScheme.onPrimary)
         }
+        Text(
+            text = productionCompany.name,
+            style = TextStyle(
+                fontFamily = FontFamily(Font(R.font.sourcesanspro_black)),
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 16.sp,
+                textAlign = TextAlign.Center,
+            ),
+            maxLines = if (expanded) Int.MAX_VALUE else 2,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier.animateContentSize(animationSpec = tween(500)).clickable { expanded = !expanded }.padding(0.dp, 8.dp, 0.dp, 0.dp),
+        )
     }
 }
 
@@ -261,7 +289,7 @@ fun ProductionCompanyImage(imagePath: String, name: String) {
         painter = painter,
         contentDescription = name,
         contentScale = ContentScale.Fit,
-        modifier = Modifier.fillMaxWidth().padding(12.dp, 12.dp, 12.dp, 0.dp).height(30.dp),
+        modifier = Modifier.fillMaxSize().padding(8.dp),
         alignment = Alignment.Center,
     )
 }
@@ -269,16 +297,18 @@ fun ProductionCompanyImage(imagePath: String, name: String) {
 @Composable
 fun ActorList(modifier: Modifier = Modifier, actors: List<Credit?>) {
     val actorsSorted = actors.sortedBy { it?.order }
-    val rowHeight = dimensionResource(id = R.dimen.row_height)
-    Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(8.dp)) {
+    dimensionResource(id = R.dimen.row_height)
+    Column(modifier = modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp), horizontalAlignment = Alignment.End) {
         Text(
             text = "Actors",
             fontWeight = FontWeight.SemiBold,
             fontSize = 28.sp,
             fontFamily = FontFamily(Font(R.font.sourcesanspro_black)),
+            modifier = modifier.fillMaxWidth(0.95f),
         )
-        LazyRow(modifier = modifier.padding(0.dp, 8.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+        LazyRow(modifier = modifier) {
             items(actors.size) {
+                Spacer(modifier = Modifier.width(16.dp))
                 actorsSorted[it]?.let { it1 -> ActorCard(actor = it1, modifier = Modifier.width(150.dp)) }
             }
         }
@@ -302,7 +332,7 @@ fun ActorCard(actor: Credit, modifier: Modifier = Modifier) {
             ),
             maxLines = if (expanded) Int.MAX_VALUE else 1,
             overflow = TextOverflow.Ellipsis,
-            modifier = Modifier.animateContentSize(animationSpec = tween(500)).clickable { expanded = !expanded },
+            modifier = Modifier.animateContentSize(animationSpec = tween(500)).clickable { expanded = !expanded }.padding(0.dp, 8.dp, 0.dp, 0.dp),
         )
     }
 }
