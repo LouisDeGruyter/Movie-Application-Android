@@ -1,8 +1,8 @@
 package com.example.moviesandseries.domain.credits
 
-data class Cast(
+data class Credit(
     var adult: Boolean,
-    var castId: Int,
+    var castId: Int?,
     var character: String,
     var creditId: String,
     var gender: Int,
@@ -12,6 +12,6 @@ data class Cast(
     var order: Int,
     var originalName: String,
     var popularity: Double,
-    var profilePath: String
+    var profilePath: String?
 )
 

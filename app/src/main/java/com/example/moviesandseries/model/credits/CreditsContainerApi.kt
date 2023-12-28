@@ -7,9 +7,9 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class CreditsContainerApi(
     @Json(name = "cast")
-    val cast: List<CastApi?>,
+    val cast: List<CreditApi?>,
     @Json(name = "crew")
-    val crew: List<CrewApi?>,
+    val crew: List<CreditApi?>,
     @Json(name = "id")
     val id: Int,
 )
