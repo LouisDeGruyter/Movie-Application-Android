@@ -1,6 +1,5 @@
 package com.example.moviesandseries.model
 
-
 import com.example.moviesandseries.domain.ProductionCompany
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -14,13 +13,13 @@ data class ProductionCompanyApi(
     @Json(name = "name")
     val name: String,
     @Json(name = "origin_country")
-    val originCountry: String?
+    val originCountry: String?,
 )
 fun ProductionCompanyApi.asDomainObject(): ProductionCompany {
     return ProductionCompany(
         id = id,
-        logoPath = logoPath,
+        logoPath = logoPath ?: "",
         name = name,
-        originCountry = originCountry,
+        originCountry = originCountry ?: "",
     )
 }

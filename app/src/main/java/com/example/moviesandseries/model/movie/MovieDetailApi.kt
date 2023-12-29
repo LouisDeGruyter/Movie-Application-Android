@@ -1,6 +1,8 @@
 package com.example.moviesandseries.model.movie
 
-import com.example.moviesandseries.domain.Collection.CollectionIndex
+import com.example.moviesandseries.domain.Collection.CollectionDetail
+import com.example.moviesandseries.domain.ProductionCompany
+import com.example.moviesandseries.domain.ProductionCountry
 import com.example.moviesandseries.domain.movie.MovieDetail
 import com.example.moviesandseries.model.GenreApi
 import com.example.moviesandseries.model.ProductionCompanyApi
@@ -69,7 +71,7 @@ fun MovieDetailApi.asDomainObject(): MovieDetail {
     return MovieDetail(
         adult = adult,
         backdropPath = backdropPath,
-        belongsToCollection = belongsToCollection?.asDomainObject() ?: CollectionIndex(),
+        belongsToCollection = belongsToCollection?.asDomainObject() ?: CollectionDetail(),
         budget = budget,
         genres = genres.map { it.asDomainObject() },
         homepage = homepage ?: "",
@@ -80,8 +82,8 @@ fun MovieDetailApi.asDomainObject(): MovieDetail {
         overview = overview,
         popularity = popularity,
         posterPath = posterPath,
-        productionCompanies = productionCompanies.map { it?.asDomainObject() },
-        productionCountries = productionCountries.map { it?.asDomainObject() },
+        productionCompanies = productionCompanies.map { it?.asDomainObject() ?: ProductionCompany() },
+        productionCountries = productionCountries.map { it?.asDomainObject() ?: ProductionCountry() },
         releaseDate = releaseDate,
         revenue = revenue ?: 0,
         runtime = runtime,

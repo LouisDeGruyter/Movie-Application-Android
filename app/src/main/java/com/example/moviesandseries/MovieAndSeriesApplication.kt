@@ -11,7 +11,7 @@ class MovieAndSeriesApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         appContext = this // this has to be done before initializing the container as it uses appContext
-        container = DefaultAppContainer()
+        container = DefaultAppContainer(this)
     }
     companion object {
         lateinit var appContext: Context

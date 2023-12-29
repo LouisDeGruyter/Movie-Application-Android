@@ -1,5 +1,6 @@
 package com.example.moviesandseries.model.movie
 
+import com.example.moviesandseries.domain.movie.MovieDetail
 import com.example.moviesandseries.domain.movie.MovieIndex
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -36,21 +37,20 @@ data class MovieIndexApi(
     val voteCount: Int,
 
 )
-fun MovieIndexApi.asDomainObject(): MovieIndex {
-    return MovieIndex(
+fun MovieIndexApi.asDomainObject(): MovieDetail {
+    return MovieDetail(
         id = id,
         title = title,
         posterPath = posterPath,
-        backdropPath = backdropPath,
-        releaseDate = releaseDate,
+        backdropPath = backdropPath ?: "",
+        releaseDate = releaseDate ?: "",
         voteAverage = voteAverage,
         voteCount = voteCount,
-        overview = overview,
+        overview = overview ?: "",
         adult = adult,
         originalLanguage = originalLanguage,
-        originalTitle = originalTitle,
+        originalTitle = originalTitle ?: "",
         popularity = popularity,
         video = video,
-        genreIds = genreIds,
     )
 }

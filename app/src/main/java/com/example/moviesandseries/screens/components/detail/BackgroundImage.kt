@@ -11,13 +11,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
-import com.example.moviesandseries.network.ApiEndpoints
 
 @Composable
 fun BackgroundImage(imagePath: String, title: String) {
     val painter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)
-            .data(ApiEndpoints.Poster + imagePath)
+            .data("https://image.tmdb.org/t/p/original/$imagePath")
             .crossfade(500)
             .build(),
         error = rememberVectorPainter(image = Icons.Filled.BrokenImage),

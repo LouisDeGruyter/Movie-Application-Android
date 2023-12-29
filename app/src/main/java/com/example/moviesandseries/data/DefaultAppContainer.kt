@@ -3,6 +3,7 @@ package com.example.moviesandseries.data
 import android.content.Context
 import android.content.pm.PackageManager
 import com.example.moviesandseries.MovieAndSeriesApplication
+import com.example.moviesandseries.data.database.MovieAndSeriesApplicationDb
 import com.example.moviesandseries.network.CollectionApiService
 import com.example.moviesandseries.network.MovieApiService
 import com.example.moviesandseries.network.SeriesApiService
@@ -41,7 +42,7 @@ private class LoggingInterceptorHeaders : Interceptor {
         return chain.proceed(request)
     }
 }
-class DefaultAppContainer : AppContainer {
+class DefaultAppContainer(private val context: Context) : AppContainer {
 
     private val baseUrl = "https://api.themoviedb.org/3/"
     private val posterUrl = "https://image.tmdb.org/t/p/original/"
@@ -84,7 +85,7 @@ class DefaultAppContainer : AppContainer {
      * DI implementation for blog post repository.
      */
     override val movieRepository: MovieRepository by lazy {
-        NetworkMovieRepository(movieApiService)
+        NetworkMovieRepository(movieApiService, MovieAndSeriesApplicationDb.getDatabase(context = context).movieDao())
     }
     override val seriesRepository: SeriesRepository by lazy {
         NetworkSeriesRepository(seriesApiService)
