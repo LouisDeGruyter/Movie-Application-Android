@@ -1,5 +1,9 @@
 package com.example.moviesandseries.screens.components.detail.movie
 
+import android.app.Activity
+import android.content.pm.ActivityInfo
+import android.content.res.Configuration
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearEasing
@@ -52,6 +56,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.TextStyle
@@ -72,11 +77,13 @@ import com.example.moviesandseries.domain.credits.Credit
 import com.example.moviesandseries.domain.credits.CreditsContainer
 import com.example.moviesandseries.domain.images.ImagesContainer
 import com.example.moviesandseries.domain.movie.MovieDetail
+import com.example.moviesandseries.model.videos.Video
+import com.example.moviesandseries.model.videos.VideoContainer
 import com.example.moviesandseries.network.ApiEndpoints
 import com.example.moviesandseries.screens.components.TwoByThreeAspectRatioImage
 import com.example.moviesandseries.screens.components.detail.BackgroundImage
 import com.example.moviesandseries.screens.components.index.mediaCard.MediaCard
-import com.example.moviesandseries.screens.components.videoplayer.VideoThumbnail
+import com.example.moviesandseries.screens.components.videoplayer.YoutubeScreen
 
 val normalTextStyleCentered = TextStyle(
     fontFamily = FontFamily(Font(R.font.sourcesanspro_black)),
@@ -91,10 +98,13 @@ fun MovieDetailComposable(
     backButton: @Composable (modifier: Modifier) -> Unit,
     images: ImagesContainer,
     credits: CreditsContainer,
+    movieVideos: VideoContainer,
 ) {
     var fadeIn by remember { mutableStateOf(false) }
     var showImageCarousel by remember { mutableStateOf(false) }
     var scrollToTop by remember { mutableStateOf(0) }
+    var fullscreen by remember { mutableStateOf(false) }
+
     val zIndexPoster by remember {
         derivedStateOf {
             if (showImageCarousel) -1f else 2f
@@ -110,32 +120,87 @@ fun MovieDetailComposable(
         }
     }
     val interactionSource = remember { MutableInteractionSource() }
-    ConstraintLayout(
-        modifier = Modifier.clickable(indication = null, interactionSource = interactionSource) { showImageCarousel = false }.fillMaxSize().verticalScroll(verticalState).padding(0.dp, 0.dp, 0.dp, 50.dp),
-    ) {
-        val (backdrop, mediaCard, backButtonRef, movieContent) = createRefs()
-        Card(
-            modifier = Modifier.constrainAs(backdrop) { top.linkTo(parent.top); absoluteLeft.linkTo(parent.absoluteLeft); absoluteRight.linkTo(parent.absoluteRight); }.height(300.dp),
-            shape = RectangleShape,
+    val activity = LocalContext.current as Activity
+    if (fullscreen) {
+        Box(modifier = Modifier.fillMaxSize().zIndex(30f), contentAlignment = Alignment.Center) {
+           // activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+            YoutubeScreen(videoId = "dQw4w9WgXcQ", modifier = Modifier.fillMaxHeight().aspectRatio(16/9f), onFullscreen = { fullscreen = false })
+        }
+    } else {
+        //activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+        ConstraintLayout(
+            modifier = Modifier
+                .clickable(
+                    indication = null,
+                    interactionSource = interactionSource,
+                ) { showImageCarousel = false }
+                .fillMaxSize()
+                .verticalScroll(verticalState)
+                .padding(0.dp, 0.dp, 0.dp, 50.dp),
         ) {
-            AnimatedVisibility(visible = fadeIn, enter = fadeIn(animationSpec = tween(1500, easing = LinearEasing))) {
-                BackdropCarousel(images = images, title = movie.title, onCarouselClick = { showImageCarousel = true; scrollToTop++ })
+            val (backdrop, mediaCard, backButtonRef, movieContent) = createRefs()
+            Card(
+                modifier = Modifier
+                    .constrainAs(backdrop) {
+                        top.linkTo(parent.top); absoluteLeft.linkTo(parent.absoluteLeft); absoluteRight.linkTo(
+                            parent.absoluteRight,
+                        )
+                    }
+                    .height(300.dp),
+                shape = RectangleShape,
+            ) {
+                AnimatedVisibility(visible = fadeIn, enter = fadeIn(animationSpec = tween(1500, easing = LinearEasing))) {
+                    BackdropCarousel(images = images, title = movie.title, onCarouselClick = { showImageCarousel = true; scrollToTop++ })
+                }
             }
-        }
 
-        // center mediacard on the bottom of the backdrop
-        MediaCard(title = movie.title, imagePath = movie.posterPath, rating = movie.voteAverage, modifier = Modifier.fillMaxWidth(0.5f).zIndex(zIndexPoster).constrainAs(mediaCard) { top.linkTo(backdrop.bottom); bottom.linkTo(backdrop.bottom); absoluteLeft.linkTo(parent.absoluteLeft); absoluteRight.linkTo(parent.absoluteRight) })
-        Box(modifier = Modifier.constrainAs(backButtonRef) { absoluteRight.linkTo(mediaCard.absoluteLeft); absoluteLeft.linkTo(parent.absoluteLeft); top.linkTo(backdrop.bottom, margin = 15.dp) }) {
-            backButton(Modifier.height(40.dp))
-        }
+            // center mediacard on the bottom of the backdrop
+            MediaCard(
+                title = movie.title,
+                imagePath = movie.posterPath,
+                rating = movie.voteAverage,
+                modifier = Modifier
+                    .fillMaxWidth(0.5f)
+                    .zIndex(zIndexPoster)
+                    .constrainAs(mediaCard) {
+                        top.linkTo(backdrop.bottom); bottom.linkTo(backdrop.bottom); absoluteLeft.linkTo(
+                            parent.absoluteLeft,
+                        ); absoluteRight.linkTo(parent.absoluteRight)
+                    },
+            )
+            Box(modifier = Modifier.constrainAs(backButtonRef) { absoluteRight.linkTo(mediaCard.absoluteLeft); absoluteLeft.linkTo(parent.absoluteLeft); top.linkTo(backdrop.bottom, margin = 15.dp) }) {
+                backButton(Modifier.height(40.dp))
+            }
 
-        Column(modifier = Modifier.constrainAs(movieContent) { top.linkTo(mediaCard.bottom); absoluteLeft.linkTo(parent.absoluteLeft); absoluteRight.linkTo(parent.absoluteRight) }, verticalArrangement = Arrangement.spacedBy(12.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-            TitleHeader(title = movie.title, releaseDate = movie.releaseDate, runtime = movie.runtime, modifier = Modifier.fillMaxWidth(0.9f))
-            Genres(genres = movie.genres.map { it?.name ?: "" }, modifier = Modifier.fillMaxWidth(0.9f))
-            ExpandableDescription(catchPhrase = movie.tagline, description = movie.overview, modifier = Modifier.fillMaxWidth(0.9f))
-            ActorList(actors = credits.cast)
-            ProductionCompanies(productionCompanies = movie.productionCompanies)
-            VideoThumbnail(videoUrl = "1t4BE7FA-rM", videoTitle = "", modifier = Modifier.height(200.dp))
+            Column(modifier = Modifier.constrainAs(movieContent) { top.linkTo(mediaCard.bottom); absoluteLeft.linkTo(parent.absoluteLeft); absoluteRight.linkTo(parent.absoluteRight) }, verticalArrangement = Arrangement.spacedBy(12.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                TitleHeader(title = movie.title, releaseDate = movie.releaseDate, runtime = movie.runtime, modifier = Modifier.fillMaxWidth(0.9f))
+                Genres(genres = movie.genres.map { it?.name ?: "" }, modifier = Modifier.fillMaxWidth(0.9f))
+                ExpandableDescription(catchPhrase = movie.tagline, description = movie.overview, modifier = Modifier.fillMaxWidth(0.9f))
+                ActorList(actors = credits.cast)
+                ProductionCompanies(productionCompanies = movie.productionCompanies)
+                DisplayVideos(videos = movieVideos.results, onFullScreen = { fullscreen = true })
+            }
+        } }
+}
+
+@Composable
+fun DisplayVideos(videos: List<Video>, modifier: Modifier = Modifier, onFullScreen: () -> Unit) {
+    Log.d("Videos", videos.toString())
+    val videosSorted = videos.filter { it.official && it.site.lowercase() == "youtube" }.sortedByDescending { it.type == "Trailer" }
+    Log.d("Videos", videosSorted.toString())
+    Column(modifier = modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp), horizontalAlignment = Alignment.End) {
+        Text(
+            text = "Videos",
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 28.sp,
+            fontFamily = FontFamily(Font(R.font.sourcesanspro_black)),
+            modifier = modifier.fillMaxWidth(0.95f),
+        )
+        LazyRow(modifier = modifier.fillMaxWidth()) {
+            items(videosSorted.size) {
+                Spacer(modifier = Modifier.width(18.dp))
+                YoutubeScreen(videoId = videosSorted[it].key, modifier = Modifier.width(300.dp), onFullscreen = onFullScreen)
+            }
         }
     }
 }
@@ -146,7 +211,11 @@ fun BackdropCarousel(images: ImagesContainer, title: String, onCarouselClick: (I
     val backdropImages = images.backdrops
     val pagerState = rememberPagerState(pageCount = { backdropImages.size })
 
-    Box(modifier = Modifier.fillMaxSize().clickable { onCarouselClick(pagerState.currentPage) }) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .clickable { onCarouselClick(pagerState.currentPage) },
+    ) {
         HorizontalPager(
             state = pagerState,
             key = { it },
@@ -155,8 +224,17 @@ fun BackdropCarousel(images: ImagesContainer, title: String, onCarouselClick: (I
             BackgroundImage(imagePath = backdropImages[index].filePath, title = title)
         }
     }
-    Box(modifier = Modifier.fillMaxSize().padding(8.dp), contentAlignment = Alignment.TopEnd) {
-        Box(modifier = Modifier.clip(RoundedCornerShape(30)).background(color = Color.Black.copy(alpha = 0.5f))) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(8.dp),
+        contentAlignment = Alignment.TopEnd,
+    ) {
+        Box(
+            modifier = Modifier
+                .clip(RoundedCornerShape(30))
+                .background(color = Color.Black.copy(alpha = 0.5f)),
+        ) {
             Text(
                 text = "${pagerState.currentPage + 1} / ${backdropImages.size}",
                 color = Color.White,
@@ -182,7 +260,14 @@ fun ExpandableDescription(modifier: Modifier = Modifier, catchPhrase: String, de
                 textAlign = TextAlign.Center,
             ),
         )
-        Text(text = description, maxLines = if (expanded) Int.MAX_VALUE else 3, overflow = TextOverflow.Ellipsis, modifier = Modifier.animateContentSize(animationSpec = tween(500)).clickable { expanded = !expanded })
+        Text(
+            text = description,
+            maxLines = if (expanded) Int.MAX_VALUE else 3,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier
+                .animateContentSize(animationSpec = tween(500))
+                .clickable { expanded = !expanded },
+        )
     }
 }
 
@@ -225,7 +310,9 @@ fun Genres(modifier: Modifier = Modifier, genres: List<String>) {
                     fontSize = 16.sp,
                     textAlign = TextAlign.Center,
                 ),
-                modifier = Modifier.border(2.dp, MaterialTheme.colorScheme.onPrimary, RoundedCornerShape(50)).padding(8.dp, 3.dp),
+                modifier = Modifier
+                    .border(2.dp, MaterialTheme.colorScheme.onPrimary, RoundedCornerShape(50))
+                    .padding(8.dp, 3.dp),
             )
             if (genre != genres.last()) {
                 Spacer(modifier = Modifier.width(8.dp))
@@ -262,7 +349,13 @@ fun ProductionCompanies(modifier: Modifier = Modifier, productionCompanies: List
 fun ProductionCompanyCard(modifier: Modifier = Modifier, productionCompany: ProductionCompany) {
     var expanded by remember { mutableStateOf(false) }
     Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
-        ElevatedCard(modifier = Modifier.fillMaxHeight(0.8f).aspectRatio(1f), shape = RoundedCornerShape(12.dp), elevation = CardDefaults.cardElevation(12.dp)) {
+        ElevatedCard(
+            modifier = Modifier
+                .fillMaxHeight(0.8f)
+                .aspectRatio(1f),
+            shape = RoundedCornerShape(12.dp),
+            elevation = CardDefaults.cardElevation(12.dp),
+        ) {
             ProductionCompanyImage(imagePath = productionCompany.logoPath ?: "", name = productionCompany.name)
         }
         Text(
@@ -275,7 +368,10 @@ fun ProductionCompanyCard(modifier: Modifier = Modifier, productionCompany: Prod
             ),
             maxLines = if (expanded) Int.MAX_VALUE else 2,
             overflow = TextOverflow.Ellipsis,
-            modifier = Modifier.animateContentSize(animationSpec = tween(500)).clickable { expanded = !expanded }.padding(0.dp, 8.dp, 0.dp, 0.dp),
+            modifier = Modifier
+                .animateContentSize(animationSpec = tween(500))
+                .clickable { expanded = !expanded }
+                .padding(0.dp, 8.dp, 0.dp, 0.dp),
         )
     }
 }
@@ -291,7 +387,9 @@ fun ProductionCompanyImage(imagePath: String, name: String) {
         painter = painter,
         contentDescription = name,
         contentScale = ContentScale.Fit,
-        modifier = Modifier.fillMaxSize().padding(8.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(8.dp),
         alignment = Alignment.Center,
     )
 }
@@ -321,7 +419,13 @@ fun ActorList(modifier: Modifier = Modifier, actors: List<Credit?>) {
 fun ActorCard(actor: Credit, modifier: Modifier = Modifier) {
     var expanded by remember { mutableStateOf(false) }
     Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
-        ElevatedCard(modifier = Modifier.fillMaxHeight(0.8f).aspectRatio(2 / 3f), shape = RoundedCornerShape(12.dp), elevation = CardDefaults.cardElevation(12.dp)) {
+        ElevatedCard(
+            modifier = Modifier
+                .fillMaxHeight(0.8f)
+                .aspectRatio(2 / 3f),
+            shape = RoundedCornerShape(12.dp),
+            elevation = CardDefaults.cardElevation(12.dp),
+        ) {
             TwoByThreeAspectRatioImage(imagePath = actor.profilePath ?: "", title = actor.name)
         }
         Text(
@@ -334,7 +438,10 @@ fun ActorCard(actor: Credit, modifier: Modifier = Modifier) {
             ),
             maxLines = if (expanded) Int.MAX_VALUE else 1,
             overflow = TextOverflow.Ellipsis,
-            modifier = Modifier.animateContentSize(animationSpec = tween(500)).clickable { expanded = !expanded }.padding(0.dp, 8.dp, 0.dp, 0.dp),
+            modifier = Modifier
+                .animateContentSize(animationSpec = tween(500))
+                .clickable { expanded = !expanded }
+                .padding(0.dp, 8.dp, 0.dp, 0.dp),
         )
     }
 }

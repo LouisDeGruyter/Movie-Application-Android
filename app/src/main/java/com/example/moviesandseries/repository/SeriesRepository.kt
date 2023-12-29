@@ -12,6 +12,8 @@ import com.example.moviesandseries.model.images.asDomainObject
 import com.example.moviesandseries.model.recommendations.asDomainObject
 import com.example.moviesandseries.model.reviews.asDomainObject
 import com.example.moviesandseries.model.series.asDomainObject
+import com.example.moviesandseries.model.videos.VideoContainer
+import com.example.moviesandseries.model.videos.asDomainObject
 import com.example.moviesandseries.network.SeriesApiService
 
 interface SeriesRepository {
@@ -28,6 +30,7 @@ interface SeriesRepository {
     suspend fun getSeriesTopRated(page: Int): SeriesContainer
     suspend fun getSeriesOnTheAir(page: Int): SeriesContainer
     suspend fun getSeriesAiringToday(page: Int): SeriesContainer
+    suspend fun getSeriesVideos(movieId:Int): VideoContainer
 }
 class NetworkSeriesRepository(private val seriesApiService: SeriesApiService) : SeriesRepository {
     override suspend fun getSeriesContainer(page: Int): SeriesContainer = seriesApiService.getSeriesContainer(page).asDomainObject()
@@ -42,4 +45,5 @@ class NetworkSeriesRepository(private val seriesApiService: SeriesApiService) : 
     override suspend fun getSeriesTopRated(page: Int) = seriesApiService.getSeriesTopRated(page).asDomainObject()
     override suspend fun getSeriesOnTheAir(page: Int) = seriesApiService.getSeriesOnTheAir(page).asDomainObject()
     override suspend fun getSeriesAiringToday(page: Int) = seriesApiService.getSeriesAiringToday(page).asDomainObject()
+    override suspend fun getSeriesVideos(movieId: Int): VideoContainer = seriesApiService.getSeriesVideos(movieId).asDomainObject()
 }

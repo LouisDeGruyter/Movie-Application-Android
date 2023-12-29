@@ -116,6 +116,8 @@ dependencies {
 
     // images
     implementation("io.coil-kt:coil-compose:2.5.0")
-    //video
+    // video
     implementation("io.coil-kt:coil-video:2.5.0")
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
+
 }

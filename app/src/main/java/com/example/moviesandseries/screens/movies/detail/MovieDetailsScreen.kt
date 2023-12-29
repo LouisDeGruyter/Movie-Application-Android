@@ -14,7 +14,7 @@ import com.example.moviesandseries.screens.components.detail.movie.MovieDetailCo
 fun MovieDetailsScreen(movieId: String?, movieDetailViewModel: MovieDetailViewModel = viewModel(factory = MovieDetailViewModel.Factory), backButton: @Composable (Modifier) -> Unit) {
     when (val movieDetailUiState = movieDetailViewModel.movieDetailUiState) {
         is MovieDetailUiState.Success -> {
-            MovieDetailComposable(movie = movieDetailUiState.movieDetail, backButton = backButton, images = movieDetailUiState.images, credits = movieDetailUiState.credits)
+            MovieDetailComposable(movie = movieDetailUiState.movieDetail, backButton = backButton, images = movieDetailUiState.images, credits = movieDetailUiState.credits, movieVideos= movieDetailUiState.videos)
         }
         is MovieDetailUiState.Loading -> {
             LoadingAnimation()

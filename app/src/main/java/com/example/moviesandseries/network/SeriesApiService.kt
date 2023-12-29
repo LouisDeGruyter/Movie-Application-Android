@@ -6,6 +6,7 @@ import com.example.moviesandseries.model.recommendations.RecommendationContainer
 import com.example.moviesandseries.model.reviews.ReviewContainerApi
 import com.example.moviesandseries.model.series.SeriesContainerApi
 import com.example.moviesandseries.model.series.SeriesDetailApi
+import com.example.moviesandseries.model.videos.VideoContainerApi
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -64,4 +65,9 @@ interface SeriesApiService {
     suspend fun getSeriesAiringToday(
         @Query("page") page: Int,
     ): SeriesContainerApi
+
+   @GET(ApiEndpoints.SeriesDetail + "/videos")
+    suspend fun getSeriesVideos(
+        @Path("series_id") seriesId: Int,
+    ): VideoContainerApi
 }

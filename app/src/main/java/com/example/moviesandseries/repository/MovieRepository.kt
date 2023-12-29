@@ -11,9 +11,10 @@ import com.example.moviesandseries.domain.reviews.ReviewContainer
 import com.example.moviesandseries.model.credits.asDomainObject
 import com.example.moviesandseries.model.images.asDomainObject
 import com.example.moviesandseries.model.movie.asDomainObject
-import com.example.moviesandseries.model.recommendations.RecommendationContainerApi
 import com.example.moviesandseries.model.recommendations.asDomainObject
 import com.example.moviesandseries.model.reviews.asDomainObject
+import com.example.moviesandseries.model.videos.VideoContainer
+import com.example.moviesandseries.model.videos.asDomainObject
 import com.example.moviesandseries.network.MovieApiService
 
 interface MovieRepository {
@@ -29,6 +30,7 @@ interface MovieRepository {
     suspend fun getMoviesPopular(page: Int): MovieContainer
     suspend fun getMoviesTopRated(page: Int): MovieContainer
     suspend fun getMoviesUpcoming(page: Int): MovieContainerWithDates
+    suspend fun getMovieVideos(movieId: Int): VideoContainer
 }
 
 class NetworkMovieRepository(private val movieApiService: MovieApiService) : MovieRepository {
@@ -44,4 +46,5 @@ class NetworkMovieRepository(private val movieApiService: MovieApiService) : Mov
     override suspend fun getMoviesPopular(page: Int) = movieApiService.getMoviesPopular(page).asDomainObject()
     override suspend fun getMoviesTopRated(page: Int) = movieApiService.getMoviesTopRated(page).asDomainObject()
     override suspend fun getMoviesUpcoming(page: Int) = movieApiService.getMoviesUpcoming(page).asDomainObject()
+    override suspend fun getMovieVideos(movieId: Int): VideoContainer = movieApiService.getMovieVideos(movieId).asDomainObject()
 }
