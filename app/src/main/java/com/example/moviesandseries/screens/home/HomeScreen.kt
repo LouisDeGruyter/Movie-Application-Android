@@ -18,7 +18,7 @@ import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.moviesandseries.R
 import com.example.moviesandseries.domain.MediaIndex
-import com.example.moviesandseries.screens.components.index.LazyMediaRow
+import com.example.moviesandseries.screens.components.index.LazyPagingMediaRow
 import com.example.moviesandseries.screens.components.loading.LoadingMediaRow
 
 @Composable
@@ -65,7 +65,7 @@ fun HomeScreenSection(title: String, onMediaClick: (mediaId: Int) -> Unit, media
         else -> {
             Column(modifier = Modifier.padding(start = rowPadding), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(text = title, fontSize = 22.sp, fontWeight = FontWeight.Bold)
-                LazyMediaRow(movies = media, onMovieClick = onMediaClick, modifier = Modifier.height(rowHeight))
+                LazyPagingMediaRow(movies = media, onMovieClick = onMediaClick, modifier = Modifier.height(rowHeight))
             }
         }
     }

@@ -11,10 +11,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.moviesandseries.screens.components.detail.movie.MovieDetailComposable
 
 @Composable
-fun MovieDetailsScreen(movieId: String?, movieDetailViewModel: MovieDetailViewModel = viewModel(factory = MovieDetailViewModel.Factory), backButton: @Composable (Modifier) -> Unit) {
+fun MovieDetailsScreen(movieId: String?, movieDetailViewModel: MovieDetailViewModel = viewModel(factory = MovieDetailViewModel.Factory), backButton: @Composable (Modifier) -> Unit, onMovieClick: (movieId: Int) -> Unit) {
     when (val movieDetailUiState = movieDetailViewModel.movieDetailUiState) {
         is MovieDetailUiState.Success -> {
-            MovieDetailComposable(movie = movieDetailUiState.movieDetail, backButton = backButton, images = movieDetailUiState.images, credits = movieDetailUiState.credits, movieVideos= movieDetailUiState.videos)
+            MovieDetailComposable(movie = movieDetailUiState.movieDetail, backButton = backButton, images = movieDetailUiState.images, credits = movieDetailUiState.credits, movieVideos = movieDetailUiState.videos, collectionDetail = movieDetailUiState.collectionDetail, onMovieClick = onMovieClick)
         }
         is MovieDetailUiState.Loading -> {
             LoadingAnimation()

@@ -1,5 +1,6 @@
 package com.example.moviesandseries.domain.movie
 
+import com.example.moviesandseries.domain.Collection.CollectionIndex
 import com.example.moviesandseries.domain.Genre
 import com.example.moviesandseries.domain.ProductionCompany
 import com.example.moviesandseries.domain.ProductionCountry
@@ -8,7 +9,7 @@ import com.example.moviesandseries.domain.SpokenLanguage
 data class MovieDetail(
     var adult: Boolean,
     var backdropPath: String,
-    var belongsToCollection: Collection?,
+    var belongsToCollection: CollectionIndex?,
     var budget: Int,
     var genres: List<Genre?>,
     var homepage: String?,

@@ -10,6 +10,7 @@ import com.example.moviesandseries.domain.recommendations.RecommendationContaine
 import com.example.moviesandseries.domain.reviews.ReviewContainer
 import com.example.moviesandseries.model.credits.asDomainObject
 import com.example.moviesandseries.model.images.asDomainObject
+import com.example.moviesandseries.model.collection.asDomainObject
 import com.example.moviesandseries.model.movie.asDomainObject
 import com.example.moviesandseries.model.recommendations.asDomainObject
 import com.example.moviesandseries.model.reviews.asDomainObject

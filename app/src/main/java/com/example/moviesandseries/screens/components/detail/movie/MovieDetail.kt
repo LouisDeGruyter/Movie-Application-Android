@@ -1,8 +1,5 @@
 package com.example.moviesandseries.screens.components.detail.movie
 
-import android.app.Activity
-import android.content.pm.ActivityInfo
-import android.content.res.Configuration
 import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
@@ -15,6 +12,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -37,6 +35,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BrokenImage
 import androidx.compose.material.icons.filled.Cases
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
@@ -53,10 +52,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.TextStyle
@@ -72,6 +71,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.moviesandseries.R
+import com.example.moviesandseries.domain.Collection.CollectionDetail
 import com.example.moviesandseries.domain.ProductionCompany
 import com.example.moviesandseries.domain.credits.Credit
 import com.example.moviesandseries.domain.credits.CreditsContainer
@@ -99,6 +99,8 @@ fun MovieDetailComposable(
     images: ImagesContainer,
     credits: CreditsContainer,
     movieVideos: VideoContainer,
+    collectionDetail: CollectionDetail?,
+    onMovieClick: (movieId: Int) -> Unit,
 ) {
     var fadeIn by remember { mutableStateOf(false) }
     var showImageCarousel by remember { mutableStateOf(false) }
@@ -120,14 +122,12 @@ fun MovieDetailComposable(
         }
     }
     val interactionSource = remember { MutableInteractionSource() }
-    val activity = LocalContext.current as Activity
     if (fullscreen) {
         Box(modifier = Modifier.fillMaxSize().zIndex(30f), contentAlignment = Alignment.Center) {
-           // activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-            YoutubeScreen(videoId = "dQw4w9WgXcQ", modifier = Modifier.fillMaxHeight().aspectRatio(16/9f), onFullscreen = { fullscreen = false })
+            // activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+            YoutubeScreen(videoId = "dQw4w9WgXcQ", modifier = Modifier.fillMaxHeight(), onFullscreen = { fullscreen = false })
         }
     } else {
-        //activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
         ConstraintLayout(
             modifier = Modifier
                 .clickable(
@@ -177,17 +177,18 @@ fun MovieDetailComposable(
                 Genres(genres = movie.genres.map { it?.name ?: "" }, modifier = Modifier.fillMaxWidth(0.9f))
                 ExpandableDescription(catchPhrase = movie.tagline, description = movie.overview, modifier = Modifier.fillMaxWidth(0.9f))
                 ActorList(actors = credits.cast)
-                ProductionCompanies(productionCompanies = movie.productionCompanies)
+                if (collectionDetail != null) {
+                    DisplayCollection(collection = collectionDetail, onMovieClick = onMovieClick)
+                }
                 DisplayVideos(videos = movieVideos.results, onFullScreen = { fullscreen = true })
+                ProductionCompanies(productionCompanies = movie.productionCompanies)
             }
         } }
 }
 
 @Composable
 fun DisplayVideos(videos: List<Video>, modifier: Modifier = Modifier, onFullScreen: () -> Unit) {
-    Log.d("Videos", videos.toString())
     val videosSorted = videos.filter { it.official && it.site.lowercase() == "youtube" }.sortedByDescending { it.type == "Trailer" }
-    Log.d("Videos", videosSorted.toString())
     Column(modifier = modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp), horizontalAlignment = Alignment.End) {
         Text(
             text = "Videos",
@@ -331,7 +332,7 @@ fun ProductionCompanies(modifier: Modifier = Modifier, productionCompanies: List
             fontFamily = FontFamily(Font(R.font.sourcesanspro_black)),
             modifier = modifier.fillMaxWidth(0.95f),
         )
-        LazyRow(modifier = modifier.fillMaxWidth()) {
+        LazyRow(modifier = Modifier.fillMaxWidth()) {
             items(productionCompanies.size) {
                 productionCompanies[it]?.let { it1 ->
                     Spacer(modifier = Modifier.width(18.dp))
@@ -355,6 +356,7 @@ fun ProductionCompanyCard(modifier: Modifier = Modifier, productionCompany: Prod
                 .aspectRatio(1f),
             shape = RoundedCornerShape(12.dp),
             elevation = CardDefaults.cardElevation(12.dp),
+            colors = CardDefaults.elevatedCardColors(containerColor = if (isSystemInDarkTheme()) Color.DarkGray else MaterialTheme.colorScheme.primary),
         ) {
             ProductionCompanyImage(imagePath = productionCompany.logoPath ?: "", name = productionCompany.name)
         }
@@ -378,11 +380,17 @@ fun ProductionCompanyCard(modifier: Modifier = Modifier, productionCompany: Prod
 
 @Composable
 fun ProductionCompanyImage(imagePath: String, name: String) {
-    val painter = rememberAsyncImagePainter(
-        model = ImageRequest.Builder(LocalContext.current).data(ApiEndpoints.Poster + imagePath).crossfade(500).build(),
-        error = rememberVectorPainter(image = Icons.Filled.BrokenImage),
-        placeholder = rememberVectorPainter(image = Icons.Filled.Cases),
+    var painter = rememberAsyncImagePainter(
+        model = "",
+        error = rememberVectorPainter(image = Icons.Filled.Cases),
     )
+    if (imagePath.isNotEmpty()) {
+        painter = rememberAsyncImagePainter(
+            model = ImageRequest.Builder(LocalContext.current).data(ApiEndpoints.Poster + imagePath).crossfade(500).build(),
+            error = rememberVectorPainter(image = Icons.Filled.BrokenImage),
+            placeholder = rememberVectorPainter(image = Icons.Filled.Cases),
+        ) }
+
     Image(
         painter = painter,
         contentDescription = name,
@@ -426,7 +434,24 @@ fun ActorCard(actor: Credit, modifier: Modifier = Modifier) {
             shape = RoundedCornerShape(12.dp),
             elevation = CardDefaults.cardElevation(12.dp),
         ) {
-            TwoByThreeAspectRatioImage(imagePath = actor.profilePath ?: "", title = actor.name)
+            if (actor.profilePath != null) {
+                TwoByThreeAspectRatioImage(imagePath = actor.profilePath!!, title = actor.name)
+            } else {
+                var painter = rememberAsyncImagePainter(
+                    model = "",
+                    error = rememberVectorPainter(image = Icons.Filled.Person),
+                )
+                Image(
+                    painter = painter,
+                    contentDescription = actor.name,
+                    contentScale = ContentScale.FillWidth,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(2 / 3f),
+                    alignment = Alignment.Center,
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onPrimary),
+                )
+            }
         }
         Text(
             text = actor.name,
@@ -443,5 +468,26 @@ fun ActorCard(actor: Credit, modifier: Modifier = Modifier) {
                 .clickable { expanded = !expanded }
                 .padding(0.dp, 8.dp, 0.dp, 0.dp),
         )
+    }
+}
+
+@Composable
+fun DisplayCollection(collection: CollectionDetail, onMovieClick: (movieId: Int) -> Unit) {
+    Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp), horizontalAlignment = Alignment.End) {
+        Text(
+            text = "More from ${collection.name}",
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 28.sp,
+            fontFamily = FontFamily(Font(R.font.sourcesanspro_black)),
+            modifier = Modifier.fillMaxWidth(0.95f),
+        )
+        Log.d("Collection", collection.toString())
+        LazyRow(modifier = Modifier.fillMaxWidth()) {
+            items(collection.parts.size) {
+                Spacer(modifier = Modifier.width(18.dp))
+                val movie = collection.parts[it]
+                MediaCard(title = movie.title, imagePath = movie.posterPath, rating = movie.voteAverage, modifier = Modifier.width(150.dp), onMediaClick = { onMovieClick(movie.id) })
+            }
+        }
     }
 }

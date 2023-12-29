@@ -1,5 +1,6 @@
 package com.example.moviesandseries.screens.movies.detail
 
+import com.example.moviesandseries.domain.Collection.CollectionDetail
 import com.example.moviesandseries.domain.credits.CreditsContainer
 import com.example.moviesandseries.domain.images.ImagesContainer
 import com.example.moviesandseries.domain.movie.MovieDetail
@@ -11,6 +12,7 @@ sealed interface MovieDetailUiState {
         val images: ImagesContainer,
         val credits: CreditsContainer,
         val videos: VideoContainer,
+        val collectionDetail: CollectionDetail?,
     ) : MovieDetailUiState
 
     object Loading : MovieDetailUiState

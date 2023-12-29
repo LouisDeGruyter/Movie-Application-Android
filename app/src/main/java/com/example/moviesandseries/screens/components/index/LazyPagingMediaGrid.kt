@@ -14,7 +14,7 @@ import com.example.moviesandseries.domain.MediaIndex
 import com.example.moviesandseries.screens.components.index.mediaCard.MediaCard
 
 @Composable
-fun LazyMediaGrid(media: LazyPagingItems<MediaIndex>, onMediaClick: (movieId: Int) -> Unit, columns: Int) {
+fun LazyPagingMediaGrid(media: LazyPagingItems<MediaIndex>, onMediaClick: (movieId: Int) -> Unit, columns: Int) {
     val lazyGridState = rememberLazyGridState()
     val gridSpacing = dimensionResource(id = R.dimen.grid_spacing)
     LazyVerticalGrid(

@@ -3,9 +3,12 @@ package com.example.moviesandseries.data
 import android.content.Context
 import android.content.pm.PackageManager
 import com.example.moviesandseries.MovieAndSeriesApplication
+import com.example.moviesandseries.network.CollectionApiService
 import com.example.moviesandseries.network.MovieApiService
 import com.example.moviesandseries.network.SeriesApiService
+import com.example.moviesandseries.repository.CollectionRepository
 import com.example.moviesandseries.repository.MovieRepository
+import com.example.moviesandseries.repository.NetworkCollectionRepository
 import com.example.moviesandseries.repository.NetworkMovieRepository
 import com.example.moviesandseries.repository.NetworkSeriesRepository
 import com.example.moviesandseries.repository.SeriesRepository
@@ -73,6 +76,9 @@ class DefaultAppContainer : AppContainer {
     private val seriesApiService: SeriesApiService by lazy {
         retrofit.create(SeriesApiService::class.java)
     }
+    private val collectionApiService: CollectionApiService by lazy {
+        retrofit.create(CollectionApiService::class.java)
+    }
 
     /**
      * DI implementation for blog post repository.
@@ -82,5 +88,8 @@ class DefaultAppContainer : AppContainer {
     }
     override val seriesRepository: SeriesRepository by lazy {
         NetworkSeriesRepository(seriesApiService)
+    }
+    override val collectionRepository: CollectionRepository by lazy {
+        NetworkCollectionRepository(collectionApiService)
     }
 }

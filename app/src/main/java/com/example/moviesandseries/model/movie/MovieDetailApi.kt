@@ -7,6 +7,8 @@ import com.example.moviesandseries.model.ProductionCompanyApi
 import com.example.moviesandseries.model.ProductionCountryApi
 import com.example.moviesandseries.model.SpokenLanguageApi
 import com.example.moviesandseries.model.asDomainObject
+import com.example.moviesandseries.model.collection.CollectionIndexApi
+import com.example.moviesandseries.model.collection.asDomainObject
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -17,7 +19,7 @@ data class MovieDetailApi(
     @Json(name = "backdrop_path")
     val backdropPath: String,
     @Json(name = "belongs_to_collection")
-    val belongsToCollection: CollectionApi?,
+    val belongsToCollection: CollectionIndexApi?,
     @Json(name = "budget")
     val budget: Int,
     @Json(name = "genres")

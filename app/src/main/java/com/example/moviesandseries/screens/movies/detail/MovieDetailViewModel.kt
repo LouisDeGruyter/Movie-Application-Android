@@ -10,17 +10,23 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.moviesandseries.MovieAndSeriesApplication
+import com.example.moviesandseries.repository.CollectionRepository
 import com.example.moviesandseries.repository.MovieRepository
 import kotlinx.coroutines.launch
 
-class MovieDetailViewModel(private val movieRepository: MovieRepository) : ViewModel() {
+class MovieDetailViewModel(private val movieRepository: MovieRepository, private val collectionRepository: CollectionRepository) : ViewModel() {
     var movieDetailUiState: MovieDetailUiState by mutableStateOf(MovieDetailUiState.Loading)
         private set
     fun getMovieDetail(movieId: Int) {
         viewModelScope.launch {
             movieDetailUiState = MovieDetailUiState.Loading
             movieDetailUiState = try {
-                MovieDetailUiState.Success(movieRepository.getMovieDetail(movieId), movieRepository.getMovieImages(movieId), movieRepository.getMovieCredits(movieId), movieRepository.getMovieVideos(movieId))
+                val movieDetail = movieRepository.getMovieDetail(movieId)
+                val images = movieRepository.getMovieImages(movieId)
+                val credits = movieRepository.getMovieCredits(movieId)
+                val videos = movieRepository.getMovieVideos(movieId)
+                val collectionDetail = movieDetail.belongsToCollection?.let { collectionRepository.getCollectionDetail(it.id) }
+                MovieDetailUiState.Success(movieDetail = movieDetail, images = images, credits = credits, videos = videos, collectionDetail = collectionDetail)
             } catch (e: Exception) {
                 MovieDetailUiState.Error(e.message ?: "An unknown error occured")
             }
@@ -32,7 +38,8 @@ class MovieDetailViewModel(private val movieRepository: MovieRepository) : ViewM
             initializer {
                 val application = (this[APPLICATION_KEY] as MovieAndSeriesApplication)
                 val movieRepository = application.container.movieRepository
-                MovieDetailViewModel(movieRepository)
+                val collectionRepository = application.container.collectionRepository
+                MovieDetailViewModel(movieRepository, collectionRepository)
             }
         }
     }
