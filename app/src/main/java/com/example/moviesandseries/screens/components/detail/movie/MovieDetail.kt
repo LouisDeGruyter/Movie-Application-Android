@@ -1,5 +1,6 @@
 package com.example.moviesandseries.screens.components.detail.movie
 
+
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearEasing
@@ -50,6 +51,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.RectangleShape
@@ -153,8 +155,16 @@ fun MovieDetailComposable(
                     .height(300.dp),
                 shape = RectangleShape,
             ) {
-                AnimatedVisibility(visible = fadeIn, enter = fadeIn(animationSpec = tween(1500, easing = LinearEasing))) {
+                Box(modifier = Modifier.fillMaxSize()) {
+                    androidx.compose.animation.AnimatedVisibility(visible = fadeIn, enter = fadeIn(animationSpec = tween(1500, easing = LinearEasing))) {
                     BackdropCarousel(images = images, title = movie.title, onCarouselClick = { showImageCarousel = true; scrollToTop++ })
+                }
+                    val fadeColor = if (isSystemInDarkTheme()) {
+                        Color.Black
+                    } else {
+                        Color.White
+                    }
+                    Spacer(modifier = Modifier.fillMaxSize().background(brush = Brush.verticalGradient(0.7f to Color.Transparent, 1f to fadeColor)))
                 }
             }
 
