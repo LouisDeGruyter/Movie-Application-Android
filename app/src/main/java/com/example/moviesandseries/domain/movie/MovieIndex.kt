@@ -35,6 +35,7 @@ fun MovieIndex.asMediaIndexObject(): MediaIndex {
         voteAverage = voteAverage,
         voteCount = voteCount,
         originCountry = null,
+        mediaType = "movie",
     )
 }
 

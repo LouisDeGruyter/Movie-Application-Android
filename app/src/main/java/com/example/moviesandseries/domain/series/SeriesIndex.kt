@@ -34,6 +34,7 @@ fun SeriesIndex.asMediaIndexObject(): MediaIndex {
         adult = null,
         video = null,
         originCountry = originCountry,
+        mediaType = "tv",
     )
 }
 

@@ -5,6 +5,7 @@ data class MediaIndex(
     var backdropPath: String?,
     var genreIds: List<Int>,
     var id: Int,
+    var mediaType: String,
     var originalLanguage: String,
     var originalTitle: String?,
     var overview: String?,

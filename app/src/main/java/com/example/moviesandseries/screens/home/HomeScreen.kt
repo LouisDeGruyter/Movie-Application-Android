@@ -60,23 +60,23 @@ fun HomeScreenSection(title: String, onMediaClick: (mediaId: Int) -> Unit, media
     val rowHeight = dimensionResource(id = R.dimen.row_height)
     val rowPadding = dimensionResource(id = R.dimen.row_padding)
     when (media.loadState.refresh) {
-        is LoadState.Loading -> LoadingHomeScreenSection(mediaType = mediaType)
+        is LoadState.Loading -> LoadingHomeScreenSection(header = mediaType)
         is LoadState.Error -> Text(text = "Error")
         else -> {
             Column(modifier = Modifier.padding(start = rowPadding), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(text = title, fontSize = 22.sp, fontWeight = FontWeight.Bold)
-                LazyPagingMediaRow(movies = media, onMovieClick = onMediaClick, modifier = Modifier.height(rowHeight))
+                LazyPagingMediaRow(media = media, onMediaClick = onMediaClick, modifier = Modifier.height(rowHeight))
             }
         }
     }
 }
 
 @Composable
-fun LoadingHomeScreenSection(mediaType: String) {
+fun LoadingHomeScreenSection(header: String) {
     val rowPadding = dimensionResource(id = R.dimen.row_padding)
     val rowHeight = dimensionResource(id = R.dimen.row_height)
     Column(modifier = Modifier.padding(start = rowPadding), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-        Text(text = mediaType, fontSize = 22.sp, fontWeight = FontWeight.Bold)
+        Text(text = header, fontSize = 22.sp, fontWeight = FontWeight.Bold)
         LoadingMediaRow(3, modifier = Modifier.height(rowHeight))
     }
 }

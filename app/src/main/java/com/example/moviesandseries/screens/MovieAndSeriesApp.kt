@@ -92,7 +92,7 @@ fun MovieAndSeriesApp() {
             }
             composable("${Destinations.MovieDetails.route}/{id}") {
                     backStackEntry ->
-                MovieDetailsScreen(movieId = backStackEntry.arguments?.getString("id"), backButton = { BackButton(onBackPressed = navigateBack) }, onMovieClick = ::onMovieClick)
+                MovieDetailsScreen(movieId = backStackEntry.arguments?.getString("id"), backButton = { BackButton(onBackPressed = navigateBack) }, onMovieClick = ::onMovieClick, onSeriesClick = ::onSeriesClick)
             }
             composable("${Destinations.SeriesDetail.route}/{id}") {
                     backStackEntry ->

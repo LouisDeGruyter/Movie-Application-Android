@@ -8,13 +8,14 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.moviesandseries.screens.components.detail.movie.MovieDetailComposable
 
 @Composable
-fun MovieDetailsScreen(movieId: String?, movieDetailViewModel: MovieDetailViewModel = viewModel(factory = MovieDetailViewModel.Factory), backButton: @Composable (Modifier) -> Unit, onMovieClick: (movieId: Int) -> Unit) {
+fun MovieDetailsScreen(movieId: String?, movieDetailViewModel: MovieDetailViewModel = viewModel(factory = MovieDetailViewModel.Factory), backButton: @Composable (Modifier) -> Unit, onMovieClick: (movieId: Int) -> Unit, onSeriesClick: (seriesId: Int) -> Unit) {
     when (val movieDetailUiState = movieDetailViewModel.movieDetailUiState) {
         is MovieDetailUiState.Success -> {
-            MovieDetailComposable(movie = movieDetailUiState.movieDetail, backButton = backButton, images = movieDetailUiState.images, credits = movieDetailUiState.credits, movieVideos = movieDetailUiState.videos, collectionDetail = movieDetailUiState.collectionDetail, onMovieClick = onMovieClick)
+            MovieDetailComposable(movie = movieDetailUiState.movieDetail, backButton = backButton, images = movieDetailUiState.images, credits = movieDetailUiState.credits, movieVideos = movieDetailUiState.videos, collectionDetail = movieDetailUiState.collectionDetail, onMovieClick = onMovieClick, onSeriesClick = onSeriesClick, recommendedMedia = movieDetailUiState.recommendedMedia.collectAsLazyPagingItems())
         }
         is MovieDetailUiState.Loading -> {
             LoadingAnimation()

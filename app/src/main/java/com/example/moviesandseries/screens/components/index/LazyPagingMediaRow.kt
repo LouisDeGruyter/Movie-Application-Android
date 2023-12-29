@@ -12,16 +12,16 @@ import com.example.moviesandseries.domain.MediaIndex
 import com.example.moviesandseries.screens.components.index.mediaCard.MediaCard
 
 @Composable
-fun LazyPagingMediaRow(movies: LazyPagingItems<MediaIndex>, onMovieClick: (movieId: Int) -> Unit, modifier: Modifier) {
+fun LazyPagingMediaRow(media: LazyPagingItems<MediaIndex>, onMediaClick: (movieId: Int) -> Unit, modifier: Modifier) {
     val rowSpacing = dimensionResource(id = R.dimen.row_spacing)
     LazyRow(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(rowSpacing, Alignment.CenterHorizontally),
         verticalAlignment = Alignment.CenterVertically,
         content = {
-            items(movies.itemCount) { movie ->
-                movies[movie]?.let {
-                    MediaCard(title = it.title, imagePath = it.posterPath ?: "", rating = it.voteAverage, onMediaClick = { onMovieClick(it.id) })
+            items(media.itemCount) { movie ->
+                media[movie]?.let {
+                    MediaCard(title = it.title, imagePath = it.posterPath ?: "", rating = it.voteAverage, onMediaClick = { onMediaClick(it.id) })
                 }
             }
         },

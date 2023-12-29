@@ -9,14 +9,21 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.example.moviesandseries.MovieAndSeriesApplication
+import com.example.moviesandseries.domain.MediaIndex
+import com.example.moviesandseries.paging.movies.RecommendedMoviesPagingSource
 import com.example.moviesandseries.repository.CollectionRepository
 import com.example.moviesandseries.repository.MovieRepository
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-
 class MovieDetailViewModel(private val movieRepository: MovieRepository, private val collectionRepository: CollectionRepository) : ViewModel() {
     var movieDetailUiState: MovieDetailUiState by mutableStateOf(MovieDetailUiState.Loading)
         private set
+
     fun getMovieDetail(movieId: Int) {
         viewModelScope.launch {
             movieDetailUiState = MovieDetailUiState.Loading
@@ -26,7 +33,10 @@ class MovieDetailViewModel(private val movieRepository: MovieRepository, private
                 val credits = movieRepository.getMovieCredits(movieId)
                 val videos = movieRepository.getMovieVideos(movieId)
                 val collectionDetail = movieDetail.belongsToCollection?.let { collectionRepository.getCollectionDetail(it.id) }
-                MovieDetailUiState.Success(movieDetail = movieDetail, images = images, credits = credits, videos = videos, collectionDetail = collectionDetail)
+                val recommendedMovies: Flow<PagingData<MediaIndex>> = Pager(PagingConfig(pageSize = 20)) {
+                    RecommendedMoviesPagingSource(movieRepository, movieId)
+                }.flow.cachedIn(viewModelScope)
+                MovieDetailUiState.Success(movieDetail = movieDetail, images = images, credits = credits, videos = videos, collectionDetail = collectionDetail, recommendedMedia = recommendedMovies)
             } catch (e: Exception) {
                 MovieDetailUiState.Error(e.message ?: "An unknown error occured")
             }

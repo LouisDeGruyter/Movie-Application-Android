@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocalMovies
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,7 +21,7 @@ import com.example.moviesandseries.screens.components.index.mediaCard.RatingComp
 
 @Composable
 fun LoadingCard() {
-    ElevatedCard(shape = RoundedCornerShape(12.dp)) {
+    ElevatedCard(shape = RoundedCornerShape(12.dp), colors = CardDefaults.cardColors(MaterialTheme.colorScheme.secondary)) {
         Box {
             RatingComposable(rating = 7.5, modifier = Modifier.zIndex(2f).aspectRatio(2 / 3f))
             Image(
