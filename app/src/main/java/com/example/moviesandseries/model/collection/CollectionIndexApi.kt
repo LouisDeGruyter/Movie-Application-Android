@@ -1,9 +1,8 @@
 package com.example.moviesandseries.model.collection
 
-
+import com.example.moviesandseries.domain.Collection.CollectionIndex
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import com.example.moviesandseries.domain.Collection.CollectionIndex
 @JsonClass(generateAdapter = true)
 data class CollectionIndexApi(
     @Json(name = "backdrop_path")
@@ -13,13 +12,13 @@ data class CollectionIndexApi(
     @Json(name = "name")
     val name: String,
     @Json(name = "poster_path")
-    val posterPath: String?
+    val posterPath: String?,
 )
 fun CollectionIndexApi.asDomainObject(): CollectionIndex {
     return CollectionIndex(
-        backdropPath = backdropPath,
+        backdropPath = backdropPath ?: "",
         id = id,
         name = name,
-        posterPath = posterPath,
+        posterPath = posterPath ?: "",
     )
 }

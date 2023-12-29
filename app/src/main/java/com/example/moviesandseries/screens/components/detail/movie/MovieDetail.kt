@@ -330,10 +330,11 @@ fun TitleHeader(modifier: Modifier = Modifier, title: String, releaseDate: Strin
         )
 
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-            Text(
-                text = releaseDate.substring(0, 4) + " | ",
-                style = normalTextStyleCentered,
-            )
+            if (releaseDate.length > 4) {
+                Text(
+                    text = releaseDate.substring(0, 4) + " | ",
+                    style = normalTextStyleCentered,
+                ) }
             Text(
                 text = "$runtime min",
                 style = normalTextStyleCentered,

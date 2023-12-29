@@ -32,6 +32,7 @@ interface MovieRepository {
     suspend fun getMoviesTopRated(page: Int): MovieContainer
     suspend fun getMoviesUpcoming(page: Int): MovieContainerWithDates
     suspend fun getMovieVideos(movieId: Int): VideoContainer
+    abstract fun refreshMovie(movieId: Int)
 }
 
 class NetworkMovieRepository(private val movieApiService: MovieApiService) : MovieRepository {
@@ -48,4 +49,7 @@ class NetworkMovieRepository(private val movieApiService: MovieApiService) : Mov
     override suspend fun getMoviesTopRated(page: Int) = movieApiService.getMoviesTopRated(page).asDomainObject()
     override suspend fun getMoviesUpcoming(page: Int) = movieApiService.getMoviesUpcoming(page).asDomainObject()
     override suspend fun getMovieVideos(movieId: Int): VideoContainer = movieApiService.getMovieVideos(movieId).asDomainObject()
+    override fun refreshMovie(movieId: Int) {
+
+    }
 }

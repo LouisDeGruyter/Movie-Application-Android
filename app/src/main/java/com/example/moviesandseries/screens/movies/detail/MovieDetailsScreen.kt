@@ -5,6 +5,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -13,14 +14,15 @@ import com.example.moviesandseries.screens.components.detail.movie.MovieDetailCo
 
 @Composable
 fun MovieDetailsScreen(movieId: String?, movieDetailViewModel: MovieDetailViewModel = viewModel(factory = MovieDetailViewModel.Factory), backButton: @Composable (Modifier) -> Unit, onMovieClick: (movieId: Int) -> Unit, onSeriesClick: (seriesId: Int) -> Unit) {
-    when (val movieDetailUiState = movieDetailViewModel.movieDetailUiState) {
-        is MovieDetailUiState.Success -> {
-            MovieDetailComposable(movie = movieDetailUiState.movieDetail, backButton = backButton, images = movieDetailUiState.images, credits = movieDetailUiState.credits, movieVideos = movieDetailUiState.videos, collectionDetail = movieDetailUiState.collectionDetail, onMovieClick = onMovieClick, onSeriesClick = onSeriesClick, recommendedMedia = movieDetailUiState.recommendedMedia.collectAsLazyPagingItems())
+    when (val movieDetailUiState = movieDetailViewModel.movieDetailApiState) {
+        is MovieDetailApiState.Success -> {
+            val movieDetailListState = movieDetailViewModel.uiListMovieDetailState.collectAsState().value
+            MovieDetailComposable(movie = movieDetailListState.movieDetail, backButton = backButton, images = movieDetailListState.images, credits = movieDetailListState.credits, movieVideos = movieDetailListState.videos, collectionDetail = movieDetailListState.collectionDetail, onMovieClick = onMovieClick, onSeriesClick = onSeriesClick, recommendedMedia = movieDetailListState.recommendedMedia.collectAsLazyPagingItems())
         }
-        is MovieDetailUiState.Loading -> {
+        is MovieDetailApiState.Loading -> {
             LoadingAnimation()
         }
-        is MovieDetailUiState.Error -> {
+        is MovieDetailApiState.Error -> {
             ErrorText(message = movieDetailUiState.message)
         }
     }
@@ -35,7 +37,7 @@ fun MovieDetailsScreen(movieId: String?, movieDetailViewModel: MovieDetailViewMo
 
 @Composable
 fun LoadingAnimation() {
-    CircularProgressIndicator(modifier = Modifier.fillMaxSize())
+    CircularProgressIndicator(modifier = Modifier.fillMaxSize(), color = Color.Red)
 }
 
 @Composable

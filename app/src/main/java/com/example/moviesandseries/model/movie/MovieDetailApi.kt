@@ -1,6 +1,6 @@
 package com.example.moviesandseries.model.movie
 
-
+import com.example.moviesandseries.domain.Collection.CollectionIndex
 import com.example.moviesandseries.domain.movie.MovieDetail
 import com.example.moviesandseries.model.GenreApi
 import com.example.moviesandseries.model.ProductionCompanyApi
@@ -63,16 +63,16 @@ data class MovieDetailApi(
     @Json(name = "vote_average")
     val voteAverage: Double,
     @Json(name = "vote_count")
-    val voteCount: Int
+    val voteCount: Int,
 )
 fun MovieDetailApi.asDomainObject(): MovieDetail {
     return MovieDetail(
         adult = adult,
         backdropPath = backdropPath,
-        belongsToCollection = belongsToCollection?.asDomainObject(),
+        belongsToCollection = belongsToCollection?.asDomainObject() ?: CollectionIndex(),
         budget = budget,
-        genres = genres.map { it?.asDomainObject() },
-        homepage = homepage,
+        genres = genres.map { it.asDomainObject() },
+        homepage = homepage ?: "",
         id = id,
         imdbId = imdbId,
         originalLanguage = originalLanguage,
@@ -83,9 +83,9 @@ fun MovieDetailApi.asDomainObject(): MovieDetail {
         productionCompanies = productionCompanies.map { it?.asDomainObject() },
         productionCountries = productionCountries.map { it?.asDomainObject() },
         releaseDate = releaseDate,
-        revenue = revenue,
+        revenue = revenue ?: 0,
         runtime = runtime,
-        spokenLanguages = spokenLanguages.map { it?.asDomainObject() },
+        spokenLanguages = spokenLanguages.map { it.asDomainObject() },
         status = status,
         tagline = tagline,
         title = title,
