@@ -28,13 +28,13 @@ fun MyBottomAppBar(
         actions = {
             Row(horizontalArrangement = Arrangement.Center, modifier = Modifier.fillMaxWidth()) {
                 IconButton(onClick = onHome) {
-                    Icon(Icons.Filled.Home, contentDescription = "Localized description")
+                    Icon(Icons.Filled.Home, contentDescription = "navigate to home")
                 }
                 IconButton(onClick = onMovies) {
-                    Icon(Icons.Filled.LocalMovies, contentDescription = "Localized description")
+                    Icon(Icons.Filled.LocalMovies, contentDescription = "navigate to movies")
                 }
                 IconButton(onClick = onSeries) {
-                    Icon(Icons.Filled.Movie, contentDescription = "Localized description")
+                    Icon(Icons.Filled.Movie, contentDescription = "navigate to series")
                 }
             }
         },

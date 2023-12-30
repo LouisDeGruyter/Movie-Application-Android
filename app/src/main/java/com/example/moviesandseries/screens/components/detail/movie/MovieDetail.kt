@@ -60,6 +60,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -144,7 +145,7 @@ fun MovieDetailComposable(
                 ) { showImageCarousel = false }
                 .fillMaxSize()
                 .verticalScroll(verticalState)
-                .padding(0.dp, 0.dp, 0.dp, 50.dp),
+                .padding(0.dp, 0.dp, 0.dp, 50.dp).testTag("MovieDetailScreen"),
         ) {
             val (backdrop, mediaCard, backButtonRef, movieContent, favorite) = createRefs()
             Card(

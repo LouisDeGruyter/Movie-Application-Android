@@ -120,7 +120,7 @@ dependencies {
     // video
     implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
 
-    //room
+    // room
     val room_version = "2.5.0"
     implementation("androidx.room:room-runtime:$room_version")
     // optional - Kotlin Extensions and Coroutines support for Room
@@ -130,6 +130,8 @@ dependencies {
     // optional - Test helpers
     testImplementation("androidx.room:room-testing:$room_version")
     annotationProcessor("androidx.room:room-compiler:$room_version")
-    implementation ("com.google.code.gson:gson:2.8.7")
+    implementation("com.google.code.gson:gson:2.8.7")
 
+    // navigate testen
+    androidTestImplementation("androidx.navigation:navigation-testing:$navVersion")
 }

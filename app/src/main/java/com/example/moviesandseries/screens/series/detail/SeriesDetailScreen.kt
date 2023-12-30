@@ -3,6 +3,8 @@ package com.example.moviesandseries.screens.series.detail
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.moviesandseries.domain.series.Series
 
@@ -28,5 +30,5 @@ fun SeriesDetailScreen(seriesId: String?, seriesDetailViewModel: SeriesDetailVie
 
 @Composable
 fun DisplaySeriesDetail(series: Series) {
-    Text(text = series.name)
+    Text(text = series.name, modifier = Modifier.testTag("SeriesDetailScreen"))
 }

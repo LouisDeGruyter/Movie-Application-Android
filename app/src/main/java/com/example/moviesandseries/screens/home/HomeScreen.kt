@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -65,7 +66,7 @@ fun HomeScreenSection(title: String, onMediaClick: (mediaId: Int) -> Unit, media
         else -> {
             Column(modifier = Modifier.padding(start = rowPadding), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(text = title, fontSize = 22.sp, fontWeight = FontWeight.Bold)
-                LazyPagingMediaRow(media = media, onMediaClick = onMediaClick, modifier = Modifier.height(rowHeight))
+                LazyPagingMediaRow(media = media, onMediaClick = onMediaClick, modifier = Modifier.height(rowHeight).testTag(mediaType), mediaType = mediaType)
             }
         }
     }
