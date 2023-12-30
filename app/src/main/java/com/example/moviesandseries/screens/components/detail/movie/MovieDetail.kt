@@ -35,7 +35,6 @@ import androidx.compose.material.icons.filled.BrokenImage
 import androidx.compose.material.icons.filled.Cases
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
@@ -55,7 +54,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
@@ -99,13 +97,7 @@ val normalTextStyleCentered = TextStyle(
 val cardWidth = 150.dp
 
 @Composable
-fun MovieDetailComposable(
-    backButton: @Composable (modifier: Modifier) -> Unit,
-    onMovieClick: (movieId: Int) -> Unit,
-    onSeriesClick: (seriesId: Int) -> Unit,
-    movieDetailListState: MovieDetailListState,
-    onFavoriteClick: () -> Unit,
-) {
+fun MovieDetailComposable(backButton: @Composable (modifier: Modifier) -> Unit, onMovieClick: (movieId: Int) -> Unit, onSeriesClick: (seriesId: Int) -> Unit, movieDetailListState: MovieDetailListState, onFavoriteClick: () -> Unit) {
     var fadeIn by remember { mutableStateOf(false) }
     var showImageCarousel by remember { mutableStateOf(false) }
     var scrollToTop by remember { mutableStateOf(0) }
@@ -116,12 +108,14 @@ fun MovieDetailComposable(
     val movieVideos = movieDetailListState.videos
     val collectionDetail = movieDetailListState.collection
     val recommendedMedia = movieDetailListState.recommendedMedia.collectAsLazyPagingItems()
+    val verticalState = rememberScrollState()
+    val interactionSource = remember { MutableInteractionSource() }
     val zIndexPoster by remember {
         derivedStateOf {
             if (showImageCarousel) -1f else 2f
         }
     }
-    val verticalState = rememberScrollState()
+
     LaunchedEffect(key1 = movie) {
         fadeIn = true
     }
@@ -130,68 +124,21 @@ fun MovieDetailComposable(
             verticalState.animateScrollTo(0, animationSpec = tween(500, easing = LinearEasing))
         }
     }
-    val interactionSource = remember { MutableInteractionSource() }
     if (fullscreen) {
-        Box(modifier = Modifier.fillMaxSize().zIndex(30f), contentAlignment = Alignment.Center) {
-            // activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-            YoutubeScreen(videoId = "dQw4w9WgXcQ", modifier = Modifier.fillMaxHeight(), onFullscreen = { fullscreen = false })
-        }
+        YoutubeScreen(videoId = "dQw4w9WgXcQ", modifier = Modifier.fillMaxHeight(), onFullscreen = { fullscreen = false })
     } else {
-        ConstraintLayout(
-            modifier = Modifier
-                .clickable(
-                    indication = null,
-                    interactionSource = interactionSource,
-                ) { showImageCarousel = false }
-                .fillMaxSize()
-                .verticalScroll(verticalState)
-                .padding(0.dp, 0.dp, 0.dp, 50.dp).testTag("MovieDetailScreen"),
-        ) {
+        ConstraintLayout(modifier = Modifier.clickable(indication = null, interactionSource = interactionSource) { showImageCarousel = false }.fillMaxSize().verticalScroll(verticalState).padding(0.dp, 0.dp, 0.dp, 50.dp).testTag("MovieDetailScreen")) {
             val (backdrop, mediaCard, backButtonRef, movieContent, favorite) = createRefs()
-            Card(
-                modifier = Modifier
-                    .constrainAs(backdrop) {
-                        top.linkTo(parent.top); absoluteLeft.linkTo(parent.absoluteLeft); absoluteRight.linkTo(
-                            parent.absoluteRight,
-                        )
-                    }
-                    .height(300.dp),
-                shape = RectangleShape,
-            ) {
-                Box(modifier = Modifier.fillMaxSize()) {
-                    androidx.compose.animation.AnimatedVisibility(visible = fadeIn, enter = fadeIn(animationSpec = tween(1500, easing = LinearEasing))) {
-                        BackdropCarousel(images = images, title = movie.title, onCarouselClick = { showImageCarousel = true; scrollToTop++ })
-                    }
-                    val fadeColor = if (isSystemInDarkTheme()) {
-                        Color.Black
-                    } else {
-                        Color.White
-                    }
-                    Spacer(modifier = Modifier.fillMaxSize().background(brush = Brush.verticalGradient(0.7f to Color.Transparent, 1f to fadeColor)))
-                }
-            }
 
+            Backdrop(images = images, title = movie.title, onCarouselClick = { showImageCarousel = true; scrollToTop++ }, fadeIn = fadeIn, modifier = Modifier.constrainAs(backdrop) { top.linkTo(parent.top); absoluteLeft.linkTo(parent.absoluteLeft); absoluteRight.linkTo(parent.absoluteRight) }.height(300.dp))
             // center mediacard on the bottom of the backdrop
-            MediaCard(
-                title = movie.title,
-                imagePath = movie.posterPath,
-                rating = movie.voteAverage,
-                modifier = Modifier
-                    .fillMaxWidth(0.5f)
-                    .zIndex(zIndexPoster)
-                    .constrainAs(mediaCard) {
-                        top.linkTo(backdrop.bottom); bottom.linkTo(backdrop.bottom); absoluteLeft.linkTo(
-                            parent.absoluteLeft,
-                        ); absoluteRight.linkTo(parent.absoluteRight)
-                    },
-            )
+            MediaCard(title = movie.title, imagePath = movie.posterPath, rating = movie.voteAverage, modifier = Modifier.fillMaxWidth(0.5f).zIndex(zIndexPoster).constrainAs(mediaCard) { top.linkTo(backdrop.bottom); bottom.linkTo(backdrop.bottom); absoluteLeft.linkTo(parent.absoluteLeft); absoluteRight.linkTo(parent.absoluteRight) })
+
             Box(modifier = Modifier.constrainAs(backButtonRef) { absoluteRight.linkTo(mediaCard.absoluteLeft); absoluteLeft.linkTo(parent.absoluteLeft); top.linkTo(backdrop.bottom, margin = 15.dp) }) {
                 backButton(Modifier.height(40.dp))
             }
             Box(modifier = Modifier.constrainAs(favorite) { absoluteRight.linkTo(parent.absoluteRight); absoluteLeft.linkTo(mediaCard.absoluteRight); top.linkTo(backdrop.bottom, margin = 15.dp) }) {
-                IconButton(onClick = { onFavoriteClick() }, modifier = Modifier.height(40.dp)) {
-                    Icon(if (movie.isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder, contentDescription = " Favorite", modifier = Modifier.fillMaxSize(), tint = if (movie.isFavorite) Color.Red else MaterialTheme.colorScheme.onPrimary )
-                }
+                FavoriteButton(isFavorite = movie.isFavorite, onFavoriteClick = onFavoriteClick, modifier = Modifier.height(40.dp))
             }
 
             Column(modifier = Modifier.constrainAs(movieContent) { top.linkTo(mediaCard.bottom); absoluteLeft.linkTo(parent.absoluteLeft); absoluteRight.linkTo(parent.absoluteRight) }, verticalArrangement = Arrangement.spacedBy(24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
@@ -498,24 +445,7 @@ fun ActorCard(actor: Credit, modifier: Modifier = Modifier) {
             elevation = CardDefaults.cardElevation(12.dp),
             colors = CardDefaults.elevatedCardColors(MaterialTheme.colorScheme.secondary),
         ) {
-            if (actor.profilePath != null) {
-                TwoByThreeAspectRatioImage(imagePath = actor.profilePath!!, title = actor.name)
-            } else {
-                val painter = rememberAsyncImagePainter(
-                    model = "",
-                    error = rememberVectorPainter(image = Icons.Filled.Person),
-                )
-                Image(
-                    painter = painter,
-                    contentDescription = actor.name,
-                    contentScale = ContentScale.FillWidth,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .aspectRatio(2 / 3f),
-                    alignment = Alignment.Center,
-                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onPrimary),
-                )
-            }
+            TwoByThreeAspectRatioImage(imagePath = actor.profilePath, title = actor.name)
         }
         Text(
             text = actor.name,
@@ -554,7 +484,11 @@ fun ActorCard(actor: Credit, modifier: Modifier = Modifier) {
 @Composable
 fun DisplayCollection(collection: Collection, onMovieClick: (movieId: Int) -> Unit, currentMovieId: Int = 0) {
     val filteredCollection = collection.parts.filter { it.id != currentMovieId }
-    Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp), horizontalAlignment = Alignment.End) {
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalAlignment = Alignment.End,
+    ) {
         Text(
             text = "More from ${collection.name}",
             fontWeight = FontWeight.SemiBold,
@@ -566,8 +500,41 @@ fun DisplayCollection(collection: Collection, onMovieClick: (movieId: Int) -> Un
             items(filteredCollection.size) {
                 Spacer(modifier = Modifier.width(18.dp))
                 val movie = filteredCollection[it]
-                MediaCard(title = movie.title, imagePath = movie.posterPath, rating = movie.voteAverage, modifier = Modifier.width(cardWidth), onMediaClick = { onMovieClick(movie.id) })
+                MediaCard(
+                    title = movie.title,
+                    imagePath = movie.posterPath,
+                    rating = movie.voteAverage,
+                    modifier = Modifier.width(cardWidth),
+                    onMediaClick = { onMovieClick(movie.id) },
+                )
             }
+        }
+    }
+}
+
+@Composable
+fun FavoriteButton(isFavorite: Boolean, onFavoriteClick: () -> Unit, modifier: Modifier) {
+    IconButton(onClick = { onFavoriteClick() }, modifier = modifier) {
+        Icon(if (isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder, contentDescription = " Favorite", modifier = Modifier.fillMaxSize(), tint = if (isFavorite) Color.Red else MaterialTheme.colorScheme.onPrimary)
+    }
+}
+
+@Composable
+fun Backdrop(modifier: Modifier = Modifier, images: ImagesContainer, title: String, onCarouselClick: () -> Unit, fadeIn: Boolean = true) {
+    Card(
+        modifier = modifier,
+        shape = RectangleShape,
+    ) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            androidx.compose.animation.AnimatedVisibility(visible = fadeIn, enter = fadeIn(animationSpec = tween(1500, easing = LinearEasing))) {
+                BackdropCarousel(images = images, title = title, onCarouselClick = { onCarouselClick() })
+            }
+            val fadeColor = if (isSystemInDarkTheme()) {
+                Color.Black
+            } else {
+                Color.White
+            }
+            Spacer(modifier = Modifier.fillMaxSize().background(brush = Brush.verticalGradient(0.7f to Color.Transparent, 1f to fadeColor)))
         }
     }
 }
