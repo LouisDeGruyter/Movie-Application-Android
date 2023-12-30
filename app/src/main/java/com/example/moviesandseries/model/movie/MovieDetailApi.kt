@@ -1,9 +1,9 @@
 package com.example.moviesandseries.model.movie
 
-import com.example.moviesandseries.domain.Collection.CollectionDetail
+import com.example.moviesandseries.domain.Collection
 import com.example.moviesandseries.domain.ProductionCompany
 import com.example.moviesandseries.domain.ProductionCountry
-import com.example.moviesandseries.domain.movie.MovieDetail
+import com.example.moviesandseries.domain.movie.Movie
 import com.example.moviesandseries.model.GenreApi
 import com.example.moviesandseries.model.ProductionCompanyApi
 import com.example.moviesandseries.model.ProductionCountryApi
@@ -67,11 +67,11 @@ data class MovieDetailApi(
     @Json(name = "vote_count")
     val voteCount: Int,
 )
-fun MovieDetailApi.asDomainObject(): MovieDetail {
-    return MovieDetail(
+fun MovieDetailApi.asDomainObject(): Movie {
+    return Movie(
         adult = adult,
         backdropPath = backdropPath,
-        belongsToCollection = belongsToCollection?.asDomainObject() ?: CollectionDetail(),
+        belongsToCollection = belongsToCollection?.asDomainObject() ?: Collection(),
         budget = budget,
         genres = genres.map { it.asDomainObject() },
         homepage = homepage ?: "",

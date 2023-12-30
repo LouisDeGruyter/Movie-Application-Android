@@ -1,7 +1,7 @@
 package com.example.moviesandseries.model.series
 
-
-import com.example.moviesandseries.domain.series.SeriesIndex
+import com.example.moviesandseries.domain.Genre
+import com.example.moviesandseries.domain.series.Series
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -32,21 +32,21 @@ data class SeriesIndexApi(
     @Json(name = "vote_average")
     val voteAverage: Double,
     @Json(name = "vote_count")
-    val voteCount: Int
+    val voteCount: Int,
 )
-fun SeriesIndexApi.asDomainObject(): SeriesIndex {
-    return SeriesIndex(
-        backdropPath = backdropPath,
-        firstAirDate = firstAirDate,
-        genreIds = genreIds,
+fun SeriesIndexApi.asDomainObject(): Series {
+    return Series(
+        backdropPath = backdropPath ?: "",
+        firstAirDate = firstAirDate ?: "",
+        genres = genreIds.map { Genre(id = it) },
         id = id,
         name = name,
         originCountry = originCountry,
         originalLanguage = originalLanguage,
-        originalName = originalName,
+        originalName = originalName ?: "",
         overview = overview,
         popularity = popularity,
-        posterPath = posterPath,
+        posterPath = posterPath ?: "",
         voteAverage = voteAverage,
         voteCount = voteCount,
     )

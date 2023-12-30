@@ -39,7 +39,7 @@ private class LoggingInterceptorHeaders : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
         val request: Request =
-            chain.request().newBuilder().addHeader("Authorization", "Bearer " + TMDB_API_KEY).build()
+            chain.request().newBuilder().addHeader("Authorization", "Bearer $TMDB_API_KEY").build()
         return chain.proceed(request)
     }
 }

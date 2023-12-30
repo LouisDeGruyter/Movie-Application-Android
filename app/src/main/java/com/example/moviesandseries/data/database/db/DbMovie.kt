@@ -5,7 +5,7 @@ import androidx.room.TypeConverters
 import com.example.moviesandseries.data.database.converters.CollectionConverter
 import com.example.moviesandseries.data.database.converters.GenreConverter
 import com.example.moviesandseries.data.database.converters.MovieConverter
-import com.example.moviesandseries.domain.movie.MovieDetail
+import com.example.moviesandseries.domain.movie.Movie
 
 @Entity(tableName = "movies")
 @TypeConverters(CollectionConverter::class, GenreConverter::class, MovieConverter::class)
@@ -38,7 +38,7 @@ data class DbMovie(
     var voteCount: Int = 0,
     var isFavorite: Boolean = false,
 )
-fun MovieDetail.asDbObject(): DbMovie = DbMovie(
+fun Movie.asDbObject(): DbMovie = DbMovie(
     adult = this.adult,
     backdropPath = this.backdropPath,
     belongsToCollection = this.belongsToCollection.asDbObject(),
@@ -66,7 +66,7 @@ fun MovieDetail.asDbObject(): DbMovie = DbMovie(
     voteCount = this.voteCount,
     isFavorite = isFavorite,
 )
-fun DbMovie.asDomainObject(): MovieDetail = MovieDetail(
+fun DbMovie.asDomainObject(): Movie = Movie(
     adult = this.adult,
     backdropPath = this.backdropPath,
     belongsToCollection = this.belongsToCollection.asDomainObject(),

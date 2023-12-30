@@ -4,13 +4,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.moviesandseries.domain.series.SeriesDetail
+import com.example.moviesandseries.domain.series.Series
 
 @Composable
 fun SeriesDetailScreen(seriesId: String?, seriesDetailViewModel: SeriesDetailViewModel = viewModel(factory = SeriesDetailViewModel.Factory)) {
     when (val seriesDetailUiState = seriesDetailViewModel.seriesDetailUiState) {
         is SeriesDetailUiState.Success -> {
-            DisplaySeriesDetail(seriesDetail = seriesDetailUiState.seriesDetail)
+            DisplaySeriesDetail(series = seriesDetailUiState.series)
         }
         is SeriesDetailUiState.Loading -> {
             Text(text = "Loading")
@@ -27,6 +27,6 @@ fun SeriesDetailScreen(seriesId: String?, seriesDetailViewModel: SeriesDetailVie
 }
 
 @Composable
-fun DisplaySeriesDetail(seriesDetail: SeriesDetail) {
-    Text(text = seriesDetail.name)
+fun DisplaySeriesDetail(series: Series) {
+    Text(text = series.name)
 }

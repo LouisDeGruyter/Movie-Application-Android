@@ -30,7 +30,6 @@ enum class Destinations(val route: String) {
     fun createRoute(id: String) = "$route/$id"
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MovieAndSeriesApp() {
     // navigation

@@ -3,7 +3,6 @@ package com.example.moviesandseries.paging.series
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.moviesandseries.domain.MediaIndex
-import com.example.moviesandseries.domain.series.SeriesIndex
 import com.example.moviesandseries.domain.series.asMediaIndexObject
 import com.example.moviesandseries.repository.SeriesRepository
 

@@ -21,7 +21,7 @@ fun LazyPagingMediaRow(media: LazyPagingItems<MediaIndex>, onMediaClick: (movieI
         content = {
             items(media.itemCount) { movie ->
                 media[movie]?.let {
-                    MediaCard(title = it.title, imagePath = it.posterPath ?: "", rating = it.voteAverage, onMediaClick = { onMediaClick(it.id) })
+                    MediaCard(title = it.title, imagePath = it.posterPath, rating = it.voteAverage, onMediaClick = { onMediaClick(it.id) })
                 }
             }
         },

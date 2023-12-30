@@ -4,9 +4,8 @@ import com.example.moviesandseries.domain.credits.CreditsContainer
 import com.example.moviesandseries.domain.images.ImagesContainer
 import com.example.moviesandseries.domain.recommendations.RecommendationContainer
 import com.example.moviesandseries.domain.reviews.ReviewContainer
+import com.example.moviesandseries.domain.series.Series
 import com.example.moviesandseries.domain.series.SeriesContainer
-import com.example.moviesandseries.domain.series.SeriesDetail
-import com.example.moviesandseries.domain.series.SeriesIndex
 import com.example.moviesandseries.model.credits.asDomainObject
 import com.example.moviesandseries.model.images.asDomainObject
 import com.example.moviesandseries.model.recommendations.asDomainObject
@@ -18,8 +17,8 @@ import com.example.moviesandseries.network.SeriesApiService
 
 interface SeriesRepository {
     suspend fun getSeriesContainer(page: Int): SeriesContainer
-    suspend fun getSeries(page: Int): List<SeriesIndex>
-    suspend fun getSeriesDetail(seriesId: Int): SeriesDetail
+    suspend fun getSeries(page: Int): List<Series>
+    suspend fun getSeriesDetail(seriesId: Int): Series
     suspend fun getSeriesCredits(seriesId: Int): CreditsContainer
 
     suspend fun getSeriesImages(seriesId: Int): ImagesContainer
@@ -30,12 +29,12 @@ interface SeriesRepository {
     suspend fun getSeriesTopRated(page: Int): SeriesContainer
     suspend fun getSeriesOnTheAir(page: Int): SeriesContainer
     suspend fun getSeriesAiringToday(page: Int): SeriesContainer
-    suspend fun getSeriesVideos(movieId:Int): VideoContainer
+    suspend fun getSeriesVideos(movieId: Int): VideoContainer
 }
 class NetworkSeriesRepository(private val seriesApiService: SeriesApiService) : SeriesRepository {
     override suspend fun getSeriesContainer(page: Int): SeriesContainer = seriesApiService.getSeriesContainer(page).asDomainObject()
-    override suspend fun getSeries(page: Int): List<SeriesIndex> = seriesApiService.getSeriesContainer(page).results.map { it.asDomainObject() }
-    override suspend fun getSeriesDetail(seriesId: Int): SeriesDetail = seriesApiService.getSeriesDetail(seriesId).asDomainObject()
+    override suspend fun getSeries(page: Int): List<Series> = seriesApiService.getSeriesContainer(page).results.map { it.asDomainObject() }
+    override suspend fun getSeriesDetail(seriesId: Int): Series = seriesApiService.getSeriesDetail(seriesId).asDomainObject()
     override suspend fun getSeriesCredits(seriesId: Int) = seriesApiService.getSeriesCredits(seriesId).asDomainObject()
     override suspend fun getSeriesImages(seriesId: Int) = seriesApiService.getSeriesImages(seriesId).asDomainObject()
     override suspend fun getSimilarSeries(seriesId: Int, page: Int) = seriesApiService.getSimilarSeries(seriesId = seriesId, page = page).asDomainObject()

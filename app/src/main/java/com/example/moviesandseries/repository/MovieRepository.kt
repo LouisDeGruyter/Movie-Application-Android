@@ -8,7 +8,7 @@ import com.example.moviesandseries.domain.credits.CreditsContainer
 import com.example.moviesandseries.domain.images.ImagesContainer
 import com.example.moviesandseries.domain.movie.MovieContainer
 import com.example.moviesandseries.domain.movie.MovieContainerWithDates
-import com.example.moviesandseries.domain.movie.MovieDetail
+import com.example.moviesandseries.domain.movie.Movie
 import com.example.moviesandseries.domain.recommendations.RecommendationContainer
 import com.example.moviesandseries.domain.reviews.ReviewContainer
 import com.example.moviesandseries.model.credits.asDomainObject
@@ -21,15 +21,14 @@ import com.example.moviesandseries.model.videos.asDomainObject
 import com.example.moviesandseries.network.MovieApiService
 import com.example.moviesandseries.network.getMovieDetailAsFlow
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import java.net.SocketTimeoutException
 
 interface MovieRepository {
     suspend fun getMoviesContainer(page: Int): MovieContainer
-    suspend fun getMovies(page: Int): List<MovieDetail>
-    fun getMovieDetail(movieId: Int): Flow<MovieDetail>
+    suspend fun getMovies(page: Int): List<Movie>
+    fun getMovieDetail(movieId: Int): Flow<Movie>
     suspend fun getMovieCredits(movieId: Int): CreditsContainer
     suspend fun getMovieImages(movieId: Int): ImagesContainer
     suspend fun getSimilarMovies(movieId: Int, page: Int): MovieContainer
@@ -41,7 +40,7 @@ interface MovieRepository {
     suspend fun getMoviesUpcoming(page: Int): MovieContainerWithDates
     suspend fun getMovieVideos(movieId: Int): VideoContainer
     suspend fun refreshMovie(movieId: Int)
-    suspend fun insertMovie(movie: MovieDetail)
+    suspend fun insertMovie(movie: Movie)
     suspend fun updateFavorite(currentId: Int, b: Boolean)
 }
 
@@ -55,7 +54,7 @@ class NetworkMovieRepository(private val movieApiService: MovieApiService, priva
         Log.e("Exception", e.message.toString())
         MovieContainer()
     }
-    override suspend fun getMovies(page: Int): List<MovieDetail> = try {
+    override suspend fun getMovies(page: Int): List<Movie> = try {
         movieApiService.getMoviesContainer(page).results.map { it.asDomainObject() }
     } catch (e: SocketTimeoutException) {
         Log.e("SocketTimeoutException", "SocketTimeoutException")
@@ -64,8 +63,8 @@ class NetworkMovieRepository(private val movieApiService: MovieApiService, priva
         Log.e("Exception", e.message.toString())
         listOf()
     }
-    override fun getMovieDetail(movieId: Int): Flow<MovieDetail> {
-        return movieDao.getItem(movieId).map { it?.asDomainObject() ?: MovieDetail() }
+    override fun getMovieDetail(movieId: Int): Flow<Movie> {
+        return movieDao.getItem(movieId).map { it?.asDomainObject() ?: Movie() }
     }
     override suspend fun getMovieCredits(movieId: Int) = try {
         movieApiService.getMovieCredits(movieId).asDomainObject()
@@ -158,7 +157,7 @@ class NetworkMovieRepository(private val movieApiService: MovieApiService, priva
         VideoContainer()
     }
 
-    override suspend fun insertMovie(movie: MovieDetail) {
+    override suspend fun insertMovie(movie: Movie) {
         val cachedMovie = this.getMovieDetail(movie.id).first()
         if (cachedMovie.id != 0 && cachedMovie.title != "") {
             movie.isFavorite = cachedMovie.isFavorite

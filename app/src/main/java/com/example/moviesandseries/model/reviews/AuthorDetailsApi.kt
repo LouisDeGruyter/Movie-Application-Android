@@ -1,7 +1,7 @@
 package com.example.moviesandseries.model.reviews
 
 
-import com.example.moviesandseries.domain.reviews.AuthorDetails
+import com.example.moviesandseries.domain.reviews.Author
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -16,8 +16,8 @@ data class AuthorDetailsApi(
     @Json(name = "username")
     val username: String
 )
-fun AuthorDetailsApi.asDomainObject(): AuthorDetails {
-    return AuthorDetails(
+fun AuthorDetailsApi.asDomainObject(): Author {
+    return Author(
         avatarPath = avatarPath,
         name = name,
         rating = rating,

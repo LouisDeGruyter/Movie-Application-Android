@@ -1,5 +1,6 @@
 package com.example.moviesandseries.model.credits
 
+import com.example.moviesandseries.domain.credits.Credit
 import com.example.moviesandseries.domain.credits.CreditsContainer
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -16,8 +17,8 @@ data class CreditsContainerApi(
 
 fun CreditsContainerApi.asDomainObject(): CreditsContainer {
     return CreditsContainer(
-        cast = cast.map { it?.asDomainObject() },
-        crew = crew.map { it?.asDomainObject() },
+        cast = cast.map { it?.asDomainObject() ?: Credit() },
+        crew = crew.map { it?.asDomainObject() ?: Credit() },
         id = id,
     )
 }

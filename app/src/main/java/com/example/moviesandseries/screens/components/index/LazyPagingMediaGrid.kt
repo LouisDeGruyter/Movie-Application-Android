@@ -30,7 +30,12 @@ fun LazyPagingMediaGrid(media: LazyPagingItems<MediaIndex>, onMediaClick: (movie
         verticalArrangement = Arrangement.spacedBy(gridSpacing, Alignment.CenterVertically),
         content = {
             items(media.itemCount) { movie ->
-                media[movie]?.let { MediaCard(title = it.title, imagePath = it.posterPath ?: "", rating = it.voteAverage, onMediaClick = { onMediaClick(it.id) },) }
+                media[movie]?.let { MediaCard(
+                    title = it.title,
+                    imagePath = it.posterPath,
+                    rating = it.voteAverage,
+                    onMediaClick = { onMediaClick(it.id) },
+                ) }
             }
         },
     )

@@ -34,7 +34,7 @@ data class CreditApi(
 fun CreditApi.asDomainObject(): Credit {
     return Credit(
         adult = adult,
-        castId = castId,
+        castId = castId ?: 0,
         character = character ?: "",
         creditId = creditId,
         gender = gender,
@@ -44,6 +44,6 @@ fun CreditApi.asDomainObject(): Credit {
         order = order ?: 0,
         originalName = originalName,
         popularity = popularity,
-        profilePath = profilePath,
+        profilePath = profilePath ?: "",
     )
 }

@@ -26,7 +26,7 @@ fun ImageApi.asDomainObject(): Image {
         aspectRatio = aspectRatio,
         filePath = filePath,
         height = height,
-        iso6391 = iso6391,
+        iso6391 = iso6391 ?: "",
         voteAverage = voteAverage,
         voteCount = voteCount,
         width = width,

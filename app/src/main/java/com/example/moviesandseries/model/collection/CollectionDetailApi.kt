@@ -4,7 +4,7 @@ import com.example.moviesandseries.model.movie.MovieIndexApi
 import com.example.moviesandseries.model.movie.asDomainObject
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import com.example.moviesandseries.domain.Collection.CollectionDetail
+import com.example.moviesandseries.domain.Collection
 
 @JsonClass(generateAdapter = true)
 data class CollectionDetailApi(
@@ -22,8 +22,8 @@ data class CollectionDetailApi(
     var posterPath: String = "",
 )
 
-fun CollectionDetailApi.asDomainObject(): CollectionDetail {
-    return CollectionDetail(
+fun CollectionDetailApi.asDomainObject(): Collection {
+    return Collection(
         backdropPath = backdropPath,
         id = id,
         name = name,

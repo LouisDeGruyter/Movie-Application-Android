@@ -18,9 +18,9 @@ data class NetworkApi(
 )
 fun NetworkApi.asDomainObject(): Network {
     return Network(
-        id = id,
-        logoPath = logoPath,
-        name = name,
-        originCountry = originCountry,
+        id = id ?: 0,
+        logoPath = logoPath ?: "",
+        name = name ?: "",
+        originCountry = originCountry ?: "",
     )
 }

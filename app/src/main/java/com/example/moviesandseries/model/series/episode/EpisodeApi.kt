@@ -1,7 +1,6 @@
 package com.example.moviesandseries.model.series.episode
 
-
-import com.example.moviesandseries.domain.series.episode.Episode
+import com.example.moviesandseries.domain.series.Episode
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -30,21 +29,21 @@ data class EpisodeApi(
     @Json(name = "vote_average")
     val voteAverage: Double,
     @Json(name = "vote_count")
-    val voteCount: Int
+    val voteCount: Int,
 )
 fun EpisodeApi.asDomainObject(): Episode {
     return Episode(
-        airDate = airDate,
+        airDate = airDate ?: "",
         episodeNumber = episodeNumber,
         id = id,
         name = name,
         overview = overview,
-        productionCode = productionCode,
-        runtime = runtime,
+        productionCode = productionCode ?: "",
+        runtime = runtime ?: 0,
         seasonNumber = seasonNumber,
         showId = showId,
-        stillPath = stillPath,
+        stillPath = stillPath ?: "",
         voteAverage = voteAverage,
-        voteCount = voteCount
+        voteCount = voteCount,
     )
 }

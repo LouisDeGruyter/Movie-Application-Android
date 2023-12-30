@@ -1,10 +1,10 @@
 package com.example.moviesandseries.screens.series.detail
 
-import com.example.moviesandseries.domain.series.SeriesDetail
+import com.example.moviesandseries.domain.series.Series
 
 sealed interface SeriesDetailUiState {
     data class Success(
-        val seriesDetail: SeriesDetail,
+        val series: Series,
     ) : SeriesDetailUiState
 
     object Loading : SeriesDetailUiState

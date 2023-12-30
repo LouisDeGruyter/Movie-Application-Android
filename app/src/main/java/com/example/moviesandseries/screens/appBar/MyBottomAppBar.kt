@@ -8,13 +8,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.LocalMovies
 import androidx.compose.material.icons.filled.Movie
-import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.LocalMovies
-import androidx.compose.material.icons.outlined.Movie
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp

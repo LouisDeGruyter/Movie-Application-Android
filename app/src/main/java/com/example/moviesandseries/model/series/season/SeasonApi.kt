@@ -1,7 +1,7 @@
 package com.example.moviesandseries.model.series.season
 
 
-import com.example.moviesandseries.domain.series.season.Season
+import com.example.moviesandseries.domain.series.Season
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -26,12 +26,12 @@ data class SeasonApi(
 )
 fun SeasonApi.asDomainObject(): Season {
     return Season(
-        airDate = airDate,
-        episodeCount = episodeCount,
+        airDate = airDate ?: "",
+        episodeCount = episodeCount ?: 0,
         id = id,
         name = name,
         overview = overview,
-        posterPath = posterPath,
+        posterPath = posterPath ?: "",
         seasonNumber = seasonNumber,
         voteAverage = voteAverage
     )

@@ -1,7 +1,10 @@
 package com.example.moviesandseries.model.series
 
-
-import com.example.moviesandseries.domain.series.SeriesDetail
+import com.example.moviesandseries.domain.Genre
+import com.example.moviesandseries.domain.series.CreatedBy
+import com.example.moviesandseries.domain.series.Network
+import com.example.moviesandseries.domain.series.Series
+import com.example.moviesandseries.domain.series.Episode
 import com.example.moviesandseries.model.GenreApi
 import com.example.moviesandseries.model.ProductionCompanyApi
 import com.example.moviesandseries.model.ProductionCountryApi
@@ -79,30 +82,30 @@ data class SeriesDetailApi(
     @Json(name = "vote_average")
     val voteAverage: Double,
     @Json(name = "vote_count")
-    val voteCount: Int
+    val voteCount: Int,
 )
-fun SeriesDetailApi.asDomainObject(): SeriesDetail {
-    return SeriesDetail(
-        adult = adult,
-        backdropPath = backdropPath,
-        createdBy = createdBy.map { it?.asDomainObject() },
+fun SeriesDetailApi.asDomainObject(): Series {
+    return Series(
+        adult = adult ?: false,
+        backdropPath = backdropPath ?: "",
+        createdBy = createdBy.map { it?.asDomainObject() ?: CreatedBy() },
         episodeRunTime = episodeRunTime,
-        firstAirDate = firstAirDate,
-        genres = genres.map { it?.asDomainObject() },
-        homepage = homepage,
+        firstAirDate = firstAirDate ?: "",
+        genres = genres.map { it?.asDomainObject() ?: Genre() },
+        homepage = homepage ?: "",
         id = id,
         inProduction = inProduction,
-        languages = languages,
-        lastAirDate = lastAirDate,
-        lastEpisodeToAir = lastEpisodeToAir?.asDomainObject(),
+        languages = languages.map { it ?: "" },
+        lastAirDate = lastAirDate ?: "",
+        lastEpisodeToAir = lastEpisodeToAir?.asDomainObject() ?: Episode(),
         name = name,
-        networks = networks.map { it?.asDomainObject() },
-        nextEpisodeToAir = nextEpisodeToAir?.asDomainObject(),
+        networks = networks.map { it?.asDomainObject() ?: Network() },
+        nextEpisodeToAir = nextEpisodeToAir?.asDomainObject() ?: Episode(),
         numberOfEpisodes = numberOfEpisodes,
         numberOfSeasons = numberOfSeasons,
-        originCountry = originCountry,
-        originalLanguage = originalLanguage,
-        originalName = originalName,
+        originCountry = originCountry.map { it ?: "" },
+        originalLanguage = originalLanguage ?: "",
+        originalName = originalName ?: "",
         overview = overview,
         popularity = popularity,
         posterPath = posterPath,

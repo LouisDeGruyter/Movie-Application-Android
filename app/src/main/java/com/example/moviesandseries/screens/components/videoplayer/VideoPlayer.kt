@@ -2,8 +2,6 @@ package com.example.moviesandseries.screens.components.videoplayer
 
 import android.view.View
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -19,7 +17,7 @@ fun YoutubeScreen(
     onFullscreen: () -> Unit,
 ) {
     AndroidView(modifier = modifier, factory = {
-        var view = YouTubePlayerView(it)
+        val view = YouTubePlayerView(it)
 
         view.enableAutomaticInitialization = false
         val listener = object : AbstractYouTubePlayerListener() {

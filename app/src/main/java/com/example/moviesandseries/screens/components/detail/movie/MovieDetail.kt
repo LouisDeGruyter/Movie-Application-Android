@@ -76,7 +76,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.moviesandseries.R
-import com.example.moviesandseries.domain.Collection.CollectionDetail
+import com.example.moviesandseries.domain.Collection
 import com.example.moviesandseries.domain.MediaIndex
 import com.example.moviesandseries.domain.ProductionCompany
 import com.example.moviesandseries.domain.credits.Credit
@@ -113,7 +113,7 @@ fun MovieDetailComposable(
     val images = movieDetailListState.images
     val credits = movieDetailListState.credits
     val movieVideos = movieDetailListState.videos
-    val collectionDetail = movieDetailListState.collectionDetail
+    val collectionDetail = movieDetailListState.collection
     val recommendedMedia = movieDetailListState.recommendedMedia.collectAsLazyPagingItems()
     val zIndexPoster by remember {
         derivedStateOf {
@@ -195,7 +195,7 @@ fun MovieDetailComposable(
 
             Column(modifier = Modifier.constrainAs(movieContent) { top.linkTo(mediaCard.bottom); absoluteLeft.linkTo(parent.absoluteLeft); absoluteRight.linkTo(parent.absoluteRight) }, verticalArrangement = Arrangement.spacedBy(24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
                 TitleHeader(title = movie.title, releaseDate = movie.releaseDate, runtime = movie.runtime, modifier = Modifier.fillMaxWidth(0.9f))
-                Genres(genres = movie.genres.map { it?.name ?: "" }, modifier = Modifier.fillMaxWidth(0.9f))
+                Genres(genres = movie.genres.map { it.name }, modifier = Modifier.fillMaxWidth(0.9f))
                 ExpandableDescription(catchPhrase = movie.tagline, description = movie.overview, modifier = Modifier.fillMaxWidth(0.9f))
                 ActorList(actors = credits.cast)
                 if (collectionDetail != null) {
@@ -238,7 +238,7 @@ fun DisplayRecommended(recommendedMedia: LazyPagingItems<MediaIndex>, onMovieCli
                         items(recommendedMedia.itemCount) { index ->
                             recommendedMedia[index]?.let {
                                 Spacer(modifier = Modifier.width(18.dp))
-                                MediaCard(title = it.title, imagePath = it.posterPath ?: "", rating = it.voteAverage, onMediaClick = { if (it.mediaType == "movie") { onMovieClick(it.id) } else { onSeriesClick(it.id) } }, modifier = Modifier.width(cardWidth))
+                                MediaCard(title = it.title, imagePath = it.posterPath, rating = it.voteAverage, onMediaClick = { if (it.mediaType == "movie") { onMovieClick(it.id) } else { onSeriesClick(it.id) } }, modifier = Modifier.width(cardWidth))
                             }
                         }
                     },
@@ -421,7 +421,7 @@ fun ProductionCompanyCard(modifier: Modifier = Modifier, productionCompany: Prod
             elevation = CardDefaults.cardElevation(12.dp),
             colors = CardDefaults.elevatedCardColors(containerColor = if (isSystemInDarkTheme()) Color.DarkGray else MaterialTheme.colorScheme.primary),
         ) {
-            ProductionCompanyImage(imagePath = productionCompany.logoPath ?: "", name = productionCompany.name)
+            ProductionCompanyImage(imagePath = productionCompany.logoPath, name = productionCompany.name)
         }
         Text(
             text = productionCompany.name,
@@ -500,7 +500,7 @@ fun ActorCard(actor: Credit, modifier: Modifier = Modifier) {
             if (actor.profilePath != null) {
                 TwoByThreeAspectRatioImage(imagePath = actor.profilePath!!, title = actor.name)
             } else {
-                var painter = rememberAsyncImagePainter(
+                val painter = rememberAsyncImagePainter(
                     model = "",
                     error = rememberVectorPainter(image = Icons.Filled.Person),
                 )
@@ -551,7 +551,7 @@ fun ActorCard(actor: Credit, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun DisplayCollection(collection: CollectionDetail, onMovieClick: (movieId: Int) -> Unit, currentMovieId: Int = 0) {
+fun DisplayCollection(collection: Collection, onMovieClick: (movieId: Int) -> Unit, currentMovieId: Int = 0) {
     val filteredCollection = collection.parts.filter { it.id != currentMovieId }
     Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp), horizontalAlignment = Alignment.End) {
         Text(

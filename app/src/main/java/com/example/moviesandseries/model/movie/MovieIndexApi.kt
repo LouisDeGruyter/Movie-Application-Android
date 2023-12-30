@@ -1,7 +1,6 @@
 package com.example.moviesandseries.model.movie
 
-import com.example.moviesandseries.domain.movie.MovieDetail
-import com.example.moviesandseries.domain.movie.MovieIndex
+import com.example.moviesandseries.domain.movie.Movie
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -37,8 +36,8 @@ data class MovieIndexApi(
     val voteCount: Int,
 
 )
-fun MovieIndexApi.asDomainObject(): MovieDetail {
-    return MovieDetail(
+fun MovieIndexApi.asDomainObject(): Movie {
+    return Movie(
         id = id,
         title = title,
         posterPath = posterPath,
