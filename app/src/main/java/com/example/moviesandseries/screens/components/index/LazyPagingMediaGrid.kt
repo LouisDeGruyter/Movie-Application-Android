@@ -7,6 +7,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.paging.compose.LazyPagingItems
 import com.example.moviesandseries.R
@@ -14,7 +15,7 @@ import com.example.moviesandseries.domain.MediaIndex
 import com.example.moviesandseries.screens.components.index.mediaCard.MediaCard
 
 @Composable
-fun LazyPagingMediaGrid(media: LazyPagingItems<MediaIndex>, onMediaClick: (movieId: Int) -> Unit, columns: Int) {
+fun LazyPagingMediaGrid(media: LazyPagingItems<MediaIndex>, onMediaClick: (movieId: Int) -> Unit, columns: Int, modifier: Modifier = Modifier) {
     val lazyGridState = rememberLazyGridState()
     val gridSpacing = dimensionResource(id = R.dimen.grid_spacing)
     LazyVerticalGrid(
@@ -26,6 +27,7 @@ fun LazyPagingMediaGrid(media: LazyPagingItems<MediaIndex>, onMediaClick: (movie
             top = gridSpacing,
             bottom = gridSpacing,
         ),
+        modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(gridSpacing, Alignment.CenterHorizontally),
         verticalArrangement = Arrangement.spacedBy(gridSpacing, Alignment.CenterVertically),
         content = {

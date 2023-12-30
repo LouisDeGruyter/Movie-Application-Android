@@ -2,6 +2,8 @@ package com.example.moviesandseries.screens.movies.list
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -17,7 +19,7 @@ fun MoviesScreen(movieViewModel: MovieViewModel = viewModel(factory = MovieViewM
         is LoadState.Loading -> LoadingMediaGrid(numberOfItems = 12, columns = COLUMN_COUNT)
         is LoadState.Error -> Text(text = "Error")
         else -> {
-            LazyPagingMediaGrid(media = moviesByPage, onMediaClick = onMovieClick, columns = COLUMN_COUNT)
+            LazyPagingMediaGrid(media = moviesByPage, onMediaClick = onMovieClick, columns = COLUMN_COUNT, modifier = Modifier.testTag("moviesGrid"))
         }
     }
 }
