@@ -21,21 +21,21 @@ data class MovieIndex(
 fun MovieIndex.asMediaIndexObject(): MediaIndex {
     return MediaIndex(
         adult = adult,
-        backdropPath = backdropPath,
+        backdropPath = backdropPath ?: "",
         genreIds = genreIds,
         id = id,
+        mediaType = "movie",
         originalLanguage = originalLanguage,
-        originalTitle = originalTitle,
-        overview = overview,
+        originalTitle = originalTitle ?: "",
+        overview = overview ?: "",
         popularity = popularity,
         posterPath = posterPath,
-        releaseDate = releaseDate,
+        releaseDate = releaseDate ?: "",
         title = title,
         video = video,
         voteAverage = voteAverage,
         voteCount = voteCount,
         originCountry = null,
-        mediaType = "movie",
     )
 }
 

@@ -15,26 +15,23 @@ data class SeriesIndex(
     var popularity: Double,
     var posterPath: String?,
     var voteAverage: Double,
-    var voteCount: Int
+    var voteCount: Int,
 )
 fun SeriesIndex.asMediaIndexObject(): MediaIndex {
     return MediaIndex(
-        backdropPath = backdropPath,
+        backdropPath = backdropPath ?: "",
         genreIds = genreIds,
         id = id,
+        mediaType = "tv",
         originalLanguage = originalLanguage,
-        originalTitle = originalName,
+        originalTitle = originalName ?: "",
         overview = overview,
         popularity = popularity,
-        posterPath = posterPath,
-        releaseDate = firstAirDate,
+        posterPath = posterPath ?: "",
+        releaseDate = firstAirDate ?: "",
         title = name,
         voteAverage = voteAverage,
         voteCount = voteCount,
-        adult = null,
-        video = null,
         originCountry = originCountry,
-        mediaType = "tv",
     )
 }
-

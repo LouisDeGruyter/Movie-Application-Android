@@ -33,6 +33,7 @@ data class MovieDetail(
     var video: Boolean = false,
     var voteAverage: Double = 0.0,
     var voteCount: Int = 0,
+    var isFavorite: Boolean = false,
 )
 fun MovieDetail.asMediaIndexObject(): MediaIndex {
     return MediaIndex(
@@ -52,5 +53,6 @@ fun MovieDetail.asMediaIndexObject(): MediaIndex {
         voteCount = voteCount,
         originCountry = null,
         mediaType = "movie",
+        isFavorite = this.isFavorite,
     )
 }

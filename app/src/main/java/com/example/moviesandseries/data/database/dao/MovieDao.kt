@@ -22,7 +22,7 @@ interface MovieDao {
     fun getAllItemsByReleaseDate(): Flow<List<DbMovie>>
 
     @Query("SELECT * FROM movies WHERE id = :movieId")
-    fun getItem(movieId: Int): Flow<DbMovie>
+    fun getItem(movieId: Int): Flow<DbMovie?>
 
     @Query("SELECT * FROM movies WHERE isFavorite = 1")
     fun getAllFavoriteItems(): Flow<List<DbMovie>>

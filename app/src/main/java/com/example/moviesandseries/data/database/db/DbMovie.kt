@@ -6,13 +6,13 @@ import com.example.moviesandseries.data.database.converters.CollectionConverter
 import com.example.moviesandseries.data.database.converters.GenreConverter
 import com.example.moviesandseries.data.database.converters.MovieConverter
 import com.example.moviesandseries.domain.movie.MovieDetail
-import com.example.moviesandseries.data.database.db.asDbObject
+
 @Entity(tableName = "movies")
 @TypeConverters(CollectionConverter::class, GenreConverter::class, MovieConverter::class)
 data class DbMovie(
     var adult: Boolean = false,
     var backdropPath: String = "",
-    var belongsToCollection: DbCollection,
+    var belongsToCollection: DbCollection = DbCollection(),
     var budget: Int = 0,
     var genres: List<DbGenre> = listOf(),
     var homepage: String = "",

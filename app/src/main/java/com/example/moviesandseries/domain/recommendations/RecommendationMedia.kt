@@ -25,6 +25,7 @@ fun RecommendationMedia.asMediaIndexObject(): MediaIndex {
         backdropPath = backdropPath,
         genreIds = genreIds,
         id = id,
+        mediaType = mediaType,
         originalLanguage = originalLanguage,
         originalTitle = originalTitle,
         overview = overview,
@@ -36,7 +37,6 @@ fun RecommendationMedia.asMediaIndexObject(): MediaIndex {
         voteAverage = voteAverage,
         voteCount = voteCount,
         originCountry = null,
-        mediaType = mediaType,
     )
 }
 

@@ -21,10 +21,13 @@ import com.example.moviesandseries.repository.CollectionRepository
 import com.example.moviesandseries.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+
 class MovieDetailViewModel(private val movieRepository: MovieRepository, private val collectionRepository: CollectionRepository) : ViewModel() {
     var movieDetailApiState: MovieDetailApiState by mutableStateOf(MovieDetailApiState.Loading)
         private set
@@ -39,9 +42,11 @@ class MovieDetailViewModel(private val movieRepository: MovieRepository, private
 
     fun getMovieDetail(movieId: Int) {
         viewModelScope.launch {
+            movieRepository.refreshMovie(movieId)
             movieDetailApiState = MovieDetailApiState.Loading
             try {
-                val movieDetail = movieRepository.getMovieDetail(movieId)
+                val fetchedDataFlow: MutableStateFlow<MovieDetailListState> = MutableStateFlow(MovieDetailListState()) // Provide default value
+                val movieDetail = movieRepository.getMovieDetail(movieId).first()
                 val images = movieRepository.getMovieImages(movieId)
                 val credits = movieRepository.getMovieCredits(movieId)
                 val videos = movieRepository.getMovieVideos(movieId)
@@ -49,12 +54,13 @@ class MovieDetailViewModel(private val movieRepository: MovieRepository, private
                 val recommendedMovies: Flow<PagingData<MediaIndex>> = Pager(PagingConfig(pageSize = 20)) {
                     RecommendedMoviesPagingSource(movieRepository, movieId)
                 }.flow.cachedIn(viewModelScope)
-                val fetchedDataFlow = MutableStateFlow(MovieDetailListState(movieDetail, images, credits, videos, collectionDetail, recommendedMovies))
+                val movieDetailListState = MovieDetailListState(movieDetail, images, credits, videos, collectionDetail, recommendedMovies)
+                fetchedDataFlow.value = movieDetailListState
+
                 uiListMovieDetailState = fetchedDataFlow.stateIn(
                     scope = viewModelScope,
-                    started = kotlinx.coroutines.flow.SharingStarted.WhileSubscribed(5_000L),
+                    started = SharingStarted.WhileSubscribed(5_000L),
                     initialValue = fetchedDataFlow.value,
-
                 )
                 movieDetailApiState = MovieDetailApiState.Success
             } catch (e: Exception) {

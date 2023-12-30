@@ -8,6 +8,8 @@ import com.example.moviesandseries.model.movie.MovieDetailApi
 import com.example.moviesandseries.model.recommendations.RecommendationContainerApi
 import com.example.moviesandseries.model.reviews.ReviewContainerApi
 import com.example.moviesandseries.model.videos.VideoContainerApi
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -73,4 +75,8 @@ interface MovieApiService {
     suspend fun getMovieVideos(
         @Path("movie_id") movieId: Int,
     ): VideoContainerApi
+}
+
+fun MovieApiService.getMovieDetailAsFlow(movieId: Int): Flow<MovieDetailApi> = flow {
+    emit(getMovieDetail(movieId))
 }

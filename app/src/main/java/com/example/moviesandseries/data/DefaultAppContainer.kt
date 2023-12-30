@@ -6,6 +6,7 @@ import com.example.moviesandseries.MovieAndSeriesApplication
 import com.example.moviesandseries.data.database.MovieAndSeriesApplicationDb
 import com.example.moviesandseries.network.CollectionApiService
 import com.example.moviesandseries.network.MovieApiService
+import com.example.moviesandseries.network.NetworkConnectionInterceptor
 import com.example.moviesandseries.network.SeriesApiService
 import com.example.moviesandseries.repository.CollectionRepository
 import com.example.moviesandseries.repository.MovieRepository
@@ -43,7 +44,7 @@ private class LoggingInterceptorHeaders : Interceptor {
     }
 }
 class DefaultAppContainer(private val context: Context) : AppContainer {
-
+    private val networkCheck = NetworkConnectionInterceptor(context)
     private val baseUrl = "https://api.themoviedb.org/3/"
     private val posterUrl = "https://image.tmdb.org/t/p/original/"
     private val moshi = Moshi.Builder()
@@ -59,6 +60,7 @@ class DefaultAppContainer(private val context: Context) : AppContainer {
     private val okHttpClient = okhttp3.OkHttpClient.Builder()
         .addInterceptor(logger)
         .addInterceptor(LoggingInterceptorHeaders())
+        .addInterceptor(networkCheck)
         .build()
 
     // create retrofit object
@@ -67,6 +69,7 @@ class DefaultAppContainer(private val context: Context) : AppContainer {
         .baseUrl(baseUrl)
         .client(okHttpClient)
         .build()
+
 
     /**
      * Create an instance of the API interface using the Retrofit instance to inject into the repositories
