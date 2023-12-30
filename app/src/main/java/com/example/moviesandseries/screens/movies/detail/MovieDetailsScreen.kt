@@ -9,7 +9,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.moviesandseries.screens.components.detail.movie.MovieDetailComposable
 
 @Composable
@@ -17,7 +16,7 @@ fun MovieDetailsScreen(movieId: String?, movieDetailViewModel: MovieDetailViewMo
     when (val movieDetailUiState = movieDetailViewModel.movieDetailApiState) {
         is MovieDetailApiState.Success -> {
             val movieDetailListState = movieDetailViewModel.uiListMovieDetailState.collectAsState().value
-            MovieDetailComposable(movie = movieDetailListState.movieDetail, backButton = backButton, images = movieDetailListState.images, credits = movieDetailListState.credits, movieVideos = movieDetailListState.videos, collectionDetail = movieDetailListState.collectionDetail, onMovieClick = onMovieClick, onSeriesClick = onSeriesClick, recommendedMedia = movieDetailListState.recommendedMedia.collectAsLazyPagingItems())
+            MovieDetailComposable(backButton = backButton, onMovieClick = onMovieClick, onSeriesClick = onSeriesClick, movieDetailListState = movieDetailListState) { movieDetailViewModel.updateFavorite() }
         }
         is MovieDetailApiState.Loading -> {
             LoadingAnimation()

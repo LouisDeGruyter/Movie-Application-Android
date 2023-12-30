@@ -24,7 +24,3 @@ data class MovieDetailListState(
     val collectionDetail: CollectionDetail? = null,
     val recommendedMedia: Flow<PagingData<MediaIndex>> = emptyFlow(),
 )
-data class MovieDetailState(
-    val scrollActionIdx: Int = 0,
-    val scrollToItemIndex: Int = 0,
-)

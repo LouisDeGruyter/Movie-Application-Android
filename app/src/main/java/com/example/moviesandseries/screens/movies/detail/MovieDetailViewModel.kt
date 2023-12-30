@@ -21,31 +21,28 @@ import com.example.moviesandseries.repository.CollectionRepository
 import com.example.moviesandseries.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class MovieDetailViewModel(private val movieRepository: MovieRepository, private val collectionRepository: CollectionRepository) : ViewModel() {
     var movieDetailApiState: MovieDetailApiState by mutableStateOf(MovieDetailApiState.Loading)
         private set
-    private val _movieDetailUiState = MutableStateFlow(MovieDetailState())
-    val movieDetailUiState: StateFlow<MovieDetailState> = _movieDetailUiState.asStateFlow()
-    var uiListMovieDetailState: StateFlow<MovieDetailListState>
-    var currentId: Int by mutableStateOf(0)
+    private var _uiListMovieDetailState: MutableStateFlow<MovieDetailListState> = MutableStateFlow(MovieDetailListState())
+    val uiListMovieDetailState: StateFlow<MovieDetailListState> = _uiListMovieDetailState.asStateFlow()
+    private var currentId: Int by mutableStateOf(0)
     init {
         Log.i("MovieDetailViewModel", "MovieDetailViewModel created")
-        uiListMovieDetailState = MutableStateFlow(MovieDetailListState())
     }
 
     fun getMovieDetail(movieId: Int) {
+        currentId = movieId
         viewModelScope.launch {
             movieRepository.refreshMovie(movieId)
             movieDetailApiState = MovieDetailApiState.Loading
             try {
-                val fetchedDataFlow: MutableStateFlow<MovieDetailListState> = MutableStateFlow(MovieDetailListState()) // Provide default value
                 val movieDetail = movieRepository.getMovieDetail(movieId).first()
                 val images = movieRepository.getMovieImages(movieId)
                 val credits = movieRepository.getMovieCredits(movieId)
@@ -55,17 +52,17 @@ class MovieDetailViewModel(private val movieRepository: MovieRepository, private
                     RecommendedMoviesPagingSource(movieRepository, movieId)
                 }.flow.cachedIn(viewModelScope)
                 val movieDetailListState = MovieDetailListState(movieDetail, images, credits, videos, collectionDetail, recommendedMovies)
-                fetchedDataFlow.value = movieDetailListState
-
-                uiListMovieDetailState = fetchedDataFlow.stateIn(
-                    scope = viewModelScope,
-                    started = SharingStarted.WhileSubscribed(5_000L),
-                    initialValue = fetchedDataFlow.value,
-                )
+                _uiListMovieDetailState.update { movieDetailListState }
                 movieDetailApiState = MovieDetailApiState.Success
             } catch (e: Exception) {
                 MovieDetailApiState.Error(e.message ?: "An unknown error occured")
             }
+        }
+    }
+    fun updateFavorite() {
+        viewModelScope.launch {
+            movieRepository.updateFavorite(currentId, !_uiListMovieDetailState.value.movieDetail.isFavorite)
+            _uiListMovieDetailState.update { it.copy(movieDetail = it.movieDetail.copy(isFavorite = !_uiListMovieDetailState.value.movieDetail.isFavorite)) }
         }
     }
 

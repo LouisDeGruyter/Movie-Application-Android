@@ -64,7 +64,7 @@ fun MovieDetail.asDbObject(): DbMovie = DbMovie(
     video = this.video,
     voteAverage = this.voteAverage,
     voteCount = this.voteCount,
-    isFavorite = false,
+    isFavorite = isFavorite,
 )
 fun DbMovie.asDomainObject(): MovieDetail = MovieDetail(
     adult = this.adult,
@@ -92,5 +92,6 @@ fun DbMovie.asDomainObject(): MovieDetail = MovieDetail(
     video = this.video,
     voteAverage = this.voteAverage,
     voteCount = this.voteCount,
+    isFavorite = isFavorite,
 )
 fun List<DbMovie>.asDomainObject() = this.map { it.asDomainObject() }

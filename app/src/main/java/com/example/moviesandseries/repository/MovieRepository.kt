@@ -22,9 +22,8 @@ import com.example.moviesandseries.network.MovieApiService
 import com.example.moviesandseries.network.getMovieDetailAsFlow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
-import java.lang.NullPointerException
 import java.net.SocketTimeoutException
 
 interface MovieRepository {
@@ -43,6 +42,7 @@ interface MovieRepository {
     suspend fun getMovieVideos(movieId: Int): VideoContainer
     suspend fun refreshMovie(movieId: Int)
     suspend fun insertMovie(movie: MovieDetail)
+    suspend fun updateFavorite(currentId: Int, b: Boolean)
 }
 
 class NetworkMovieRepository(private val movieApiService: MovieApiService, private val movieDao: MovieDao) : MovieRepository {
@@ -159,7 +159,15 @@ class NetworkMovieRepository(private val movieApiService: MovieApiService, priva
     }
 
     override suspend fun insertMovie(movie: MovieDetail) {
+        val cachedMovie = this.getMovieDetail(movie.id).first()
+        if (cachedMovie.id != 0 && cachedMovie.title != "") {
+            movie.isFavorite = cachedMovie.isFavorite
+        }
         movieDao.insert(movie.asDbObject())
+    }
+
+    override suspend fun updateFavorite(currentId: Int, b: Boolean) {
+        movieDao.updateFavorite(currentId, b)
     }
 
     override suspend fun refreshMovie(movieId: Int) {

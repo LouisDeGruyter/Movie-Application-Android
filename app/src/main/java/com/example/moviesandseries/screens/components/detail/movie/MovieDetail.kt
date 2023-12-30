@@ -1,7 +1,5 @@
 package com.example.moviesandseries.screens.components.detail.movie
 
-
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
@@ -35,10 +33,14 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BrokenImage
 import androidx.compose.material.icons.filled.Cases
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -70,6 +72,7 @@ import androidx.compose.ui.zIndex
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.collectAsLazyPagingItems
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.moviesandseries.R
@@ -77,16 +80,14 @@ import com.example.moviesandseries.domain.Collection.CollectionDetail
 import com.example.moviesandseries.domain.MediaIndex
 import com.example.moviesandseries.domain.ProductionCompany
 import com.example.moviesandseries.domain.credits.Credit
-import com.example.moviesandseries.domain.credits.CreditsContainer
 import com.example.moviesandseries.domain.images.ImagesContainer
-import com.example.moviesandseries.domain.movie.MovieDetail
 import com.example.moviesandseries.model.videos.Video
-import com.example.moviesandseries.model.videos.VideoContainer
 import com.example.moviesandseries.network.ApiEndpoints
 import com.example.moviesandseries.screens.components.TwoByThreeAspectRatioImage
 import com.example.moviesandseries.screens.components.detail.BackgroundImage
 import com.example.moviesandseries.screens.components.index.mediaCard.MediaCard
 import com.example.moviesandseries.screens.components.videoplayer.YoutubeScreen
+import com.example.moviesandseries.screens.movies.detail.MovieDetailListState
 
 val normalTextStyleCentered = TextStyle(
     fontFamily = FontFamily(Font(R.font.sourcesanspro_black)),
@@ -98,21 +99,22 @@ val cardWidth = 150.dp
 
 @Composable
 fun MovieDetailComposable(
-    movie: MovieDetail,
     backButton: @Composable (modifier: Modifier) -> Unit,
-    images: ImagesContainer,
-    credits: CreditsContainer,
-    movieVideos: VideoContainer,
-    collectionDetail: CollectionDetail?,
     onMovieClick: (movieId: Int) -> Unit,
     onSeriesClick: (seriesId: Int) -> Unit,
-    recommendedMedia: LazyPagingItems<MediaIndex>,
+    movieDetailListState: MovieDetailListState,
+    onFavoriteClick: () -> Unit,
 ) {
     var fadeIn by remember { mutableStateOf(false) }
     var showImageCarousel by remember { mutableStateOf(false) }
     var scrollToTop by remember { mutableStateOf(0) }
     var fullscreen by remember { mutableStateOf(false) }
-
+    val movie = movieDetailListState.movieDetail
+    val images = movieDetailListState.images
+    val credits = movieDetailListState.credits
+    val movieVideos = movieDetailListState.videos
+    val collectionDetail = movieDetailListState.collectionDetail
+    val recommendedMedia = movieDetailListState.recommendedMedia.collectAsLazyPagingItems()
     val zIndexPoster by remember {
         derivedStateOf {
             if (showImageCarousel) -1f else 2f
@@ -144,7 +146,7 @@ fun MovieDetailComposable(
                 .verticalScroll(verticalState)
                 .padding(0.dp, 0.dp, 0.dp, 50.dp),
         ) {
-            val (backdrop, mediaCard, backButtonRef, movieContent) = createRefs()
+            val (backdrop, mediaCard, backButtonRef, movieContent, favorite) = createRefs()
             Card(
                 modifier = Modifier
                     .constrainAs(backdrop) {
@@ -157,8 +159,8 @@ fun MovieDetailComposable(
             ) {
                 Box(modifier = Modifier.fillMaxSize()) {
                     androidx.compose.animation.AnimatedVisibility(visible = fadeIn, enter = fadeIn(animationSpec = tween(1500, easing = LinearEasing))) {
-                    BackdropCarousel(images = images, title = movie.title, onCarouselClick = { showImageCarousel = true; scrollToTop++ })
-                }
+                        BackdropCarousel(images = images, title = movie.title, onCarouselClick = { showImageCarousel = true; scrollToTop++ })
+                    }
                     val fadeColor = if (isSystemInDarkTheme()) {
                         Color.Black
                     } else {
@@ -184,6 +186,11 @@ fun MovieDetailComposable(
             )
             Box(modifier = Modifier.constrainAs(backButtonRef) { absoluteRight.linkTo(mediaCard.absoluteLeft); absoluteLeft.linkTo(parent.absoluteLeft); top.linkTo(backdrop.bottom, margin = 15.dp) }) {
                 backButton(Modifier.height(40.dp))
+            }
+            Box(modifier = Modifier.constrainAs(favorite) { absoluteRight.linkTo(parent.absoluteRight); absoluteLeft.linkTo(mediaCard.absoluteRight); top.linkTo(backdrop.bottom, margin = 15.dp) }) {
+                IconButton(onClick = { onFavoriteClick() }, modifier = Modifier.height(40.dp)) {
+                    Icon(if (movie.isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder, contentDescription = " Favorite", modifier = Modifier.fillMaxSize(), tint = if (movie.isFavorite) Color.Red else MaterialTheme.colorScheme.onPrimary )
+                }
             }
 
             Column(modifier = Modifier.constrainAs(movieContent) { top.linkTo(mediaCard.bottom); absoluteLeft.linkTo(parent.absoluteLeft); absoluteRight.linkTo(parent.absoluteRight) }, verticalArrangement = Arrangement.spacedBy(24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
