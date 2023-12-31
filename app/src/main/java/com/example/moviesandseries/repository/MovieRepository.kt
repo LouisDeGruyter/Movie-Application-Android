@@ -6,10 +6,10 @@ import com.example.moviesandseries.data.database.db.asDbObject
 import com.example.moviesandseries.data.database.db.asDomainObject
 import com.example.moviesandseries.domain.credits.CreditsContainer
 import com.example.moviesandseries.domain.images.ImagesContainer
+import com.example.moviesandseries.domain.movie.Movie
 import com.example.moviesandseries.domain.movie.MovieContainer
 import com.example.moviesandseries.domain.movie.MovieContainerWithDates
-import com.example.moviesandseries.domain.movie.Movie
-import com.example.moviesandseries.domain.recommendations.RecommendationContainer
+import com.example.moviesandseries.domain.RecommendationContainer
 import com.example.moviesandseries.domain.reviews.ReviewContainer
 import com.example.moviesandseries.model.credits.asDomainObject
 import com.example.moviesandseries.model.images.asDomainObject
@@ -42,6 +42,8 @@ interface MovieRepository {
     suspend fun refreshMovie(movieId: Int)
     suspend fun insertMovie(movie: Movie)
     suspend fun updateFavorite(currentId: Int, b: Boolean)
+
+    fun getFavoriteMovies(): Flow<List<Movie>>
 }
 
 class NetworkMovieRepository(private val movieApiService: MovieApiService, private val movieDao: MovieDao) : MovieRepository {
@@ -169,15 +171,19 @@ class NetworkMovieRepository(private val movieApiService: MovieApiService, priva
         movieDao.updateFavorite(currentId, b)
     }
 
+    override fun getFavoriteMovies(): Flow<List<Movie>> {
+        return movieDao.getAllFavoriteItems().map { it.asDomainObject() }
+    }
+
     override suspend fun refreshMovie(movieId: Int) {
         try {
             movieApiService.getMovieDetailAsFlow(movieId).collect {
                 insertMovie(it.asDomainObject())
             }
         } catch (e: SocketTimeoutException) {
-            Log.e("SocketTimeoutException", "SocketTimeoutException")
+          Log.e("SocketTimeoutException", "SocketTimeoutException")
         } catch (e: Exception) {
-            Log.e("Exception", e.message.toString())
+          //throw e
         }
     }
 }

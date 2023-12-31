@@ -1,7 +1,7 @@
-package com.example.domain.recommendations
+package com.example.domain
 
-import com.example.moviesandseries.domain.recommendations.RecommendationContainer
-import com.example.moviesandseries.domain.recommendations.RecommendationMedia
+import com.example.moviesandseries.domain.MediaIndex
+import com.example.moviesandseries.domain.RecommendationContainer
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -12,15 +12,15 @@ class RecommendationContainerTest {
         val recommendationContainer = RecommendationContainer()
 
         assertEquals(1, recommendationContainer.page)
-        assertEquals(emptyList<RecommendationMedia>(), recommendationContainer.results)
+        assertEquals(emptyList<MediaIndex>(), recommendationContainer.results)
         assertEquals(1, recommendationContainer.totalPages)
         assertEquals(0, recommendationContainer.totalResults)
     }
 
     @Test
     fun `create RecommendationContainer with specific values`() {
-        val recommendationMedia1 = RecommendationMedia(id = 1, title = "Recommendation 1")
-        val recommendationMedia2 = RecommendationMedia(id = 2, title = "Recommendation 2")
+        val recommendationMedia1 = MediaIndex(id = 1, title = "Recommendation 1")
+        val recommendationMedia2 = MediaIndex(id = 2, title = "Recommendation 2")
 
         val recommendationContainer = RecommendationContainer(
             page = 2,

@@ -1,6 +1,7 @@
 package com.example.moviesandseries.data.database.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -33,5 +34,6 @@ interface MovieDao {
     @Query("SELECT * FROM movies WHERE title LIKE '%' || :query || '%'")
     fun getItemsByQuery(query: String): Flow<List<DbMovie>>
 
-
+    @Delete
+    suspend fun delete(item: DbMovie)
 }

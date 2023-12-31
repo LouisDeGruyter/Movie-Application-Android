@@ -1,7 +1,7 @@
 package com.example.moviesandseries.model.recommendations
 
 
-import com.example.moviesandseries.domain.recommendations.RecommendationMedia
+import com.example.moviesandseries.domain.MediaIndex
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -38,8 +38,8 @@ data class RecommendationMediaApi(
     @Json(name = "vote_count")
     val voteCount: Int
 )
-fun RecommendationMediaApi.asDomainObject(): RecommendationMedia {
-    return RecommendationMedia(
+fun RecommendationMediaApi.asDomainObject(): MediaIndex {
+    return MediaIndex(
         adult = adult,
         backdropPath = backdropPath,
         genreIds = genreIds,
@@ -55,5 +55,6 @@ fun RecommendationMediaApi.asDomainObject(): RecommendationMedia {
         video = video,
         voteAverage = voteAverage,
         voteCount = voteCount,
+        originCountry = null,
     )
 }

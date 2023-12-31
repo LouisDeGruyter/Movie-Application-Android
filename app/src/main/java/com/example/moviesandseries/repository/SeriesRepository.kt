@@ -2,7 +2,7 @@ package com.example.moviesandseries.repository
 
 import com.example.moviesandseries.domain.credits.CreditsContainer
 import com.example.moviesandseries.domain.images.ImagesContainer
-import com.example.moviesandseries.domain.recommendations.RecommendationContainer
+import com.example.moviesandseries.domain.RecommendationContainer
 import com.example.moviesandseries.domain.reviews.ReviewContainer
 import com.example.moviesandseries.domain.series.Series
 import com.example.moviesandseries.domain.series.SeriesContainer

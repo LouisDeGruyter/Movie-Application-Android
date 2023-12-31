@@ -3,7 +3,6 @@ package com.example.moviesandseries.paging.movies
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.moviesandseries.domain.MediaIndex
-import com.example.moviesandseries.domain.recommendations.asMediaIndexObject
 import com.example.moviesandseries.repository.MovieRepository
 
 class RecommendedMoviesPagingSource(private val movieRepository: MovieRepository, private val movieId: Int) : PagingSource<Int, MediaIndex>() {
@@ -12,7 +11,7 @@ class RecommendedMoviesPagingSource(private val movieRepository: MovieRepository
             val page = params.key ?: 1
             val response = movieRepository.getRecommendedMovies(movieId = movieId, page = page)
             LoadResult.Page(
-                data = response.results.map { it.asMediaIndexObject() },
+                data = response.results,
                 prevKey = if (page == 1) null else page - 1,
                 nextKey = if (page >= response.totalPages) null else page + 1,
             )

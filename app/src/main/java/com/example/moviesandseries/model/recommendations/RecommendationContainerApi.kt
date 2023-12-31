@@ -1,7 +1,7 @@
 package com.example.moviesandseries.model.recommendations
 
 
-import com.example.moviesandseries.domain.recommendations.RecommendationContainer
+import com.example.moviesandseries.domain.RecommendationContainer
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
