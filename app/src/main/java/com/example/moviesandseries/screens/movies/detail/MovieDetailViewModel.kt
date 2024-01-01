@@ -1,6 +1,5 @@
 package com.example.moviesandseries.screens.movies.detail
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -34,7 +33,7 @@ class MovieDetailViewModel(private val movieRepository: MovieRepository, private
     val uiListMovieDetailState: StateFlow<MovieDetailListState> = _uiListMovieDetailState.asStateFlow()
     private var currentId: Int by mutableStateOf(0)
     init {
-        Log.i("MovieDetailViewModel", "MovieDetailViewModel created")
+        // Log.i("MovieDetailViewModel", "MovieDetailViewModel created")
     }
 
     fun getMovieDetail(movieId: Int) {
@@ -51,8 +50,8 @@ class MovieDetailViewModel(private val movieRepository: MovieRepository, private
                 val recommendedMovies: Flow<PagingData<MediaIndex>> = Pager(PagingConfig(pageSize = 20)) {
                     RecommendedMoviesPagingSource(movieRepository, movieId)
                 }.flow.cachedIn(viewModelScope)
-                val movieDetailListState = MovieDetailListState(movieDetail, images, credits, videos, collectionDetail, recommendedMovies)
-                _uiListMovieDetailState.update { movieDetailListState }
+                val movieDetailListState = MovieDetailListState(movieDetail = movieDetail, images = images, credits = credits, videos = videos, collection = collectionDetail, recommendedMedia = recommendedMovies)
+                _uiListMovieDetailState.update { movieDetailListState}
                 movieDetailApiState = MovieDetailApiState.Success
             } catch (e: Exception) {
                 MovieDetailApiState.Error(e.message ?: "An unknown error occured")
@@ -61,8 +60,11 @@ class MovieDetailViewModel(private val movieRepository: MovieRepository, private
     }
     fun updateFavorite() {
         viewModelScope.launch {
+            println("updateFavorite $currentId, ${!_uiListMovieDetailState.value.movieDetail.isFavorite}")
             movieRepository.updateFavorite(currentId, !_uiListMovieDetailState.value.movieDetail.isFavorite)
+            println("hehe")
             _uiListMovieDetailState.update { it.copy(movieDetail = it.movieDetail.copy(isFavorite = !_uiListMovieDetailState.value.movieDetail.isFavorite)) }
+            println("${_uiListMovieDetailState.value.movieDetail.isFavorite}")
         }
     }
 

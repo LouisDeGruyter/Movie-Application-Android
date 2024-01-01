@@ -50,7 +50,7 @@ class NetworkMovieRepositoryTest {
     @InjectMocks
     private lateinit var networkMovieRepository: NetworkMovieRepository
 
-    val movieIndexApiList = listOf(
+    private val movieIndexApiList = listOf(
         MovieIndexApi(
             adult = false,
             backdropPath = "/backdrop1.jpg",
@@ -84,14 +84,14 @@ class NetworkMovieRepositoryTest {
             voteCount = 80,
         ),
     )
-    val movieContainerApi = MovieContainerApi(
+    private val movieContainerApi = MovieContainerApi(
         page = 1,
         results = movieIndexApiList,
         totalPages = 1,
         totalResults = 2,
     )
 
-    val movieDetailApi = MovieDetailApi(
+    private val movieDetailApi = MovieDetailApi(
         adult = false,
         backdropPath = "/backdrop_path.jpg",
         belongsToCollection = CollectionIndexApi(backdropPath = "", id = 1, name = "", posterPath = ""),
@@ -121,7 +121,7 @@ class NetworkMovieRepositoryTest {
         voteAverage = 8.0,
         voteCount = 200,
     )
-    val creditsContainerApi = CreditsContainerApi(
+    private val creditsContainerApi = CreditsContainerApi(
         id = 1,
         cast = listOf(
             CreditApi(
@@ -201,7 +201,7 @@ class NetworkMovieRepositoryTest {
     @Test
     fun `test getMovieImages`() = runBlocking {
         val movieId = 123
-        val imagesContainerApi = ImagesContainerApi(backdrops = listOf(), posters = listOf(), id = 123, logos= listOf())
+        val imagesContainerApi = ImagesContainerApi(backdrops = listOf(), posters = listOf(), id = 123, logos = listOf())
 
         `when`(movieApiService.getMovieImages(movieId)).thenReturn(imagesContainerApi)
         val result = networkMovieRepository.getMovieImages(movieId)
@@ -214,7 +214,6 @@ class NetworkMovieRepositoryTest {
         val movieId = 123
         val page = 1
 
-
         `when`(movieApiService.getSimilarMovies(movieId, page)).thenReturn(movieContainerApi)
         val result = networkMovieRepository.getSimilarMovies(movieId, page)
 
@@ -225,7 +224,7 @@ class NetworkMovieRepositoryTest {
     fun `test getRecommendedMovies`() = runBlocking {
         val movieId = 123
         val page = 1
-        val recommendationContainerApi = RecommendationContainerApi(page=1, results = listOf(), totalPages = 1, totalResults = 2)
+        val recommendationContainerApi = RecommendationContainerApi(page = 1, results = listOf(), totalPages = 1, totalResults = 2)
 
         `when`(movieApiService.getRecommendedMovies(movieId, page)).thenReturn(recommendationContainerApi)
         val result = networkMovieRepository.getRecommendedMovies(movieId, page)
@@ -323,7 +322,6 @@ class NetworkMovieRepositoryTest {
         assertEquals(moviesUpcomingContainerApi.asDomainObject(), result)
     }
 
-
     @Test
     fun `test getMovieVideos`() = runBlocking {
         val movieId = 123
@@ -349,7 +347,7 @@ class NetworkMovieRepositoryTest {
     }
 
     @Test
-    fun `test getFavoriteMovies`()= runBlocking {
+    fun `test getFavoriteMovies`() = runBlocking {
         val dbMovies = movieIndexApiList.map { it.asDomainObject().asDbObject() }
 
         `when`(movieDao.getAllFavoriteItems()).thenReturn(flowOf(dbMovies))
@@ -357,8 +355,4 @@ class NetworkMovieRepositoryTest {
 
         assertEquals(dbMovies.asDomainObject(), result)
     }
-
-
-
-
 }
