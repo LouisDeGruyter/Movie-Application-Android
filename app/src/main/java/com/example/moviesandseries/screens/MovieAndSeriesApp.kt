@@ -1,37 +1,38 @@
 package com.example.moviesandseries.screens
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.PermanentDrawerSheet
+import androidx.compose.material3.PermanentNavigationDrawer
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.moviesandseries.R
 import com.example.moviesandseries.screens.components.BackButton
-import com.example.moviesandseries.screens.home.HomeScreen
-import com.example.moviesandseries.screens.movies.detail.MovieDetailsScreen
-import com.example.moviesandseries.screens.movies.list.MoviesScreen
-import com.example.moviesandseries.screens.series.detail.SeriesDetailScreen
-import com.example.moviesandseries.screens.series.list.SeriesScreen
+import com.example.moviesandseries.screens.navigation.Destinations
+import com.example.moviesandseries.screens.navigation.MoviesAndSeriesNavigationRail
+import com.example.moviesandseries.screens.navigation.NavigationDrawerContent
+import com.example.moviesandseries.screens.navigation.navComponent
+import com.example.moviesandseries.util.MoviesAndSeriesNavigationType
 import com.example.templateapplication.screens.appBar.MyBottomAppBar
 import com.example.templateapplication.screens.appBar.MyTopAppBar
 
-enum class Destinations(val route: String) {
-    Home("Home"),
-    Movies("Movies"),
-    Series("Series"),
-    MovieDetails("MovieDetails"),
-    SeriesDetail("SeriesDetail"),
-    ;
-
-    fun createRoute(id: String) = "$route/$id"
-}
-
 @Composable
-fun MovieAndSeriesApp() {
+fun MovieAndSeriesApp(navigationType: MoviesAndSeriesNavigationType) {
     // navigation
     val navController = rememberNavController()
     val currentBackStackEntry by navController.currentBackStackEntryAsState()
@@ -50,52 +51,110 @@ fun MovieAndSeriesApp() {
         Destinations.SeriesDetail.route,
     )
     val navigateBack: () -> Unit = { navController.popBackStack() }
-
-    Scaffold(
-        topBar = {
-            if (currentPage !in noTopAppbarRoutes) {
-                MyTopAppBar(currentpage = currentPage) {
-                    if (currentDestination != Destinations.Home.route) {
-                        BackButton(onBackPressed = navigateBack)
+    when (navigationType) {
+        MoviesAndSeriesNavigationType.BOTTOM_NAVIGATION -> {
+            Scaffold(
+                topBar = {
+                    if (currentPage !in noTopAppbarRoutes) {
+                        MyTopAppBar(currentpage = currentPage) {
+                            if (currentDestination != Destinations.Home.route) {
+                                BackButton(onBackPressed = navigateBack, modifier = Modifier.height(30.dp))
+                            }
+                        }
                     }
+                },
+                bottomBar = {
+                    MyBottomAppBar(
+                        onHome = {
+                            navController.popBackStack(
+                                Destinations.Home.route,
+                                inclusive = false,
+                            )
+                        },
+                        onMovies = { navController.navigate(Destinations.Movies.route) },
+                        onSeries = { navController.navigate(Destinations.Series.route) },
+                    )
+                },
+            ) { innerPadding ->
+                navComponent(
+                    navController = navController,
+                    modifier = Modifier.padding(innerPadding),
+                    navigationType = navigationType,
+                )
+            }
+        }
+
+        MoviesAndSeriesNavigationType.PERMANENT_NAVIGATION_DRAWER -> {
+            PermanentNavigationDrawer(
+                drawerContent = {
+                    val drawerContentModifier = Modifier
+                        .background(MaterialTheme.colorScheme.primary)
+                        .padding(dimensionResource(R.dimen.standard_padding))
+
+                    PermanentDrawerSheet(
+                        modifier = Modifier
+                            .width(IntrinsicSize.Max)
+                            .background(MaterialTheme.colorScheme.primary),
+                    ) {
+                        Box(
+                            modifier = drawerContentModifier
+                                .fillMaxHeight(),
+                        ) {
+                            NavigationDrawerContent(
+                                selectedDestination = navController.currentDestination,
+                                onTabPressed = { node: String -> navController.navigate(node) },
+                                modifier = drawerContentModifier
+                                    .wrapContentSize(),
+                            )
+                        }
+                    }
+                },
+            ) {
+                Scaffold(
+                    topBar = {
+                        if (currentPage !in noTopAppbarRoutes) {
+                            MyTopAppBar(currentpage = currentPage) {
+                                if (currentDestination != Destinations.Home.route) {
+                                    BackButton(onBackPressed = navigateBack)
+                                }
+                            }
+                        }
+                    },
+                ) { innerPadding ->
+                    navComponent(
+                        navController = navController,
+                        modifier = Modifier.padding(innerPadding),
+                        navigationType = navigationType,
+                    )
                 }
             }
-        },
-        bottomBar = {
-            MyBottomAppBar(
-                onHome = { navController.popBackStack(Destinations.Home.route, inclusive = false) },
-                onMovies = { navController.navigate(Destinations.Movies.route) },
-                onSeries = { navController.navigate(Destinations.Series.route) },
-            )
-        },
-    ) { innerPadding ->
-        NavHost(
-            navController = navController,
-            startDestination = Destinations.Home.route,
-            Modifier.padding(innerPadding),
-        ) {
-            fun onMovieClick(movieId: Int) {
-                navController.navigate(Destinations.MovieDetails.createRoute(movieId.toString()))
-            }
-            fun onSeriesClick(seriesId: Int) {
-                navController.navigate(Destinations.SeriesDetail.createRoute(seriesId.toString()))
-            }
-            composable(Destinations.Home.route) {
-                HomeScreen(onMovieClick = ::onMovieClick, onSeriesClick = ::onSeriesClick)
-            }
-            composable(Destinations.Movies.route) {
-                MoviesScreen(onMovieClick = ::onMovieClick)
-            }
-            composable(Destinations.Series.route) {
-                SeriesScreen(onSeriesClick = ::onSeriesClick)
-            }
-            composable("${Destinations.MovieDetails.route}/{id}") {
-                    backStackEntry ->
-                MovieDetailsScreen(movieId = backStackEntry.arguments?.getString("id"), backButton = { BackButton(onBackPressed = navigateBack) }, onMovieClick = ::onMovieClick, onSeriesClick = ::onSeriesClick)
-            }
-            composable("${Destinations.SeriesDetail.route}/{id}") {
-                    backStackEntry ->
-                SeriesDetailScreen(seriesId = backStackEntry.arguments?.getString("id"))
+        }
+
+        else -> {
+            Row {
+                AnimatedVisibility(visible = navigationType == MoviesAndSeriesNavigationType.NAVIGATION_RAIL) {
+                    MoviesAndSeriesNavigationRail(
+                        selectedDestination = navController.currentDestination,
+                        onTabPressed = { node: String -> navController.navigate(node) },
+                    )
+                }
+                Scaffold(
+                    topBar = {
+                        if (currentPage !in noTopAppbarRoutes) {
+                            MyTopAppBar(currentpage = currentPage) {
+                                if (currentDestination != Destinations.Home.route) {
+                                    BackButton(onBackPressed = navigateBack)
+                                }
+                            }
+                        }
+                    },
+                ) { innerPadding ->
+                    navComponent(
+                        navController = navController,
+                        modifier = Modifier.padding(innerPadding),
+                        navigationType = navigationType,
+                    )
+                }
             }
         }
     }

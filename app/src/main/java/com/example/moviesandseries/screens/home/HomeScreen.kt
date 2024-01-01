@@ -79,6 +79,6 @@ fun LoadingHomeScreenSection(header: String) {
     val rowHeight = dimensionResource(id = R.dimen.row_height)
     Column(modifier = Modifier.padding(start = rowPadding), verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Text(text = header, fontSize = 22.sp, fontWeight = FontWeight.Bold)
-        LoadingMediaRow(3, modifier = Modifier.height(rowHeight))
+        LoadingMediaRow(8, modifier = Modifier.height(rowHeight))
     }
 }

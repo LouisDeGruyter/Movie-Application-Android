@@ -87,6 +87,7 @@ import com.example.moviesandseries.screens.components.detail.BackgroundImage
 import com.example.moviesandseries.screens.components.index.mediaCard.MediaCard
 import com.example.moviesandseries.screens.components.videoplayer.YoutubeScreen
 import com.example.moviesandseries.screens.movies.detail.MovieDetailListState
+import com.example.moviesandseries.util.MoviesAndSeriesNavigationType
 
 val normalTextStyleCentered = TextStyle(
     fontFamily = FontFamily(Font(R.font.sourcesanspro_black)),
@@ -95,9 +96,13 @@ val normalTextStyleCentered = TextStyle(
     textAlign = TextAlign.Center,
 )
 val cardWidth = 150.dp
+data class ComponentSizes(
+    val moviePosterWidth: Float = 0.5f,
+    val movieBackdropHeight: Int = 300,
+)
 
 @Composable
-fun MovieDetailComposable(backButton: @Composable (modifier: Modifier) -> Unit, onMovieClick: (movieId: Int) -> Unit, onSeriesClick: (seriesId: Int) -> Unit, movieDetailListState: MovieDetailListState, onFavoriteClick: () -> Unit) {
+fun MovieDetailComposable(backButton: @Composable (modifier: Modifier) -> Unit, onMovieClick: (movieId: Int) -> Unit, onSeriesClick: (seriesId: Int) -> Unit, movieDetailListState: MovieDetailListState,navigationType: MoviesAndSeriesNavigationType, onFavoriteClick: () -> Unit)  {
     var fadeIn by remember { mutableStateOf(false) }
     var showImageCarousel by remember { mutableStateOf(false) }
     var scrollToTop by remember { mutableStateOf(0) }
@@ -115,6 +120,19 @@ fun MovieDetailComposable(backButton: @Composable (modifier: Modifier) -> Unit, 
             if (showImageCarousel) -1f else 2f
         }
     }
+    val componentSizes =
+            when(navigationType){
+                MoviesAndSeriesNavigationType.BOTTOM_NAVIGATION -> {
+                    ComponentSizes(moviePosterWidth = 0.5f, movieBackdropHeight = 300)
+                }
+                MoviesAndSeriesNavigationType.NAVIGATION_RAIL -> {
+                    ComponentSizes(moviePosterWidth = 0.4f, movieBackdropHeight = 350)
+                }
+                MoviesAndSeriesNavigationType.PERMANENT_NAVIGATION_DRAWER -> {
+                    ComponentSizes(moviePosterWidth = 0.3f, movieBackdropHeight = 400)
+                }
+            }
+
 
     LaunchedEffect(key1 = movie) {
         fadeIn = true
@@ -130,9 +148,9 @@ fun MovieDetailComposable(backButton: @Composable (modifier: Modifier) -> Unit, 
         ConstraintLayout(modifier = Modifier.clickable(indication = null, interactionSource = interactionSource) { showImageCarousel = false }.fillMaxSize().verticalScroll(verticalState).padding(0.dp, 0.dp, 0.dp, 50.dp).testTag("MovieDetailScreen")) {
             val (backdrop, mediaCard, backButtonRef, movieContent, favorite) = createRefs()
 
-            Backdrop(images = images, title = movie.title, onCarouselClick = { showImageCarousel = true; scrollToTop++ }, fadeIn = fadeIn, modifier = Modifier.constrainAs(backdrop) { top.linkTo(parent.top); absoluteLeft.linkTo(parent.absoluteLeft); absoluteRight.linkTo(parent.absoluteRight) }.height(300.dp))
+            Backdrop(images = images, title = movie.title, onCarouselClick = { showImageCarousel = true; scrollToTop++ }, fadeIn = fadeIn, modifier = Modifier.constrainAs(backdrop) { top.linkTo(parent.top); absoluteLeft.linkTo(parent.absoluteLeft); absoluteRight.linkTo(parent.absoluteRight) }.height(componentSizes.movieBackdropHeight.dp))
             // center mediacard on the bottom of the backdrop
-            MediaCard(title = movie.title, imagePath = movie.posterPath, rating = movie.voteAverage, modifier = Modifier.fillMaxWidth(0.5f).zIndex(zIndexPoster).constrainAs(mediaCard) { top.linkTo(backdrop.bottom); bottom.linkTo(backdrop.bottom); absoluteLeft.linkTo(parent.absoluteLeft); absoluteRight.linkTo(parent.absoluteRight) })
+            MediaCard(title = movie.title, imagePath = movie.posterPath, rating = movie.voteAverage, modifier = Modifier.fillMaxWidth(componentSizes.moviePosterWidth).zIndex(zIndexPoster).constrainAs(mediaCard) { top.linkTo(backdrop.bottom); bottom.linkTo(backdrop.bottom); absoluteLeft.linkTo(parent.absoluteLeft); absoluteRight.linkTo(parent.absoluteRight) })
 
             Box(modifier = Modifier.constrainAs(backButtonRef) { absoluteRight.linkTo(mediaCard.absoluteLeft); absoluteLeft.linkTo(parent.absoluteLeft); top.linkTo(backdrop.bottom, margin = 15.dp) }) {
                 backButton(Modifier.height(40.dp))

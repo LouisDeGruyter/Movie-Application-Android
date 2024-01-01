@@ -60,11 +60,8 @@ class MovieDetailViewModel(private val movieRepository: MovieRepository, private
     }
     fun updateFavorite() {
         viewModelScope.launch {
-            println("updateFavorite $currentId, ${!_uiListMovieDetailState.value.movieDetail.isFavorite}")
             movieRepository.updateFavorite(currentId, !_uiListMovieDetailState.value.movieDetail.isFavorite)
-            println("hehe")
             _uiListMovieDetailState.update { it.copy(movieDetail = it.movieDetail.copy(isFavorite = !_uiListMovieDetailState.value.movieDetail.isFavorite)) }
-            println("${_uiListMovieDetailState.value.movieDetail.isFavorite}")
         }
     }
 

@@ -24,7 +24,7 @@ fun BackgroundImage(imagePath: String, title: String) {
     Image(
         painter = painter,
         contentDescription = title,
-        contentScale = ContentScale.FillHeight,
+        contentScale = ContentScale.Crop,
         modifier = Modifier.fillMaxSize(),
     )
 }

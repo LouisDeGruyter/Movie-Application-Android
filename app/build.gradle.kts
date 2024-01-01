@@ -142,4 +142,7 @@ dependencies {
     val ioMockVersion = "1.13.8"
     testImplementation("io.mockk:mockk:$ioMockVersion")
     androidTestImplementation("io.mockk:mockk-android:$ioMockVersion")
+
+    // responsive layout
+    implementation("androidx.compose.material3:material3-window-size-class")
 }

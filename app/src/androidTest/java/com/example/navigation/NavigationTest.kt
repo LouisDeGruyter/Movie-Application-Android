@@ -15,6 +15,7 @@ import androidx.navigation.compose.ComposeNavigator
 import androidx.navigation.testing.TestNavHostController
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.moviesandseries.screens.MovieAndSeriesApp
+import com.example.moviesandseries.util.MoviesAndSeriesNavigationType
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -31,7 +32,7 @@ class NavigationTest {
         composeTestRule.setContent {
             navController = TestNavHostController(LocalContext.current)
             navController.navigatorProvider.addNavigator(ComposeNavigator())
-            MovieAndSeriesApp()
+            MovieAndSeriesApp(MoviesAndSeriesNavigationType.BOTTOM_NAVIGATION)
         }
     }
 

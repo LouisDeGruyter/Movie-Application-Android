@@ -10,13 +10,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.moviesandseries.screens.components.detail.movie.MovieDetailComposable
+import com.example.moviesandseries.util.MoviesAndSeriesNavigationType
 
 @Composable
-fun MovieDetailsScreen(movieId: String?, movieDetailViewModel: MovieDetailViewModel = viewModel(factory = MovieDetailViewModel.Factory), backButton: @Composable (Modifier) -> Unit, onMovieClick: (movieId: Int) -> Unit, onSeriesClick: (seriesId: Int) -> Unit) {
+fun MovieDetailsScreen(movieId: String?, movieDetailViewModel: MovieDetailViewModel = viewModel(factory = MovieDetailViewModel.Factory), backButton: @Composable (Modifier) -> Unit, onMovieClick: (movieId: Int) -> Unit, onSeriesClick: (seriesId: Int) -> Unit, navigationType: MoviesAndSeriesNavigationType) {
     when (val movieDetailUiState = movieDetailViewModel.movieDetailApiState) {
         is MovieDetailApiState.Success -> {
             val movieDetailListState = movieDetailViewModel.uiListMovieDetailState.collectAsState().value
-            MovieDetailComposable(backButton = backButton, onMovieClick = onMovieClick, onSeriesClick = onSeriesClick, movieDetailListState = movieDetailListState) { movieDetailViewModel.updateFavorite() }
+            MovieDetailComposable(backButton = backButton, onMovieClick = onMovieClick, onSeriesClick = onSeriesClick, movieDetailListState = movieDetailListState, navigationType = navigationType, onFavoriteClick = { movieDetailViewModel.updateFavorite() })
         }
         is MovieDetailApiState.Loading -> {
             LoadingAnimation()
