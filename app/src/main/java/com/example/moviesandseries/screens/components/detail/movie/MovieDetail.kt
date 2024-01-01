@@ -102,7 +102,7 @@ data class ComponentSizes(
 )
 
 @Composable
-fun MovieDetailComposable(backButton: @Composable (modifier: Modifier) -> Unit, onMovieClick: (movieId: Int) -> Unit, onSeriesClick: (seriesId: Int) -> Unit, movieDetailListState: MovieDetailListState,navigationType: MoviesAndSeriesNavigationType, onFavoriteClick: () -> Unit)  {
+fun MovieDetailComposable(backButton: @Composable (modifier: Modifier) -> Unit, onMovieClick: (movieId: Int) -> Unit, onSeriesClick: (seriesId: Int) -> Unit, movieDetailListState: MovieDetailListState, navigationType: MoviesAndSeriesNavigationType, onFavoriteClick: () -> Unit) {
     var fadeIn by remember { mutableStateOf(false) }
     var showImageCarousel by remember { mutableStateOf(false) }
     var scrollToTop by remember { mutableStateOf(0) }
@@ -121,21 +121,23 @@ fun MovieDetailComposable(backButton: @Composable (modifier: Modifier) -> Unit, 
         }
     }
     val componentSizes =
-            when(navigationType){
-                MoviesAndSeriesNavigationType.BOTTOM_NAVIGATION -> {
-                    ComponentSizes(moviePosterWidth = 0.5f, movieBackdropHeight = 300)
-                }
-                MoviesAndSeriesNavigationType.NAVIGATION_RAIL -> {
-                    ComponentSizes(moviePosterWidth = 0.4f, movieBackdropHeight = 350)
-                }
-                MoviesAndSeriesNavigationType.PERMANENT_NAVIGATION_DRAWER -> {
-                    ComponentSizes(moviePosterWidth = 0.3f, movieBackdropHeight = 400)
-                }
+        when (navigationType) {
+            MoviesAndSeriesNavigationType.BOTTOM_NAVIGATION -> {
+                ComponentSizes(moviePosterWidth = 0.5f, movieBackdropHeight = 300)
             }
-
+            MoviesAndSeriesNavigationType.NAVIGATION_RAIL -> {
+                ComponentSizes(moviePosterWidth = 0.2f, movieBackdropHeight = 300)
+            }
+            MoviesAndSeriesNavigationType.PERMANENT_NAVIGATION_DRAWER -> {
+                ComponentSizes(moviePosterWidth = 0.3f, movieBackdropHeight = 600)
+            }
+        }
 
     LaunchedEffect(key1 = movie) {
         fadeIn = true
+        if(navigationType != MoviesAndSeriesNavigationType.BOTTOM_NAVIGATION){
+            verticalState.animateScrollTo(componentSizes.movieBackdropHeight, animationSpec = tween(1000, easing = LinearEasing))
+        }
     }
     LaunchedEffect(scrollToTop) {
         if (showImageCarousel) {
