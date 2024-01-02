@@ -1,13 +1,7 @@
 package com.example.viewmodel
 
-import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
-import androidx.paging.cachedIn
 import com.example.moviesandseries.domain.Collection
 import com.example.moviesandseries.domain.Genre
-import com.example.moviesandseries.domain.MediaIndex
 import com.example.moviesandseries.domain.ProductionCompany
 import com.example.moviesandseries.domain.ProductionCountry
 import com.example.moviesandseries.domain.RecommendationContainer
@@ -16,19 +10,16 @@ import com.example.moviesandseries.domain.credits.CreditsContainer
 import com.example.moviesandseries.domain.images.ImagesContainer
 import com.example.moviesandseries.domain.movie.Movie
 import com.example.moviesandseries.model.videos.VideoContainer
-import com.example.moviesandseries.paging.movies.RecommendedMoviesPagingSource
 import com.example.moviesandseries.repository.CollectionRepository
 import com.example.moviesandseries.repository.MovieRepository
 import com.example.moviesandseries.screens.movies.detail.MovieDetailApiState
 import com.example.moviesandseries.screens.movies.detail.MovieDetailListState
 import com.example.moviesandseries.screens.movies.detail.MovieDetailViewModel
 import io.mockk.coEvery
-import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch

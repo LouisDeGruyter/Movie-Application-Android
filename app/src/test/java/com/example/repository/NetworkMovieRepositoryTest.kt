@@ -1,6 +1,8 @@
 package com.example.repository
 
 import com.example.moviesandseries.data.database.dao.MovieDao
+import com.example.moviesandseries.data.database.db.movies.asDbObject
+import com.example.moviesandseries.data.database.db.movies.asDomainObject
 import com.example.moviesandseries.data.database.db.series.asDbObject
 import com.example.moviesandseries.data.database.db.series.asDomainObject
 import com.example.moviesandseries.model.DatesApi

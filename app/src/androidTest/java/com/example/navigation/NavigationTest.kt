@@ -32,7 +32,7 @@ class NavigationTest {
         composeTestRule.setContent {
             navController = TestNavHostController(LocalContext.current)
             navController.navigatorProvider.addNavigator(ComposeNavigator())
-            MovieAndSeriesApp(MoviesAndSeriesNavigationType.BOTTOM_NAVIGATION)
+            MovieAndSeriesApp(MoviesAndSeriesNavigationType.BOTTOM_NAVIGATION, navController = navController)
         }
     }
 

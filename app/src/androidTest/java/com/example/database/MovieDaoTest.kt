@@ -6,6 +6,8 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.moviesandseries.data.database.MovieAndSeriesApplicationDb
 import com.example.moviesandseries.data.database.dao.MovieDao
+import com.example.moviesandseries.data.database.db.movies.asDbObject
+import com.example.moviesandseries.data.database.db.movies.asDomainObject
 import com.example.moviesandseries.data.database.db.series.asDbObject
 import com.example.moviesandseries.data.database.db.series.asDomainObject
 import com.example.moviesandseries.domain.Collection
@@ -145,6 +147,7 @@ class MovieDaoTest {
         val movie = movieDao.getItem(movie1.id).first()
         assertEquals(movie?.asDomainObject()?.id, movie1.id)
     }
+
     @Test
     @Throws(Exception::class)
     fun daoUpdateFavorite_updatesFavoriteStatus() = runBlocking {
@@ -171,6 +174,7 @@ class MovieDaoTest {
         assertEquals(itemsByQuery.size, 2)
         assertEquals(itemsByQuery[0].asDomainObject().title, movie1.title)
     }
+
     @Test
     @Throws(Exception::class)
     fun daoGetAllItemsByVoteAverage_returnsItemsOrderedByVoteAverage() = runBlocking {

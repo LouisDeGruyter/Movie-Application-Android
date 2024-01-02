@@ -42,6 +42,7 @@ interface SeriesRepository {
     suspend fun refreshSeries(seriesId: Int)
     suspend fun updateFavorite(currentId: Int, b: Boolean)
     suspend fun insertSeries(series: Series)
+    fun getFavoriteSeries(): Flow<List<Series>>
 }
 class NetworkSeriesRepository(private val seriesApiService: SeriesApiService, private val seriesDao: SeriesDao) : SeriesRepository {
     override suspend fun getSeriesContainer(page: Int): SeriesContainer = try {
@@ -148,7 +149,6 @@ class NetworkSeriesRepository(private val seriesApiService: SeriesApiService, pr
     }
     override suspend fun getSeriesVideos(seriesId: Int): VideoContainer = try {
         val videos = seriesApiService.getSeriesVideos(seriesId).asDomainObject()
-        Log.d("getSeriesVideos", videos.toString())
         videos
     } catch (e: SocketTimeoutException) {
         Log.e("SocketTimeoutException", "SocketTimeoutException")
@@ -178,5 +178,8 @@ class NetworkSeriesRepository(private val seriesApiService: SeriesApiService, pr
 
     override suspend fun updateFavorite(currentId: Int, b: Boolean) {
         seriesDao.updateFavorite(currentId, b)
+    }
+    override fun getFavoriteSeries(): Flow<List<Series>> {
+        return seriesDao.getAllFavoriteItems().map { it.asDomainObject() }
     }
 }

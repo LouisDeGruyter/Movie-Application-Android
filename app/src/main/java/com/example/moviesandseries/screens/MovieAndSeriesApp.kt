@@ -19,6 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.moviesandseries.R
@@ -32,9 +33,9 @@ import com.example.templateapplication.screens.appBar.MyBottomAppBar
 import com.example.templateapplication.screens.appBar.MyTopAppBar
 
 @Composable
-fun MovieAndSeriesApp(navigationType: MoviesAndSeriesNavigationType) {
+fun MovieAndSeriesApp(navigationType: MoviesAndSeriesNavigationType, navController: NavHostController = rememberNavController()) {
     // navigation
-    val navController = rememberNavController()
+
     val currentBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = currentBackStackEntry?.destination?.route
     val currentEnumDestination: Destinations? = currentDestination?.let { route ->

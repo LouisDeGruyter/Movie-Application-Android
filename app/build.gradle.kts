@@ -1,8 +1,11 @@
+import org.jetbrains.dokka.gradle.DokkaTask
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
     id("com.google.devtools.ksp")
+    id("org.jetbrains.dokka") version "1.9.10"
 }
 
 android {
@@ -45,10 +48,12 @@ android {
         kotlinCompilerExtensionVersion = "1.5.7"
     }
     packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
+        resources.excludes.addAll(
+            listOf(
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE-notice.md",
+            )
+        )}
 }
 
 dependencies {
@@ -145,4 +150,41 @@ dependencies {
 
     // responsive layout
     implementation("androidx.compose.material3:material3-window-size-class")
+
+    //dokka
+    dokkaPlugin("org.jetbrains.dokka:mathjax-plugin:1.9.10")
+
+    // Is applied for the single-module dokkaHtml task only
+    dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.9.10")
+
+    // Is applied for HTML format in multi-project builds
+    dokkaHtmlPartialPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.9.10")
+}
+tasks.dokkaGfm {
+    outputDirectory.set(buildDir.resolve("documentation/markdown"))
+}
+tasks.register<Jar>("dokkaHtmlJar") {
+    dependsOn(tasks.dokkaHtml)
+    from(tasks.dokkaHtml.flatMap { it.outputDirectory })
+    archiveClassifier.set("html-docs")
+}
+
+tasks.register<Jar>("dokkaJavadocJar") {
+    dependsOn(tasks.dokkaJavadoc)
+    from(tasks.dokkaJavadoc.flatMap { it.outputDirectory })
+    archiveClassifier.set("javadoc")
+}
+
+tasks.withType<DokkaTask>().configureEach {
+    moduleName.set(project.name)
+    moduleVersion.set(project.version.toString())
+    outputDirectory.set(buildDir.resolve("dokka/$name"))
+    failOnWarning.set(false)
+    suppressObviousFunctions.set(true)
+    suppressInheritedMembers.set(false)
+    offlineMode.set(false)
+
+    // ..
+    // source set configuration section
+    // ..
 }

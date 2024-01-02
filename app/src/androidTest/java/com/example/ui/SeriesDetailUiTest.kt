@@ -6,23 +6,23 @@ import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
-import com.example.moviesandseries.screens.movies.detail.MovieDetailsScreen
-import com.example.moviesandseries.util.MoviesAndSeriesNavigationType
 import org.junit.Rule
 import org.junit.Test
+import com.example.moviesandseries.screens.series.detail.SeriesDetailScreen
+import com.example.moviesandseries.util.MoviesAndSeriesNavigationType
 
-class MovieDetailUiTest {
+class SeriesDetailUiTest {
     @get: Rule
     val composeTestRule = createComposeRule()
 
     @OptIn(ExperimentalTestApi::class)
     @Test
-    fun movieDetailsScreenContentTest() {
+    fun seriesDetailsScreenContentTest() {
         composeTestRule.setContent {
-            MovieDetailsScreen(movieId = "695721", backButton = { }, onMovieClick = { }, onSeriesClick = { }, navigationType = MoviesAndSeriesNavigationType.BOTTOM_NAVIGATION)
+            SeriesDetailScreen(seriesId = "85271", backButton = { }, onMovieClick = { }, onSeriesClick = { }, navigationType = MoviesAndSeriesNavigationType.BOTTOM_NAVIGATION)
         }
-        composeTestRule.waitUntilAtLeastOneExists(hasTestTag("MovieDetailScreen"), 10000)
-        composeTestRule.onNodeWithTag("MovieDetailScreen").assertIsDisplayed()
+        composeTestRule.waitUntilAtLeastOneExists(hasTestTag("SeriesDetailScreen"), 10000)
+        composeTestRule.onNodeWithTag("SeriesDetailScreen").assertIsDisplayed()
         composeTestRule.onNodeWithText("Recommended").assertIsDisplayed()
         composeTestRule.onNodeWithText("Videos").assertIsDisplayed()
         composeTestRule.onNodeWithText("Production Companies").assertIsDisplayed()

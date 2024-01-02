@@ -8,11 +8,7 @@ class EpisodeTest {
 
     @Test
     fun `create EpisodeTest with default values`() {
-        val episode = Episode(
-            crew = crew.map { it.asDomainObject() },
-            episodeType = episodeType,
-            guestStars = guestStars.map { it.asDomainObject() })
-
+        val episode = Episode()
         assertEquals("", episode.airDate)
         assertEquals(0, episode.episodeNumber)
         assertEquals(0, episode.id)
@@ -42,9 +38,6 @@ class EpisodeTest {
             stillPath = "/still.jpg",
             voteAverage = 8.5,
             voteCount = 100,
-            crew = crew.map { it.asDomainObject() },
-            episodeType = episodeType,
-            guestStars = guestStars.map { it.asDomainObject() },
         )
 
         assertEquals("2023-01-01", episode.airDate)

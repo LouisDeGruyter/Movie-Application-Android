@@ -8,7 +8,7 @@ class SeasonTest {
 
     @Test
     fun `create Season with default values`() {
-        val season = Season(episodes = episodes.map { it.asDomainObject() })
+        val season = Season()
 
         assertEquals("", season.airDate)
         assertEquals(0, season.episodeCount)
@@ -31,7 +31,7 @@ class SeasonTest {
             posterPath = "/poster.jpg",
             seasonNumber = 2,
             voteAverage = 9.0,
-            episodes = episodes.map { it.asDomainObject() },
+            episodes = listOf(),
         )
 
         assertEquals("2023-01-01", season.airDate)
