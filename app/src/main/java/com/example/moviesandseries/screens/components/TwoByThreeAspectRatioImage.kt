@@ -15,6 +15,12 @@ import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.moviesandseries.network.ApiEndpoints
 
+/**
+ * Composable function for displaying an image with a two-by-three aspect ratio.
+ *
+ * @param imagePath The path of the image to be loaded.
+ * @param title Content description for accessibility.
+ */
 @Composable
 fun TwoByThreeAspectRatioImage(imagePath: String, title: String) {
     val painter = rememberAsyncImagePainter(

@@ -2,8 +2,6 @@ package com.example.moviesandseries.data.database.db.movies
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
-import com.example.moviesandseries.data.database.converters.movie.MovieConverter
 import com.example.moviesandseries.domain.Collection
 
 /**
@@ -16,7 +14,6 @@ import com.example.moviesandseries.domain.Collection
  * @property posterPath The poster path for the collection.
  */
 @Entity(tableName = "collections")
-@TypeConverters(MovieConverter::class)
 data class DbCollection(
     var backdropPath: String = "",
     @PrimaryKey

@@ -22,6 +22,13 @@ import com.example.moviesandseries.domain.MediaIndex
 import com.example.moviesandseries.screens.components.index.LazyPagingMediaRow
 import com.example.moviesandseries.screens.components.loading.LoadingMediaRow
 
+/**
+ * Composable function for the Home screen.
+ *
+ * @param homeViewModel ViewModel for the Home screen.
+ * @param onMovieClick Callback for handling movie item clicks.
+ * @param onSeriesClick Callback for handling series item clicks.
+ */
 @Composable
 fun HomeScreen(homeViewModel: HomeViewModel = viewModel(factory = HomeViewModel.Factory), onMovieClick: (movieId: Int) -> Unit, onSeriesClick: (seriesId: Int) -> Unit) {
     val rowPadding = dimensionResource(id = R.dimen.row_padding)
@@ -56,6 +63,14 @@ fun HomeScreen(homeViewModel: HomeViewModel = viewModel(factory = HomeViewModel.
     )
 }
 
+/**
+ * Composable function for a section in the Home screen.
+ *
+ * @param title Title of the section.
+ * @param onMediaClick Callback for handling media item clicks.
+ * @param media LazyPagingItems representing the media items for the section.
+ * @param mediaType Type of media (Movies or Series).
+ */
 @Composable
 fun HomeScreenSection(title: String, onMediaClick: (mediaId: Int) -> Unit, media: LazyPagingItems<MediaIndex>, mediaType: String) {
     val rowHeight = dimensionResource(id = R.dimen.row_height)
@@ -72,6 +87,11 @@ fun HomeScreenSection(title: String, onMediaClick: (mediaId: Int) -> Unit, media
     }
 }
 
+/**
+ * Composable function for a loading section in the Home screen.
+ *
+ * @param header Header for the loading section.
+ */
 @Composable
 fun LoadingHomeScreenSection(header: String) {
     val rowPadding = dimensionResource(id = R.dimen.row_padding)

@@ -48,6 +48,16 @@ import com.example.moviesandseries.screens.components.index.mediaCard.MediaCard
 import com.example.moviesandseries.util.ComponentSizes
 import com.example.moviesandseries.util.MoviesAndSeriesNavigationType
 
+/**
+ * Composable function representing the MovieDetailsScreen.
+ *
+ * @param movieId The ID of the movie.
+ * @param movieDetailViewModel The ViewModel for the MovieDetailsScreen.
+ * @param backButton A composable function for rendering the back button.
+ * @param onMovieClick Callback function for handling movie clicks.
+ * @param onSeriesClick Callback function for handling series clicks.
+ * @param navigationType The type of navigation used in the app.
+ */
 @Composable
 fun MovieDetailsScreen(movieId: String?, movieDetailViewModel: MovieDetailViewModel = viewModel(factory = MovieDetailViewModel.Factory), backButton: @Composable (Modifier) -> Unit, onMovieClick: (movieId: Int) -> Unit, onSeriesClick: (seriesId: Int) -> Unit, navigationType: MoviesAndSeriesNavigationType) {
     when (val movieDetailUiState = movieDetailViewModel.movieDetailApiState) {
@@ -71,6 +81,16 @@ fun MovieDetailsScreen(movieId: String?, movieDetailViewModel: MovieDetailViewMo
     }
 }
 
+/**
+ * Composable function to display movie details.
+ *
+ * @param backButton A composable function for rendering the back button.
+ * @param onMovieClick Callback function for handling movie clicks.
+ * @param onSeriesClick Callback function for handling series clicks.
+ * @param movieDetailListState The state representing movie details.
+ * @param navigationType The type of navigation used in the app.
+ * @param onFavoriteClick Callback function for handling favorite button clicks.
+ */
 @Composable
 fun DisplayMovieDetail(backButton: @Composable (modifier: Modifier) -> Unit, onMovieClick: (movieId: Int) -> Unit, onSeriesClick: (seriesId: Int) -> Unit, movieDetailListState: MovieDetailListState, navigationType: MoviesAndSeriesNavigationType, onFavoriteClick: () -> Unit) {
     var fadeIn by remember { mutableStateOf(false) }
@@ -151,11 +171,19 @@ fun DisplayMovieDetail(backButton: @Composable (modifier: Modifier) -> Unit, onM
         } }
 }
 
+/**
+ * Composable function for rendering a loading animation.
+ */
 @Composable
 fun LoadingAnimation() {
     CircularProgressIndicator(modifier = Modifier.fillMaxSize(), color = Color.Red)
 }
 
+/**
+ * Composable function for rendering an error message.
+ *
+ * @param message The error message to display.
+ */
 @Composable
 fun ErrorText(message: String) {
     // Placeholder for error message

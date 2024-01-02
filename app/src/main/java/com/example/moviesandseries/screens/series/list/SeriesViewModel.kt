@@ -16,12 +16,22 @@ import com.example.moviesandseries.paging.series.SeriesPagingSource
 import com.example.moviesandseries.repository.SeriesRepository
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * ViewModel for managing data related to the list of series, including fetching paginated series data.
+ *
+ * @param seriesRepository Repository for accessing series-related data.
+ */
 class SeriesViewModel(private val seriesRepository: SeriesRepository) : ViewModel() {
+
+    // Flow representing paginated series data
     val seriesPager: Flow<PagingData<MediaIndex>> = Pager(PagingConfig(pageSize = 20)) {
         SeriesPagingSource(seriesRepository)
     }.flow.cachedIn(viewModelScope)
 
     companion object {
+        /**
+         * Factory for creating instances of [SeriesViewModel].
+         */
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = (this[APPLICATION_KEY] as MovieAndSeriesApplication)

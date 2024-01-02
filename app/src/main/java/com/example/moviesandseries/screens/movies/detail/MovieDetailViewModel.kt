@@ -1,4 +1,4 @@
-@file:Suppress("EmptyMethod")
+
 
 package com.example.moviesandseries.screens.movies.detail
 
@@ -28,7 +28,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-@Suppress("EmptyMethod")
+@Suppress("EmptyMethod") // private set
 class MovieDetailViewModel(private val movieRepository: MovieRepository, private val collectionRepository: CollectionRepository) : ViewModel() {
     var movieDetailApiState: MovieDetailApiState by mutableStateOf(MovieDetailApiState.Loading)
         private set
@@ -36,6 +36,11 @@ class MovieDetailViewModel(private val movieRepository: MovieRepository, private
     val uiListMovieDetailState: StateFlow<MovieDetailListState> = _uiListMovieDetailState.asStateFlow()
     private var currentId: Int by mutableStateOf(0)
 
+    /**
+     * Function to fetch movie details (including images, credits, videos, recommended movies and the collection to which the movie belongs) using the provided [movieId].
+     *
+     * @param movieId The ID of the movie to fetch details for.
+     */
     fun getMovieDetail(movieId: Int) {
         currentId = movieId
         viewModelScope.launch {
@@ -51,13 +56,17 @@ class MovieDetailViewModel(private val movieRepository: MovieRepository, private
                     RecommendedMoviesPagingSource(movieRepository, movieId)
                 }.flow.cachedIn(viewModelScope)
                 val movieDetailListState = MovieDetailListState(movieDetail = movieDetail, images = images, credits = credits, videos = videos, collection = collectionDetail, recommendedMedia = recommendedMovies)
-                _uiListMovieDetailState.update { movieDetailListState}
+                _uiListMovieDetailState.update { movieDetailListState }
                 movieDetailApiState = MovieDetailApiState.Success
             } catch (e: Exception) {
-                MovieDetailApiState.Error(e.message ?: "An unknown error occurred")
+                movieDetailApiState = MovieDetailApiState.Error(e.message ?: "An unknown error occurred")
             }
         }
     }
+
+    /**
+     * Function to update the favorite status of the current movie.
+     */
     fun updateFavorite() {
         viewModelScope.launch {
             movieRepository.updateFavorite(currentId, !_uiListMovieDetailState.value.movieDetail.isFavorite)
@@ -66,6 +75,9 @@ class MovieDetailViewModel(private val movieRepository: MovieRepository, private
     }
 
     companion object {
+        /**
+         * Factory to create instances of [MovieDetailViewModel].
+         */
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = (this[APPLICATION_KEY] as MovieAndSeriesApplication)

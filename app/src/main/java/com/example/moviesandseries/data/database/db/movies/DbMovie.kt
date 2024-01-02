@@ -5,7 +5,6 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.example.moviesandseries.data.database.converters.movie.CollectionConverter
 import com.example.moviesandseries.data.database.converters.GenreConverter
-import com.example.moviesandseries.data.database.converters.movie.MovieConverter
 import com.example.moviesandseries.data.database.db.DbGenre
 import com.example.moviesandseries.data.database.db.DbProductionCompany
 import com.example.moviesandseries.data.database.db.DbProductionCountry
@@ -45,7 +44,7 @@ import com.example.moviesandseries.domain.movie.Movie
  * @property isFavorite Indicates if the movie is marked as a favorite.
  */
 @Entity(tableName = "movies")
-@TypeConverters(CollectionConverter::class, GenreConverter::class, MovieConverter::class)
+@TypeConverters(CollectionConverter::class, GenreConverter::class)
 data class DbMovie(
     var adult: Boolean = false,
     var backdropPath: String = "",

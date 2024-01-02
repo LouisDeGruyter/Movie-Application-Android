@@ -21,6 +21,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.moviesandseries.R
 
+/**
+ * Composable function to display genres as a row of styled text labels.
+ *
+ * @param modifier Modifier for customizing the layout.
+ * @param genres List of genre names to be displayed.
+ */
 @Composable
 fun Genres(modifier: Modifier = Modifier, genres: List<String>) {
     Row(modifier = modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {

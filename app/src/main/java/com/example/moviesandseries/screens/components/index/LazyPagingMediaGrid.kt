@@ -14,6 +14,14 @@ import com.example.moviesandseries.R
 import com.example.moviesandseries.domain.MediaIndex
 import com.example.moviesandseries.screens.components.index.mediaCard.MediaCard
 
+/**
+ * Composable function for displaying a lazy vertical grid of media items using Paging 3.
+ *
+ * @param media LazyPagingItems representing the paginated list of media items.
+ * @param onMediaClick Callback for handling media item clicks.
+ * @param columns Number of columns in the grid.
+ * @param modifier Modifier for customizing the layout.
+ */
 @Composable
 fun LazyPagingMediaGrid(media: LazyPagingItems<MediaIndex>, onMediaClick: (movieId: Int) -> Unit, columns: Int, modifier: Modifier = Modifier) {
     val lazyGridState = rememberLazyGridState()

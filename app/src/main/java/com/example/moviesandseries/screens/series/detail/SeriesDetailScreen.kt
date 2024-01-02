@@ -1,6 +1,6 @@
 package com.example.moviesandseries.screens.series.detail
 
-import android.util.Log
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
@@ -32,6 +32,7 @@ import androidx.compose.ui.zIndex
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.moviesandseries.domain.series.Season
 import com.example.moviesandseries.screens.components.detail.ActorList
 import com.example.moviesandseries.screens.components.detail.Backdrop
 import com.example.moviesandseries.screens.components.detail.DisplayRecommended
@@ -46,6 +47,16 @@ import com.example.moviesandseries.screens.components.index.mediaCard.MediaCard
 import com.example.moviesandseries.util.ComponentSizes
 import com.example.moviesandseries.util.MoviesAndSeriesNavigationType
 
+/**
+ * Composable function representing the Series Detail Screen.
+ *
+ * @param seriesId The ID of the series.
+ * @param seriesDetailViewModel The ViewModel for Series Detail.
+ * @param backButton The composable function for rendering the back button.
+ * @param onMovieClick The callback for handling clicks on movies.
+ * @param onSeriesClick The callback for handling clicks on series.
+ * @param navigationType The type of navigation used in the app.
+ */
 @Composable
 fun SeriesDetailScreen(seriesId: String?, seriesDetailViewModel: SeriesDetailViewModel = viewModel(factory = SeriesDetailViewModel.Factory), backButton: @Composable (Modifier) -> Unit, onMovieClick: (movieId: Int) -> Unit, onSeriesClick: (seriesId: Int) -> Unit, navigationType: MoviesAndSeriesNavigationType) {
     when (val seriesDetailUiState = seriesDetailViewModel.seriesDetailApiState) {
@@ -67,6 +78,17 @@ fun SeriesDetailScreen(seriesId: String?, seriesDetailViewModel: SeriesDetailVie
     }
 }
 
+/**
+ * Composable function to display the components of the Series Detail Screen.
+ *
+ * @param backButton The composable function for rendering the back button.
+ * @param onMovieClick The callback for handling clicks on movies.
+ * @param onSeriesClick The callback for handling clicks on series.
+ * @param seriesDetailListState The state representing Series Detail information.
+ * @param navigationType The type of navigation used in the app.
+ * @param onFavoriteClick The callback for handling clicks on the favorite button.
+ * @param onSeasonUpdate The callback for updating the selected season.
+ */
 @Composable
 fun DisplaySeriesDetail(
     backButton: @Composable (Modifier) -> Unit,
@@ -86,7 +108,6 @@ fun DisplaySeriesDetail(
     val credits = seriesDetailListState.credits
     val videos = seriesDetailListState.videos
     val recommendedMedia = seriesDetailListState.recommendedMedia.collectAsLazyPagingItems()
-    Log.d("SeriesDetailScreen", "recommendedMedia: $recommendedMedia")
     val seasonDetail = seriesDetailListState.seasonDetail
     val verticalState = rememberScrollState()
     val interactionSource = remember { MutableInteractionSource() }
@@ -149,9 +170,9 @@ fun DisplaySeriesDetail(
                 Genres(genres = series.genres.map { it.name }, modifier = Modifier.fillMaxWidth(0.9f))
                 ExpandableDescription(catchPhrase = series.tagline, description = series.overview, modifier = Modifier.fillMaxWidth(0.9f))
                 ActorList(actors = credits.cast)
-                /**if (series.numberOfSeasons > 0) {
-                 DisplaySeasons(seasons = series.seasons, seasonDetail = seasonDetail, onSeasonUpdate = onSeasonUpdate)
-                 }**/
+                if (series.numberOfSeasons > 0) {
+                    DisplaySeasons(seasons = series.seasons, seasonDetail = seasonDetail, onSeasonUpdate = onSeasonUpdate)
+                }
                 DisplayVideos(videos = videos.results, onFullScreen = { fullscreen = true })
                 DisplayRecommended(recommendedMedia = recommendedMedia, onMovieClick = onMovieClick, onSeriesClick = onSeriesClick)
                 ProductionCompanies(productionCompanies = series.productionCompanies)
@@ -159,8 +180,28 @@ fun DisplaySeriesDetail(
         }
     }
 }
+
 /**
+ * Composable function to display a list of seasons and details for a series.
+ *
+ * @param seasons List of seasons for the series.
+ * @param seasonDetail Details of the currently selected season.
+ * @param onSeasonUpdate Callback for updating the selected season.
+ */
 @Composable
 fun DisplaySeasons(seasons: List<Season>, seasonDetail: Season, onSeasonUpdate: (Int) -> Unit) {
+    AnimatedVisibility(visible = false) {
+        Column(modifier = Modifier.fillMaxWidth(0.9f)) {
+            // Display header for seasons
+            Text(text = "Seasons")
+
+            // Display each season with a clickable modifier
+            seasons.forEach { season ->
+                Text(text = season.name, modifier = Modifier.clickable { onSeasonUpdate(season.seasonNumber) })
+            }
+
+            // Display details of the currently selected season
+            Text(text = seasonDetail.name)
+        }
+    }
 }
- **/

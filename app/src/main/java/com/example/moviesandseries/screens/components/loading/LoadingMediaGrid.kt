@@ -9,6 +9,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.dimensionResource
 import com.example.moviesandseries.R
 
+/**
+ * Composable function for displaying a grid of loading cards.
+ *
+ * @param numberOfItems The total number of loading cards to be displayed.
+ * @param columns The number of columns in the grid layout.
+ */
 @Composable
 fun LoadingMediaGrid(numberOfItems: Int, columns: Int) {
     val gridSpacing = dimensionResource(id = R.dimen.grid_spacing)

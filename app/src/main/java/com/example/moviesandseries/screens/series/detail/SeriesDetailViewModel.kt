@@ -26,12 +26,34 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class SeriesDetailViewModel(private val seriesRepository: SeriesRepository, private val seasonRepository: SeasonRepository) : ViewModel() {
+/**
+ * ViewModel for managing data related to the details of a series, including images, credits, videos, seasons,
+ * and recommendations.
+ *
+ * @param seriesRepository Repository for accessing series-related data.
+ * @param seasonRepository Repository for accessing season-related data.
+ */
+class SeriesDetailViewModel(
+    private val seriesRepository: SeriesRepository,
+    private val seasonRepository: SeasonRepository,
+) : ViewModel() {
+
+    // Mutable state for the API loading state
     var seriesDetailApiState: SeriesDetailApiState by mutableStateOf(SeriesDetailApiState.Loading)
         private set
+
+    // Mutable state for the UI details of the series
     private var _uiListSeriesDetailState: MutableStateFlow<SeriesDetailListState> = MutableStateFlow(SeriesDetailListState())
     val uiListSeriesDetailState: StateFlow<SeriesDetailListState> = _uiListSeriesDetailState.asStateFlow()
+
+    // Current series ID being displayed
     private var currentId: Int by mutableStateOf(0)
+
+    /**
+     * Fetches the details of a series based on its ID, including images, credits, videos, and recommendations.
+     *
+     * @param seriesId ID of the series to fetch details for.
+     */
     fun getSeriesDetail(seriesId: Int) {
         currentId = seriesId
         viewModelScope.launch {
@@ -46,7 +68,14 @@ class SeriesDetailViewModel(private val seriesRepository: SeriesRepository, priv
                 val recommendedMedia: Flow<PagingData<MediaIndex>> = Pager(PagingConfig(pageSize = 20)) {
                     RecommendedSeriesPagingSource(seriesRepository, seriesId)
                 }.flow.cachedIn(viewModelScope)
-                val seriesDetailListState = SeriesDetailListState(seriesDetail = seriesDetail, images = images, credits = credits, videos = videos, seasonDetail = season, recommendedMedia = recommendedMedia)
+                val seriesDetailListState = SeriesDetailListState(
+                    seriesDetail = seriesDetail,
+                    images = images,
+                    credits = credits,
+                    videos = videos,
+                    seasonDetail = season,
+                    recommendedMedia = recommendedMedia,
+                )
                 _uiListSeriesDetailState.update { seriesDetailListState }
                 seriesDetailApiState = SeriesDetailApiState.Success
             } catch (e: Exception) {
@@ -55,6 +84,11 @@ class SeriesDetailViewModel(private val seriesRepository: SeriesRepository, priv
         }
     }
 
+    /**
+     * Fetches the details of a specific season for the current series.
+     *
+     * @param seasonNumber Season number to fetch details for.
+     */
     fun getSeason(seasonNumber: Int) {
         viewModelScope.launch {
             val season = seasonRepository.getSeasonDetail(currentId, seasonNumber)
@@ -62,13 +96,20 @@ class SeriesDetailViewModel(private val seriesRepository: SeriesRepository, priv
         }
     }
 
+    /**
+     * Updates the favorite status of the current series.
+     */
     fun updateFavorite() {
         viewModelScope.launch {
             seriesRepository.updateFavorite(currentId, !_uiListSeriesDetailState.value.seriesDetail.isFavorite)
             _uiListSeriesDetailState.update { it.copy(seriesDetail = it.seriesDetail.copy(isFavorite = !_uiListSeriesDetailState.value.seriesDetail.isFavorite)) }
         }
     }
+
     companion object {
+        /**
+         * Factory for creating instances of [SeriesDetailViewModel].
+         */
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = (this[APPLICATION_KEY] as MovieAndSeriesApplication)

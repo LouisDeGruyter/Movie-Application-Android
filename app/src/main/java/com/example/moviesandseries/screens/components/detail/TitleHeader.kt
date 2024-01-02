@@ -19,6 +19,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.moviesandseries.R
 
+/**
+ * Composable function to display the title header with additional information like release date, runtime, and number of seasons.
+ *
+ * @param modifier Modifier for customizing the layout.
+ * @param title Title of the movie or series.
+ * @param releaseDate Release date of the movie or series.
+ * @param runtime Runtime of the movie or series in minutes.
+ * @param numberOfSeasons Number of seasons for series.
+ */
 @Composable
 fun TitleHeader(
     modifier: Modifier = Modifier,
@@ -44,7 +53,6 @@ fun TitleHeader(
             fontSize = 28.sp,
             textAlign = TextAlign.Center,
             fontFamily = FontFamily(Font(R.font.sourcesanspro_black)),
-
         )
 
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {

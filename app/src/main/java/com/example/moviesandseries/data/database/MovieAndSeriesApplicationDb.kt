@@ -12,7 +12,6 @@ import com.example.moviesandseries.data.database.converters.ProductionCountryCon
 import com.example.moviesandseries.data.database.converters.SpokenLanguageConverter
 import com.example.moviesandseries.data.database.converters.StringConverter
 import com.example.moviesandseries.data.database.converters.movie.CollectionConverter
-import com.example.moviesandseries.data.database.converters.movie.MovieConverter
 import com.example.moviesandseries.data.database.converters.series.CreatedByConverter
 import com.example.moviesandseries.data.database.converters.series.CreditConverter
 import com.example.moviesandseries.data.database.converters.series.EpisodeConverter
@@ -45,9 +44,9 @@ import com.example.moviesandseries.data.database.db.series.DbSeries
 )
 @TypeConverters(
     CollectionConverter::class, GenreConverter::class, ProductionCompanyConverter::class,
-    ProductionCountryConverter::class, SpokenLanguageConverter::class, MovieConverter::class,
-    CreatedByConverter::class, CreditConverter::class, EpisodeConverter::class,
-    NetworkConverter::class, SeasonConverter::class, IntConverter::class, StringConverter::class
+    ProductionCountryConverter::class, SpokenLanguageConverter::class,
+    CreatedByConverter::class, EpisodeConverter::class,
+    NetworkConverter::class, SeasonConverter::class, IntConverter::class, StringConverter::class, CreditConverter::class
 )
 abstract class MovieAndSeriesApplicationDb : RoomDatabase() {
 

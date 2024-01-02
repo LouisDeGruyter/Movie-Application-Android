@@ -10,6 +10,13 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Ful
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
+/**
+ * Composable function for displaying a YouTube video using the Android YouTubePlayer library.
+ *
+ * @param videoId YouTube video ID.
+ * @param modifier Modifier for customizing the layout.
+ * @param onFullscreen Callback to be invoked when the video enters fullscreen mode.
+ */
 @Composable
 fun YoutubeScreen(
     videoId: String,

@@ -20,10 +20,21 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
 import com.example.moviesandseries.R
 
+/**
+ * Composable function to display an expandable description with a catchphrase.
+ *
+ * @param modifier Modifier for customizing the layout.
+ * @param catchPhrase The catchphrase text to be displayed.
+ * @param description The description text to be displayed.
+ */
 @Composable
 fun ExpandableDescription(modifier: Modifier = Modifier, catchPhrase: String, description: String) {
+    // State to track the expanded state of the description
     var expanded by remember { mutableStateOf(false) }
+
+    // Display catchphrase and description in a column
     Column(modifier = modifier) {
+        // Display catchphrase with a bold font
         Text(
             text = catchPhrase,
             style = TextStyle(
@@ -33,6 +44,8 @@ fun ExpandableDescription(modifier: Modifier = Modifier, catchPhrase: String, de
                 textAlign = TextAlign.Start,
             ),
         )
+
+        // Display description with optional max lines and clickable behavior for expanding/collapsing
         Text(
             text = description,
             maxLines = if (expanded) Int.MAX_VALUE else 3,

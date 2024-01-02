@@ -48,6 +48,12 @@ import com.example.moviesandseries.R
 import com.example.moviesandseries.domain.ProductionCompany
 import com.example.moviesandseries.network.ApiEndpoints
 
+/**
+ * Composable function to display production companies with their logo and name.
+ *
+ * @param modifier Modifier for customizing the layout.
+ * @param productionCompanies List of production companies to be displayed.
+ */
 @Composable
 fun ProductionCompanies(modifier: Modifier = Modifier, productionCompanies: List<ProductionCompany?>) {
     Column(
@@ -76,6 +82,12 @@ fun ProductionCompanies(modifier: Modifier = Modifier, productionCompanies: List
     }
 }
 
+/**
+ * Composable function to display a card for a production company with its logo and name.
+ *
+ * @param modifier Modifier for customizing the layout.
+ * @param productionCompany Production company details to be displayed.
+ */
 @Composable
 fun ProductionCompanyCard(modifier: Modifier = Modifier, productionCompany: ProductionCompany) {
     var expanded by remember { mutableStateOf(false) }
@@ -86,8 +98,11 @@ fun ProductionCompanyCard(modifier: Modifier = Modifier, productionCompany: Prod
                 .aspectRatio(1f),
             shape = RoundedCornerShape(12.dp),
             elevation = CardDefaults.cardElevation(12.dp),
-            colors = CardDefaults.elevatedCardColors(containerColor = if (isSystemInDarkTheme()) Color.DarkGray else MaterialTheme.colorScheme.primary),
+            colors = CardDefaults.elevatedCardColors(
+                containerColor = if (isSystemInDarkTheme()) Color.DarkGray else MaterialTheme.colorScheme.primary
+            ),
         ) {
+            // Display the production company's image using ProductionCompanyImage composable
             ProductionCompanyImage(
                 imagePath = productionCompany.logoPath,
                 name = productionCompany.name,
@@ -111,21 +126,32 @@ fun ProductionCompanyCard(modifier: Modifier = Modifier, productionCompany: Prod
     }
 }
 
+/**
+ * Composable function to display the image of a production company.
+ *
+ * @param imagePath Logo path of the production company.
+ * @param name Name of the production company for content description.
+ */
 @Composable
 fun ProductionCompanyImage(imagePath: String, name: String) {
+    // Use rememberAsyncImagePainter to load and display the image asynchronously
     var painter = rememberAsyncImagePainter(
         model = "",
         error = rememberVectorPainter(image = Icons.Filled.Cases),
     )
+    // If the imagePath is not empty, load the image using Coil library
     if (imagePath.isNotEmpty()) {
         painter = rememberAsyncImagePainter(
-            model = ImageRequest.Builder(LocalContext.current).data(ApiEndpoints.Poster + imagePath)
-                .crossfade(500).build(),
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(ApiEndpoints.Poster + imagePath)
+                .crossfade(500)
+                .build(),
             error = rememberVectorPainter(image = Icons.Filled.BrokenImage),
             placeholder = rememberVectorPainter(image = Icons.Filled.Cases),
         )
     }
 
+    // Display the image using the Image composable
     Image(
         painter = painter,
         contentDescription = name,

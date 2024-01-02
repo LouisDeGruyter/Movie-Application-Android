@@ -19,6 +19,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.example.moviesandseries.screens.components.index.mediaCard.RatingComposable
 
+/**
+ * Composable function for displaying a loading card with a placeholder image.
+ */
 @Composable
 fun LoadingCard() {
     ElevatedCard(shape = RoundedCornerShape(12.dp), colors = CardDefaults.cardColors(MaterialTheme.colorScheme.secondary)) {

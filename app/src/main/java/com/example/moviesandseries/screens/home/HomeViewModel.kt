@@ -24,9 +24,15 @@ import com.example.moviesandseries.repository.MovieRepository
 import com.example.moviesandseries.repository.SeriesRepository
 import kotlinx.coroutines.flow.Flow
 
+/**
+ * ViewModel for the Home screen.
+ *
+ * @param movieRepository Repository for movie-related data.
+ * @param seriesRepository Repository for series-related data.
+ */
 class HomeViewModel(private val movieRepository: MovieRepository, private val seriesRepository: SeriesRepository) : ViewModel() {
 
-    // movie pagers
+    // Movie pagers
     val moviesInTheaterPager: Flow<PagingData<MediaIndex>> = Pager(PagingConfig(pageSize = 20)) {
         MoviesInTheaterPagingSource(movieRepository)
     }.flow.cachedIn(viewModelScope)
@@ -43,7 +49,7 @@ class HomeViewModel(private val movieRepository: MovieRepository, private val se
         UpcomingMoviesPagingSource(movieRepository)
     }.flow.cachedIn(viewModelScope)
 
-    // series pagers
+    // Series pagers
     val popularSeriesPagingSource: Flow<PagingData<MediaIndex>> = Pager(PagingConfig(pageSize = 20)) {
         PopularSeriesPagingSource(seriesRepository)
     }.flow.cachedIn(viewModelScope)
@@ -61,6 +67,9 @@ class HomeViewModel(private val movieRepository: MovieRepository, private val se
     }.flow.cachedIn(viewModelScope)
 
     companion object {
+        /**
+         * Factory for creating the HomeViewModel.
+         */
         val Factory: ViewModelProvider.Factory = viewModelFactory {
             initializer {
                 val application = (this[APPLICATION_KEY] as MovieAndSeriesApplication)

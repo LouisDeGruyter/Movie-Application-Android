@@ -16,11 +16,38 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import com.example.moviesandseries.screens.components.TwoByThreeAspectRatioImage
 
+/**
+ * Composable function for displaying a media card with an image, title, and rating.
+ *
+ * @param modifier Modifier for customizing the layout.
+ * @param title Title of the media.
+ * @param imagePath Path to the image of the media.
+ * @param rating Rating of the media.
+ * @param onMediaClick Callback to be invoked when the media card is clicked.
+ */
 @Composable
-fun MediaCard(modifier: Modifier = Modifier, title: String, imagePath: String, rating: Double, onMediaClick: () -> Unit = {}) {
+fun MediaCard(
+    modifier: Modifier = Modifier,
+    title: String,
+    imagePath: String,
+    rating: Double,
+    onMediaClick: () -> Unit = {},
+) {
     val interactionSource = remember { MutableInteractionSource() }
-    ElevatedCard(modifier = modifier.clickable(indication = null, interactionSource = interactionSource, onClick = { onMediaClick() }).aspectRatio(2 / 3f), shape = RoundedCornerShape(12.dp), elevation = CardDefaults.cardElevation(12.dp), colors = CardDefaults.cardColors(MaterialTheme.colorScheme.secondary)) {
+    ElevatedCard(
+        modifier = modifier
+            .clickable(
+                indication = null,
+                interactionSource = interactionSource,
+                onClick = { onMediaClick() },
+            )
+            .aspectRatio(2 / 3f),
+        shape = RoundedCornerShape(12.dp),
+        elevation = CardDefaults.cardElevation(12.dp),
+        colors = CardDefaults.cardColors(MaterialTheme.colorScheme.secondary),
+    ) {
         Box {
+            // Assuming RatingComposable is a custom composable for displaying the rating.
             RatingComposable(rating = rating, modifier = Modifier.zIndex(2f).fillMaxWidth())
             TwoByThreeAspectRatioImage(imagePath = imagePath, title = title)
         }
