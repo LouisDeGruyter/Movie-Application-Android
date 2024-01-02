@@ -33,8 +33,22 @@ import com.example.moviesandseries.data.database.db.series.DbNetwork
 import com.example.moviesandseries.data.database.db.series.DbSeason
 import com.example.moviesandseries.data.database.db.series.DbSeries
 
-@Database(entities = [DbCollection::class, DbGenre::class, DbProductionCompany::class, DbProductionCountry::class, DbSpokenLanguage::class, DbMovie::class, DbCreatedBy::class, DbCredit::class, DbEpisode::class, DbNetwork::class, DbSeason::class, DbSeries::class], version = 3)
-@TypeConverters(CollectionConverter::class, GenreConverter::class, ProductionCompanyConverter::class, ProductionCountryConverter::class, SpokenLanguageConverter::class, MovieConverter::class, CreatedByConverter::class, CreditConverter::class, EpisodeConverter::class, NetworkConverter::class, SeasonConverter::class, IntConverter::class, StringConverter::class)
+/**
+ * Represents the Room database for the Movie and Series application, containing tables for various entities.
+ *
+ * @property movieDao Provides access to operations related to movies in the database.
+ * @property seriesDao Provides access to operations related to series in the database.
+ */
+@Database(
+    entities = [DbCollection::class, DbGenre::class, DbProductionCompany::class, DbProductionCountry::class, DbSpokenLanguage::class, DbMovie::class, DbCreatedBy::class, DbCredit::class, DbEpisode::class, DbNetwork::class, DbSeason::class, DbSeries::class],
+    version = 3
+)
+@TypeConverters(
+    CollectionConverter::class, GenreConverter::class, ProductionCompanyConverter::class,
+    ProductionCountryConverter::class, SpokenLanguageConverter::class, MovieConverter::class,
+    CreatedByConverter::class, CreditConverter::class, EpisodeConverter::class,
+    NetworkConverter::class, SeasonConverter::class, IntConverter::class, StringConverter::class
+)
 abstract class MovieAndSeriesApplicationDb : RoomDatabase() {
 
     abstract fun movieDao(): MovieDao
@@ -44,6 +58,12 @@ abstract class MovieAndSeriesApplicationDb : RoomDatabase() {
         @Volatile
         private var Instance: MovieAndSeriesApplicationDb? = null
 
+        /**
+         * Gets an instance of the Room database.
+         *
+         * @param context The application context.
+         * @return The Room database instance.
+         */
         fun getDatabase(context: Context): MovieAndSeriesApplicationDb {
             return Instance ?: synchronized(this) {
                 Room.databaseBuilder(

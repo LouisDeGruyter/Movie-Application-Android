@@ -22,10 +22,23 @@ import com.example.moviesandseries.R
 import com.example.moviesandseries.domain.MediaIndex
 import com.example.moviesandseries.screens.components.index.mediaCard.MediaCard
 
-
+/**
+ * Composable function to display a list of recommended media items.
+ *
+ * @param recommendedMedia LazyPagingItems representing the recommended media items.
+ * @param onMovieClick Callback for handling movie item clicks.
+ * @param onSeriesClick Callback for handling series item clicks.
+ */
 @Composable
-fun DisplayRecommended(recommendedMedia: LazyPagingItems<MediaIndex>, onMovieClick: (movieId: Int) -> Unit, onSeriesClick: (seriesId: Int) -> Unit) {
+fun DisplayRecommended(
+    recommendedMedia: LazyPagingItems<MediaIndex>,
+    onMovieClick: (movieId: Int) -> Unit,
+    onSeriesClick: (seriesId: Int) -> Unit
+) {
+    // Return if there are no recommended media items
     if (recommendedMedia.itemCount == 0) return
+
+    // Check the loading state and display appropriate content
     when (recommendedMedia.loadState.refresh) {
         is LoadState.Loading -> {
             Text(text = "Loading")
@@ -36,11 +49,13 @@ fun DisplayRecommended(recommendedMedia: LazyPagingItems<MediaIndex>, onMovieCli
         }
 
         else -> {
+            // Display the list of recommended media items in a column
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
                 horizontalAlignment = Alignment.End,
             ) {
+                // Display the section title
                 Text(
                     text = "Recommended",
                     fontWeight = FontWeight.SemiBold,
@@ -48,16 +63,21 @@ fun DisplayRecommended(recommendedMedia: LazyPagingItems<MediaIndex>, onMovieCli
                     fontFamily = FontFamily(Font(R.font.sourcesanspro_black)),
                     modifier = Modifier.fillMaxWidth(0.95f),
                 )
+
+                // Display the recommended media items in a LazyRow
                 LazyRow(
                     content = {
                         items(recommendedMedia.itemCount) { index ->
                             recommendedMedia[index]?.let {
+                                // Add space between media items
                                 Spacer(modifier = Modifier.width(18.dp))
+                                // Use the MediaCard composable to display each media item
                                 MediaCard(
                                     title = it.title,
                                     imagePath = it.posterPath,
                                     rating = it.voteAverage,
                                     onMediaClick = {
+                                        // Determine the media type and invoke the appropriate click callback
                                         if (it.mediaType == "movie") {
                                             onMovieClick(it.id)
                                         } else {

@@ -50,7 +50,7 @@ class SeriesDetailViewModel(private val seriesRepository: SeriesRepository, priv
                 _uiListSeriesDetailState.update { seriesDetailListState }
                 seriesDetailApiState = SeriesDetailApiState.Success
             } catch (e: Exception) {
-                SeriesDetailApiState.Error(e.message ?: "An unknown error occured")
+                SeriesDetailApiState.Error(e.message ?: "An unknown error occurred")
             }
         }
     }

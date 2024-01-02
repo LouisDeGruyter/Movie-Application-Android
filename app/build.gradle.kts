@@ -52,8 +52,9 @@ android {
             listOf(
                 "META-INF/LICENSE.md",
                 "META-INF/LICENSE-notice.md",
-            )
-        )}
+            ),
+        )
+    }
 }
 
 dependencies {
@@ -151,7 +152,7 @@ dependencies {
     // responsive layout
     implementation("androidx.compose.material3:material3-window-size-class")
 
-    //dokka
+    // dokka
     dokkaPlugin("org.jetbrains.dokka:mathjax-plugin:1.9.10")
 
     // Is applied for the single-module dokkaHtml task only

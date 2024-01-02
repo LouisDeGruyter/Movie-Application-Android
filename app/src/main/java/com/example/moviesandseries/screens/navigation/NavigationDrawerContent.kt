@@ -2,7 +2,6 @@ package com.example.moviesandseries.screens.navigation
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.NavigationDrawerItemDefaults
@@ -15,7 +14,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
 import com.example.moviesandseries.R
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NavigationDrawerContent(
     selectedDestination: NavDestination?,

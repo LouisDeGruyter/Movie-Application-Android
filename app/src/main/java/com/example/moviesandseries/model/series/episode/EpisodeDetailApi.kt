@@ -6,6 +6,25 @@ import com.example.moviesandseries.model.credits.asDomainObject
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
+/**
+ * API representation of detailed information about a TV series episode.
+ *
+ * @property airDate The air date of the episode.
+ * @property crew List of crew members associated with the episode.
+ * @property episodeNumber The episode number.
+ * @property episodeType The type of episode.
+ * @property guestStars List of guest stars in the episode.
+ * @property id The unique identifier of the episode.
+ * @property name The name of the episode.
+ * @property overview A brief overview or synopsis of the episode.
+ * @property productionCode The production code of the episode.
+ * @property runtime The duration of the episode in minutes.
+ * @property seasonNumber The season number to which the episode belongs.
+ * @property showId The unique identifier of the TV show to which the episode belongs.
+ * @property stillPath The path to the still image of the episode.
+ * @property voteAverage The average vote score of the episode.
+ * @property voteCount The total number of votes received by the episode.
+ */
 @JsonClass(generateAdapter = true)
 data class EpisodeDetailApi(
     @Json(name = "air_date")
@@ -40,6 +59,9 @@ data class EpisodeDetailApi(
     var voteCount: Int = 0,
 )
 
+/**
+ * Extension function to convert [EpisodeDetailApi] to [Episode] domain object.
+ */
 fun EpisodeDetailApi.asDomainObject(): Episode {
     return Episode(
         airDate = airDate,

@@ -17,6 +17,42 @@ import com.example.moviesandseries.model.series.season.asDomainObject
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
+/**
+ * API representation of detailed information about a TV series.
+ *
+ * @property adult Indicates if the series is intended for an adult audience.
+ * @property backdropPath The path to the backdrop image of the series.
+ * @property createdBy List of creators or contributors to the series.
+ * @property episodeRunTime List of runtimes of episodes in the series.
+ * @property firstAirDate The first air date of the series.
+ * @property genres List of genres associated with the series.
+ * @property homepage The homepage of the series.
+ * @property id The unique identifier of the series.
+ * @property inProduction Indicates if the series is currently in production.
+ * @property languages List of languages used in the series.
+ * @property lastAirDate The last air date of the series.
+ * @property lastEpisodeToAir The details of the last episode aired.
+ * @property name The name of the series.
+ * @property networks List of networks associated with the series.
+ * @property nextEpisodeToAir The details of the next episode to air.
+ * @property numberOfEpisodes The total number of episodes in the series.
+ * @property numberOfSeasons The total number of seasons in the series.
+ * @property originCountry List of origin countries for the series.
+ * @property originalLanguage The original language of the series.
+ * @property originalName The original name of the series.
+ * @property overview A brief overview or synopsis of the series.
+ * @property popularity The popularity score of the series.
+ * @property posterPath The path to the poster image of the series.
+ * @property productionCompanies List of production companies involved in the series.
+ * @property productionCountries List of production countries for the series.
+ * @property seasons List of seasons in the series.
+ * @property spokenLanguages List of spoken languages in the series.
+ * @property status The status of the series.
+ * @property tagline The tagline of the series.
+ * @property type The type of the series.
+ * @property voteAverage The average vote score of the series.
+ * @property voteCount The total number of votes received by the series.
+ */
 @JsonClass(generateAdapter = true)
 data class SeriesDetailApi(
     @Json(name = "adult")
@@ -84,6 +120,10 @@ data class SeriesDetailApi(
     @Json(name = "vote_count")
     val voteCount: Int,
 )
+
+/**
+ * Extension function to convert [SeriesDetailApi] to [Series] domain object.
+ */
 fun SeriesDetailApi.asDomainObject(): Series {
     return Series(
         adult = adult ?: false,

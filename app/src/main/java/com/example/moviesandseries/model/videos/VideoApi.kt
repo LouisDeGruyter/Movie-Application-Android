@@ -3,6 +3,20 @@ package com.example.moviesandseries.model.videos
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
+/**
+ * API representation of a video associated with a movie or series.
+ *
+ * @property id The unique identifier of the video.
+ * @property iso31661 The ISO 3166-1 country code for the video.
+ * @property iso6391 The ISO 639-1 language code for the video.
+ * @property key The unique key for accessing the video on its respective platform.
+ * @property name The name or title of the video.
+ * @property official Indicates if the video is official.
+ * @property publishedAt The date when the video was published.
+ * @property site The platform or site where the video is hosted.
+ * @property size The size of the video.
+ * @property type The type or category of the video.
+ */
 @JsonClass(generateAdapter = true)
 data class VideoApi(
     @Json(name = "id")
@@ -26,6 +40,10 @@ data class VideoApi(
     @Json(name = "type")
     var type: String = "",
 )
+
+/**
+ * Extension function to convert [VideoApi] to [Video] domain object.
+ */
 fun VideoApi.asDomainObject(): Video {
     return Video(
         id = id,

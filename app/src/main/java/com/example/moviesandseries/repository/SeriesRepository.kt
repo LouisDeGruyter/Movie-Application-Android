@@ -24,26 +24,153 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import java.net.SocketTimeoutException
 
+/**
+ * Repository interface for managing TV series data.
+ */
 interface SeriesRepository {
+    /**
+     * Retrieves a container of TV series data.
+     *
+     * @param page The page number to retrieve.
+     * @return A [SeriesContainer] object containing TV series data.
+     */
     suspend fun getSeriesContainer(page: Int): SeriesContainer
+
+    /**
+     * Retrieves a list of TV series.
+     *
+     * @param page The page number to retrieve.
+     * @return A list of [Series] objects.
+     */
     suspend fun getSeries(page: Int): List<Series>
+
+    /**
+     * Retrieves details of a TV series.
+     *
+     * @param seriesId The ID of the TV series.
+     * @return A [Flow] emitting the [Series] object with the specified ID, or null if not found.
+     */
     fun getSeriesDetail(seriesId: Int): Flow<Series>
+
+    /**
+     * Retrieves credits for a TV series.
+     *
+     * @param seriesId The ID of the TV series.
+     * @return A [CreditsContainer] object containing credits data.
+     */
     suspend fun getSeriesCredits(seriesId: Int): CreditsContainer
 
+    /**
+     * Retrieves images for a TV series.
+     *
+     * @param seriesId The ID of the TV series.
+     * @return An [ImagesContainer] object containing images data.
+     */
     suspend fun getSeriesImages(seriesId: Int): ImagesContainer
+
+    /**
+     * Retrieves similar TV series.
+     *
+     * @param seriesId The ID of the TV series.
+     * @param page The page number to retrieve.
+     * @return A [SeriesContainer] object containing similar TV series data.
+     */
     suspend fun getSimilarSeries(seriesId: Int, page: Int): SeriesContainer
+
+    /**
+     * Retrieves recommended TV series.
+     *
+     * @param seriesId The ID of the TV series.
+     * @param page The page number to retrieve.
+     * @return A [RecommendationContainer] object containing recommended TV series data.
+     */
     suspend fun getRecommendedSeries(seriesId: Int, page: Int): RecommendationContainer
+
+    /**
+     * Retrieves reviews for a TV series.
+     *
+     * @param seriesId The ID of the TV series.
+     * @param page The page number to retrieve.
+     * @return A [ReviewContainer] object containing reviews data.
+     */
     suspend fun getSeriesReviews(seriesId: Int, page: Int): ReviewContainer
+
+    /**
+     * Retrieves popular TV series.
+     *
+     * @param page The page number to retrieve.
+     * @return A [SeriesContainer] object containing popular TV series data.
+     */
     suspend fun getSeriesPopular(page: Int): SeriesContainer
+
+    /**
+     * Retrieves top-rated TV series.
+     *
+     * @param page The page number to retrieve.
+     * @return A [SeriesContainer] object containing top-rated TV series data.
+     */
     suspend fun getSeriesTopRated(page: Int): SeriesContainer
+
+    /**
+     * Retrieves currently airing TV series.
+     *
+     * @param page The page number to retrieve.
+     * @return A [SeriesContainer] object containing currently airing TV series data.
+     */
     suspend fun getSeriesOnTheAir(page: Int): SeriesContainer
+
+    /**
+     * Retrieves TV series airing today.
+     *
+     * @param page The page number to retrieve.
+     * @return A [SeriesContainer] object containing TV series airing today data.
+     */
     suspend fun getSeriesAiringToday(page: Int): SeriesContainer
+
+    /**
+     * Retrieves videos for a TV series.
+     *
+     * @param seriesId The ID of the TV series.
+     * @return A [VideoContainer] object containing videos data.
+     */
     suspend fun getSeriesVideos(seriesId: Int): VideoContainer
+
+    /**
+     * Refreshes the TV series data in the repository.
+     *
+     * @param seriesId The ID of the TV series to refresh.
+     */
     suspend fun refreshSeries(seriesId: Int)
-    suspend fun updateFavorite(currentId: Int, b: Boolean)
+
+    /**
+     * Inserts a TV series into the repository.
+     *
+     * @param series The [Series] object to be inserted.
+     */
     suspend fun insertSeries(series: Series)
+
+    /**
+     * Updates the favorite status of a TV series in the repository.
+     *
+     * @param currentId The ID of the TV series.
+     * @param b The new favorite status.
+     */
+    suspend fun updateFavorite(currentId: Int, b: Boolean)
+
+    /**
+     * Retrieves a [Flow] of all favorite TV series in the repository.
+     *
+     * @return A [Flow] emitting a list of [Series] objects.
+     */
     fun getFavoriteSeries(): Flow<List<Series>>
 }
+
+/**
+ * Implementation of [SeriesRepository] for caching TV series data.
+ *
+ * @param seriesApiService The API service for retrieving TV series data.
+ * @param seriesDao The DAO for accessing TV series data in the local database.
+ */
 class NetworkSeriesRepository(private val seriesApiService: SeriesApiService, private val seriesDao: SeriesDao) : SeriesRepository {
     override suspend fun getSeriesContainer(page: Int): SeriesContainer = try {
         seriesApiService.getSeriesContainer(page).asDomainObject()

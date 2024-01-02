@@ -43,14 +43,10 @@ import com.example.moviesandseries.screens.components.detail.FavoriteButton
 import com.example.moviesandseries.screens.components.detail.Genres
 import com.example.moviesandseries.screens.components.detail.ProductionCompanies
 import com.example.moviesandseries.screens.components.detail.TitleHeader
+import com.example.moviesandseries.screens.components.detail.YoutubeScreen
 import com.example.moviesandseries.screens.components.index.mediaCard.MediaCard
-import com.example.moviesandseries.screens.components.videoplayer.YoutubeScreen
+import com.example.moviesandseries.util.ComponentSizes
 import com.example.moviesandseries.util.MoviesAndSeriesNavigationType
-
-data class ComponentSizes(
-    val moviePosterWidth: Float = 0.5f,
-    val movieBackdropHeight: Int = 300,
-)
 
 @Composable
 fun MovieDetailsScreen(movieId: String?, movieDetailViewModel: MovieDetailViewModel = viewModel(factory = MovieDetailViewModel.Factory), backButton: @Composable (Modifier) -> Unit, onMovieClick: (movieId: Int) -> Unit, onSeriesClick: (seriesId: Int) -> Unit, navigationType: MoviesAndSeriesNavigationType) {
@@ -136,7 +132,12 @@ fun DisplayMovieDetail(backButton: @Composable (modifier: Modifier) -> Unit, onM
             }
 
             Column(modifier = Modifier.constrainAs(movieContent) { top.linkTo(mediaCard.bottom); absoluteLeft.linkTo(parent.absoluteLeft); absoluteRight.linkTo(parent.absoluteRight) }, verticalArrangement = Arrangement.spacedBy(24.dp), horizontalAlignment = Alignment.CenterHorizontally) {
-                TitleHeader(modifier = Modifier.fillMaxWidth(0.9f), title = movie.title, releaseDate = movie.releaseDate, runtime = movie.runtime,)
+                TitleHeader(
+                    modifier = Modifier.fillMaxWidth(0.9f),
+                    title = movie.title,
+                    releaseDate = movie.releaseDate,
+                    runtime = movie.runtime,
+                )
                 Genres(genres = movie.genres.map { it.name }, modifier = Modifier.fillMaxWidth(0.9f))
                 ExpandableDescription(catchPhrase = movie.tagline, description = movie.overview, modifier = Modifier.fillMaxWidth(0.9f))
                 ActorList(actors = credits.cast)

@@ -1,4 +1,4 @@
-package com.example.moviesandseries.screens.components.videoplayer
+package com.example.moviesandseries.screens.components.detail
 
 import android.view.View
 import androidx.compose.runtime.Composable

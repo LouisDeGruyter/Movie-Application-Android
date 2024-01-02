@@ -1,10 +1,28 @@
 package com.example.moviesandseries.model.recommendations
 
-
 import com.example.moviesandseries.domain.MediaIndex
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
+/**
+ * API representation of a media item in recommendations.
+ *
+ * @property adult Indicates if the media item is intended for an adult audience.
+ * @property backdropPath The path to the backdrop image of the media item.
+ * @property genreIds List of genre IDs associated with the media item.
+ * @property id The unique identifier of the media item.
+ * @property mediaType The type of media (e.g., movie, TV show).
+ * @property originalLanguage The original language of the media item.
+ * @property originalTitle The original title of the media item.
+ * @property overview A brief overview or synopsis of the media item.
+ * @property popularity The popularity score of the media item.
+ * @property posterPath The path to the poster image of the media item.
+ * @property releaseDate The release date of the media item.
+ * @property title The title of the media item.
+ * @property video Indicates if the media item has a video.
+ * @property voteAverage The average vote score of the media item.
+ * @property voteCount The total number of votes received by the media item.
+ */
 @JsonClass(generateAdapter = true)
 data class RecommendationMediaApi(
     @Json(name = "adult")
@@ -38,6 +56,10 @@ data class RecommendationMediaApi(
     @Json(name = "vote_count")
     val voteCount: Int
 )
+
+/**
+ * Extension function to convert [RecommendationMediaApi] to [MediaIndex] domain object.
+ */
 fun RecommendationMediaApi.asDomainObject(): MediaIndex {
     return MediaIndex(
         adult = adult,

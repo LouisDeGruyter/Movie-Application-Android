@@ -1,30 +1,15 @@
 package com.example.moviesandseries.data.database.converters.movie
+
 import androidx.room.TypeConverter
 import com.example.moviesandseries.data.database.db.movies.DbMovie
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
+/**
+ * Type converter for converting DbMovie objects to and from JSON strings.
+ */
 class MovieConverter {
+    // Create a Gson instance for JSON serialization and deserialization
     private val gson = Gson()
 
-    @TypeConverter
-    fun fromDbMovie(dbMovie: DbMovie): String {
-        return gson.toJson(dbMovie)
-    }
-
-    @TypeConverter
-    fun toDbMovie(json: String): DbMovie {
-        return gson.fromJson(json, DbMovie::class.java)
-    }
-
-    @TypeConverter
-    fun fromDbMovieList(dbMovieList: List<DbMovie>): String {
-        return gson.toJson(dbMovieList)
-    }
-
-    @TypeConverter
-    fun toDbMovieList(json: String): List<DbMovie> {
-        val listType = object : TypeToken<List<DbMovie>>() {}.type
-        return gson.fromJson(json, listType)
-    }
 }

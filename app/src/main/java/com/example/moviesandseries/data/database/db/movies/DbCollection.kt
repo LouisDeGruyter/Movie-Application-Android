@@ -6,6 +6,15 @@ import androidx.room.TypeConverters
 import com.example.moviesandseries.data.database.converters.movie.MovieConverter
 import com.example.moviesandseries.domain.Collection
 
+/**
+ * Represents a database entity for collections associated with movies.
+ *
+ * @property backdropPath The backdrop path for the collection.
+ * @property id The unique identifier for the collection (primary key).
+ * @property name The name of the collection.
+ * @property overview The overview or description of the collection.
+ * @property posterPath The poster path for the collection.
+ */
 @Entity(tableName = "collections")
 @TypeConverters(MovieConverter::class)
 data class DbCollection(
@@ -17,6 +26,11 @@ data class DbCollection(
     var posterPath: String = ""
 )
 
+/**
+ * Extension function to convert a [Collection] domain object to a [DbCollection] database object.
+ *
+ * @return The corresponding [DbCollection] object.
+ */
 fun Collection.asDbObject(): DbCollection = DbCollection(
     backdropPath = this.backdropPath,
     id = this.id,
@@ -25,6 +39,11 @@ fun Collection.asDbObject(): DbCollection = DbCollection(
     posterPath = this.posterPath
 )
 
+/**
+ * Extension function to convert a [DbCollection] database object to a [Collection] domain object.
+ *
+ * @return The corresponding [Collection] object.
+ */
 fun DbCollection.asDomainObject(): Collection =
     Collection(
         backdropPath = backdropPath,
@@ -35,5 +54,9 @@ fun DbCollection.asDomainObject(): Collection =
         posterPath = posterPath
     )
 
+/**
+ * Extension function to convert a list of [DbCollection] database objects to a list of [Collection] domain objects.
+ *
+ * @return The corresponding list of [Collection] objects.
+ */
 fun List<DbCollection>.asDomainObject() = this.map { it.asDomainObject() }
-

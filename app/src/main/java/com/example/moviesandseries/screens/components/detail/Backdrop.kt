@@ -28,6 +28,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.moviesandseries.domain.images.ImagesContainer
 
+/**
+ * Composable function to display a backdrop with an optional carousel of images.
+ *
+ * @param modifier Modifier for the entire Backdrop.
+ * @param images [ImagesContainer] object containing backdrop images.
+ * @param title Title to be displayed on the backdrop.
+ * @param onCarouselClick Callback function for carousel item click.
+ * @param fadeIn Boolean to determine if the backdrop should fade in.
+ */
 @Composable
 fun Backdrop(modifier: Modifier = Modifier, images: ImagesContainer, title: String, onCarouselClick: () -> Unit, fadeIn: Boolean = true) {
     Card(
@@ -48,6 +57,13 @@ fun Backdrop(modifier: Modifier = Modifier, images: ImagesContainer, title: Stri
     }
 }
 
+/**
+ * Composable function to display a carousel of backdrop images.
+ *
+ * @param images [ImagesContainer] object containing backdrop images.
+ * @param title Title to be displayed on the backdrop.
+ * @param onCarouselClick Callback function for carousel item click.
+ */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun BackdropCarousel(images: ImagesContainer, title: String, onCarouselClick: (Int) -> Unit) {

@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun BackButton(modifier: Modifier = Modifier, onBackPressed: () -> Unit) {
-    IconButton(onClick = { onBackPressed() }, modifier = modifier) {
+    IconButton(onClick = onBackPressed, modifier = modifier) {
         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back Button", modifier = Modifier.fillMaxSize())
     }
 }

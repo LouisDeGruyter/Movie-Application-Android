@@ -6,7 +6,19 @@ import com.example.moviesandseries.domain.MediaIndex
 import com.example.moviesandseries.domain.movie.asMediaIndexObject
 import com.example.moviesandseries.repository.MovieRepository
 
+/**
+ * [PagingSource] implementation for loading paginated movie data.
+ *
+ * @param movieRepository The repository for fetching movie data.
+ */
 class MoviePagingSource(private val movieRepository: MovieRepository) : PagingSource<Int, MediaIndex>() {
+
+    /**
+     * Load function that is called to load a chunk of data based on the provided [params].
+     *
+     * @param params Parameters for loading data, including the requested page key.
+     * @return [LoadResult<Int, MediaIndex>] containing the loaded data, with optional adjacent keys.
+     */
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MediaIndex> {
         return try {
             val page = params.key ?: 1
@@ -23,6 +35,12 @@ class MoviePagingSource(private val movieRepository: MovieRepository) : PagingSo
         }
     }
 
+    /**
+     * Returns the key for refreshing the data based on the current [state].
+     *
+     * @param state The current [PagingState].
+     * @return The key used to refresh the data.
+     */
     override fun getRefreshKey(state: PagingState<Int, MediaIndex>): Int? {
         // Try to find the page key of the closest page to anchorPosition from
         // either the prevKey or the nextKey; you need to handle nullability

@@ -37,6 +37,12 @@ import com.example.moviesandseries.R
 import com.example.moviesandseries.domain.credits.Credit
 import com.example.moviesandseries.screens.components.TwoByThreeAspectRatioImage
 
+/**
+ * Composable function to display a list of actors in a column layout.
+ *
+ * @param modifier Modifier for the entire ActorList.
+ * @param actors List of [Credit] objects representing actors.
+ */
 @Composable
 fun ActorList(modifier: Modifier = Modifier, actors: List<Credit?>) {
     val actorsSorted = actors.sortedBy { it?.order }
@@ -66,6 +72,12 @@ fun ActorList(modifier: Modifier = Modifier, actors: List<Credit?>) {
     }
 }
 
+/**
+ * Composable function to display an actor card with an image, name, and character name.
+ *
+ * @param actor [Credit] object representing the actor.
+ * @param modifier Modifier for the ActorCard.
+ */
 @Composable
 fun ActorCard(actor: Credit, modifier: Modifier = Modifier) {
     var expanded by remember { mutableStateOf(false) }

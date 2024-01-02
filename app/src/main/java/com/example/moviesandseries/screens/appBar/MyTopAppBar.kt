@@ -10,6 +10,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+/**
+ * Composable function to create a custom TopAppBar for the application.
+ *
+ * @param currentpage The title to be displayed in the TopAppBar.
+ * @param navigationIcon A composable function representing the navigation icon in the TopAppBar.
+ */
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 fun MyTopAppBar(currentpage: String, navigationIcon: @Composable () -> Unit) {

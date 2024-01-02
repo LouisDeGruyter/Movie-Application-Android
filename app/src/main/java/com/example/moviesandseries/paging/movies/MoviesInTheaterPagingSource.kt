@@ -6,7 +6,20 @@ import com.example.moviesandseries.domain.MediaIndex
 import com.example.moviesandseries.domain.movie.asMediaIndexObject
 import com.example.moviesandseries.repository.MovieRepository
 
-class MoviesInTheaterPagingSource(private val movieRepository: MovieRepository) : PagingSource<Int, MediaIndex>() {
+/**
+ * [PagingSource] implementation for loading paginated movies in theaters data.
+ *
+ * @param movieRepository The repository for fetching movies in theaters data.
+ */
+class MoviesInTheaterPagingSource(private val movieRepository: MovieRepository) :
+    PagingSource<Int, MediaIndex>() {
+
+    /**
+     * Load function that is called to load a chunk of movies in theaters data based on the provided [params].
+     *
+     * @param params Parameters for loading data, including the requested page key.
+     * @return [LoadResult<Int, MediaIndex>] containing the loaded movies in theaters data, with optional adjacent keys.
+     */
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MediaIndex> {
         return try {
             val page = params.key ?: 1
@@ -21,6 +34,12 @@ class MoviesInTheaterPagingSource(private val movieRepository: MovieRepository) 
         }
     }
 
+    /**
+     * Returns the key for refreshing the movies in theaters data based on the current [state].
+     *
+     * @param state The current [PagingState].
+     * @return The key used to refresh the movies in theaters data.
+     */
     override fun getRefreshKey(state: PagingState<Int, MediaIndex>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)

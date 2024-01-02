@@ -14,16 +14,15 @@ import com.example.moviesandseries.util.MoviesAndSeriesNavigationType
 
 @Composable
 fun SeriesScreen(seriesViewModel: SeriesViewModel = viewModel(factory = SeriesViewModel.Factory), onSeriesClick: (Int) -> Unit, navigationType: MoviesAndSeriesNavigationType) {
-    var columns = 3
-    when(navigationType){
+    val columns = when(navigationType){
         MoviesAndSeriesNavigationType.BOTTOM_NAVIGATION -> {
-            columns = 3
+            3
         }
         MoviesAndSeriesNavigationType.NAVIGATION_RAIL -> {
-            columns = 4
+            4
         }
         MoviesAndSeriesNavigationType.PERMANENT_NAVIGATION_DRAWER -> {
-            columns = 6
+            6
         }
     }
     val seriesByPage = seriesViewModel.seriesPager.collectAsLazyPagingItems()

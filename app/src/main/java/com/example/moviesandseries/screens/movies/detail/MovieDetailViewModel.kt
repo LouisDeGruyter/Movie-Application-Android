@@ -1,3 +1,5 @@
+@file:Suppress("EmptyMethod")
+
 package com.example.moviesandseries.screens.movies.detail
 
 import androidx.compose.runtime.getValue
@@ -26,15 +28,13 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
+@Suppress("EmptyMethod")
 class MovieDetailViewModel(private val movieRepository: MovieRepository, private val collectionRepository: CollectionRepository) : ViewModel() {
     var movieDetailApiState: MovieDetailApiState by mutableStateOf(MovieDetailApiState.Loading)
         private set
     private var _uiListMovieDetailState: MutableStateFlow<MovieDetailListState> = MutableStateFlow(MovieDetailListState())
     val uiListMovieDetailState: StateFlow<MovieDetailListState> = _uiListMovieDetailState.asStateFlow()
     private var currentId: Int by mutableStateOf(0)
-    init {
-        // Log.i("MovieDetailViewModel", "MovieDetailViewModel created")
-    }
 
     fun getMovieDetail(movieId: Int) {
         currentId = movieId
@@ -54,7 +54,7 @@ class MovieDetailViewModel(private val movieRepository: MovieRepository, private
                 _uiListMovieDetailState.update { movieDetailListState}
                 movieDetailApiState = MovieDetailApiState.Success
             } catch (e: Exception) {
-                MovieDetailApiState.Error(e.message ?: "An unknown error occured")
+                MovieDetailApiState.Error(e.message ?: "An unknown error occurred")
             }
         }
     }

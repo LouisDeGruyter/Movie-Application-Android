@@ -32,7 +32,6 @@ import androidx.compose.ui.zIndex
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.example.moviesandseries.domain.series.Season
 import com.example.moviesandseries.screens.components.detail.ActorList
 import com.example.moviesandseries.screens.components.detail.Backdrop
 import com.example.moviesandseries.screens.components.detail.DisplayRecommended
@@ -42,15 +41,10 @@ import com.example.moviesandseries.screens.components.detail.FavoriteButton
 import com.example.moviesandseries.screens.components.detail.Genres
 import com.example.moviesandseries.screens.components.detail.ProductionCompanies
 import com.example.moviesandseries.screens.components.detail.TitleHeader
+import com.example.moviesandseries.screens.components.detail.YoutubeScreen
 import com.example.moviesandseries.screens.components.index.mediaCard.MediaCard
-import com.example.moviesandseries.screens.components.videoplayer.YoutubeScreen
-import com.example.moviesandseries.screens.movies.detail.ComponentSizes
+import com.example.moviesandseries.util.ComponentSizes
 import com.example.moviesandseries.util.MoviesAndSeriesNavigationType
-
-data class ComponentSizes(
-    val seriesPosterWidth: Float = 0.5f,
-    val seriesBackdropHeight: Int = 300,
-)
 
 @Composable
 fun SeriesDetailScreen(seriesId: String?, seriesDetailViewModel: SeriesDetailViewModel = viewModel(factory = SeriesDetailViewModel.Factory), backButton: @Composable (Modifier) -> Unit, onMovieClick: (movieId: Int) -> Unit, onSeriesClick: (seriesId: Int) -> Unit, navigationType: MoviesAndSeriesNavigationType) {
@@ -155,9 +149,9 @@ fun DisplaySeriesDetail(
                 Genres(genres = series.genres.map { it.name }, modifier = Modifier.fillMaxWidth(0.9f))
                 ExpandableDescription(catchPhrase = series.tagline, description = series.overview, modifier = Modifier.fillMaxWidth(0.9f))
                 ActorList(actors = credits.cast)
-                if (series.numberOfSeasons > 0) {
-                    DisplaySeasons(seasons = series.seasons, seasonDetail = seasonDetail, onSeasonUpdate = onSeasonUpdate)
-                }
+                /**if (series.numberOfSeasons > 0) {
+                 DisplaySeasons(seasons = series.seasons, seasonDetail = seasonDetail, onSeasonUpdate = onSeasonUpdate)
+                 }**/
                 DisplayVideos(videos = videos.results, onFullScreen = { fullscreen = true })
                 DisplayRecommended(recommendedMedia = recommendedMedia, onMovieClick = onMovieClick, onSeriesClick = onSeriesClick)
                 ProductionCompanies(productionCompanies = series.productionCompanies)
@@ -165,8 +159,8 @@ fun DisplaySeriesDetail(
         }
     }
 }
-
+/**
 @Composable
 fun DisplaySeasons(seasons: List<Season>, seasonDetail: Season, onSeasonUpdate: (Int) -> Unit) {
-
 }
+ **/

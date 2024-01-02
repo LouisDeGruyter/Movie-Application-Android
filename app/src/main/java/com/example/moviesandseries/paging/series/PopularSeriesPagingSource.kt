@@ -6,7 +6,21 @@ import com.example.moviesandseries.domain.MediaIndex
 import com.example.moviesandseries.domain.series.asMediaIndexObject
 import com.example.moviesandseries.repository.SeriesRepository
 
-class PopularSeriesPagingSource(private val seriesRepository: SeriesRepository) : PagingSource<Int, MediaIndex>() {
+/**
+ * [PagingSource] implementation for loading paginated popular series data.
+ *
+ * @param seriesRepository The repository for fetching popular series data.
+ */
+class PopularSeriesPagingSource(
+    private val seriesRepository: SeriesRepository
+) : PagingSource<Int, MediaIndex>() {
+
+    /**
+     * Load function that is called to load a chunk of popular series data based on the provided [params].
+     *
+     * @param params Parameters for loading data, including the requested page key.
+     * @return [LoadResult<Int, MediaIndex>] containing the loaded popular series data, with optional adjacent keys.
+     */
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MediaIndex> {
         return try {
             val page = params.key ?: 1
@@ -21,6 +35,12 @@ class PopularSeriesPagingSource(private val seriesRepository: SeriesRepository) 
         }
     }
 
+    /**
+     * Returns the key for refreshing the popular series data based on the current [state].
+     *
+     * @param state The current [PagingState].
+     * @return The key used to refresh the popular series data.
+     */
     override fun getRefreshKey(state: PagingState<Int, MediaIndex>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
