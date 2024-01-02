@@ -19,7 +19,7 @@ data class Series(
     var languages: List<String> = listOf(),
     var lastAirDate: String = "",
     var lastEpisodeToAir: Episode = Episode(),
-    var name: String,
+    var name: String = "",
     var networks: List<Network> = listOf(),
     var nextEpisodeToAir: Episode = Episode(),
     var numberOfEpisodes: Int = 0,

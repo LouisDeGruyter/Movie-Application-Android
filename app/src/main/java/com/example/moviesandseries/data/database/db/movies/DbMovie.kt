@@ -1,10 +1,16 @@
-package com.example.moviesandseries.data.database.db
+package com.example.moviesandseries.data.database.db.movies
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.example.moviesandseries.data.database.converters.CollectionConverter
+import com.example.moviesandseries.data.database.converters.movie.CollectionConverter
 import com.example.moviesandseries.data.database.converters.GenreConverter
-import com.example.moviesandseries.data.database.converters.MovieConverter
+import com.example.moviesandseries.data.database.converters.movie.MovieConverter
+import com.example.moviesandseries.data.database.db.DbGenre
+import com.example.moviesandseries.data.database.db.DbProductionCompany
+import com.example.moviesandseries.data.database.db.DbProductionCountry
+import com.example.moviesandseries.data.database.db.DbSpokenLanguage
+import com.example.moviesandseries.data.database.db.asDbObject
+import com.example.moviesandseries.data.database.db.asDomainObject
 import com.example.moviesandseries.domain.movie.Movie
 
 @Entity(tableName = "movies")

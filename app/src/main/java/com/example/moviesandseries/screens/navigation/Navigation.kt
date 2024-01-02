@@ -34,15 +34,15 @@ fun navComponent(navController: NavHostController, modifier: Modifier = Modifier
             MoviesScreen(onMovieClick = ::onMovieClick, navigationType = navigationType)
         }
         composable(Destinations.Series.route) {
-            SeriesScreen(onSeriesClick = ::onSeriesClick , navigationType = navigationType)
+            SeriesScreen(onSeriesClick = ::onSeriesClick, navigationType = navigationType)
         }
         composable("${Destinations.MovieDetails.route}/{id}") {
                 backStackEntry ->
-            MovieDetailsScreen(movieId = backStackEntry.arguments?.getString("id"), backButton = { BackButton(onBackPressed = navigateBack) }, onMovieClick = ::onMovieClick, onSeriesClick = ::onSeriesClick , navigationType = navigationType)
+            MovieDetailsScreen(movieId = backStackEntry.arguments?.getString("id"), backButton = { BackButton(onBackPressed = navigateBack) }, onMovieClick = ::onMovieClick, onSeriesClick = ::onSeriesClick, navigationType = navigationType)
         }
         composable("${Destinations.SeriesDetail.route}/{id}") {
                 backStackEntry ->
-            SeriesDetailScreen(seriesId = backStackEntry.arguments?.getString("id"))
+            SeriesDetailScreen(seriesId = backStackEntry.arguments?.getString("id"), backButton = { BackButton(onBackPressed = navigateBack) }, onMovieClick = ::onMovieClick, onSeriesClick = ::onSeriesClick, navigationType = navigationType)
         }
     }
 }

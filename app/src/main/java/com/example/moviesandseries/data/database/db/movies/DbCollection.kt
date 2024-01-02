@@ -1,9 +1,9 @@
-package com.example.moviesandseries.data.database.db
+package com.example.moviesandseries.data.database.db.movies
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.example.moviesandseries.data.database.converters.MovieConverter
+import com.example.moviesandseries.data.database.converters.movie.MovieConverter
 import com.example.moviesandseries.domain.Collection
 
 @Entity(tableName = "collections")

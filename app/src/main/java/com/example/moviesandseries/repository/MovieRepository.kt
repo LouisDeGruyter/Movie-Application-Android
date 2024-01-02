@@ -2,14 +2,16 @@ package com.example.moviesandseries.repository
 
 import android.util.Log
 import com.example.moviesandseries.data.database.dao.MovieDao
-import com.example.moviesandseries.data.database.db.asDbObject
-import com.example.moviesandseries.data.database.db.asDomainObject
+import com.example.moviesandseries.data.database.db.movies.asDbObject
+import com.example.moviesandseries.data.database.db.movies.asDomainObject
+import com.example.moviesandseries.data.database.db.series.asDbObject
+import com.example.moviesandseries.data.database.db.series.asDomainObject
+import com.example.moviesandseries.domain.RecommendationContainer
 import com.example.moviesandseries.domain.credits.CreditsContainer
 import com.example.moviesandseries.domain.images.ImagesContainer
 import com.example.moviesandseries.domain.movie.Movie
 import com.example.moviesandseries.domain.movie.MovieContainer
 import com.example.moviesandseries.domain.movie.MovieContainerWithDates
-import com.example.moviesandseries.domain.RecommendationContainer
 import com.example.moviesandseries.domain.reviews.ReviewContainer
 import com.example.moviesandseries.model.credits.asDomainObject
 import com.example.moviesandseries.model.images.asDomainObject
@@ -181,9 +183,9 @@ class NetworkMovieRepository(private val movieApiService: MovieApiService, priva
                 insertMovie(it.asDomainObject())
             }
         } catch (e: SocketTimeoutException) {
-          Log.e("SocketTimeoutException", "SocketTimeoutException")
+            Log.e("SocketTimeoutException", "SocketTimeoutException")
         } catch (e: Exception) {
-          //throw e
+            Log.e("Exception", e.message.toString())
         }
     }
 }

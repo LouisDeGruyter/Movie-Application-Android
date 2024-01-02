@@ -9,5 +9,6 @@ data class Season(
     var posterPath: String = "",
     var seasonNumber: Int = 0,
     var voteAverage: Double = 0.0,
+    val episodes: List<Episode> = listOf(),
 )
 

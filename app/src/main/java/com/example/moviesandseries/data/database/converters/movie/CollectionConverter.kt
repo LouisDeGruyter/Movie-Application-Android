@@ -1,7 +1,7 @@
-package com.example.moviesandseries.data.database.converters
+package com.example.moviesandseries.data.database.converters.movie
 
 import androidx.room.TypeConverter
-import com.example.moviesandseries.data.database.db.DbCollection
+import com.example.moviesandseries.data.database.db.movies.DbCollection
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

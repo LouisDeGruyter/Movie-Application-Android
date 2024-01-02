@@ -15,4 +15,5 @@ object ApiEndpoints {
     const val SeriesOnTheAir = "tv/on_the_air"
     const val SeriesAiringToday = "tv/airing_today"
     const val Collections = "collection/{collection_id}"
+    const val SeasonDetail = "tv/{tv_id}/season/{season_number}"
 }

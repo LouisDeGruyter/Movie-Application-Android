@@ -6,8 +6,8 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.moviesandseries.data.database.MovieAndSeriesApplicationDb
 import com.example.moviesandseries.data.database.dao.MovieDao
-import com.example.moviesandseries.data.database.db.asDbObject
-import com.example.moviesandseries.data.database.db.asDomainObject
+import com.example.moviesandseries.data.database.db.series.asDbObject
+import com.example.moviesandseries.data.database.db.series.asDomainObject
 import com.example.moviesandseries.domain.Collection
 import com.example.moviesandseries.domain.movie.Movie
 import junit.framework.TestCase.assertEquals

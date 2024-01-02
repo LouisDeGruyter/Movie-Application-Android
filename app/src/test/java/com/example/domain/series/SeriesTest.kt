@@ -29,10 +29,16 @@ class SeriesTest {
         assertEquals(false, series.inProduction)
         assertEquals(emptyList<String>(), series.languages)
         assertEquals("", series.lastAirDate)
-        assertEquals(Episode(), series.lastEpisodeToAir)
+        assertEquals(Episode(
+            crew = crew.map { it.asDomainObject() },
+            episodeType = episodeType,
+            guestStars = guestStars.map { it.asDomainObject() }), series.lastEpisodeToAir)
         assertEquals("Test Series", series.name)
         assertEquals(emptyList<Network>(), series.networks)
-        assertEquals(Episode(), series.nextEpisodeToAir)
+        assertEquals(Episode(
+            crew = crew.map { it.asDomainObject() },
+            episodeType = episodeType,
+            guestStars = guestStars.map { it.asDomainObject() }), series.nextEpisodeToAir)
         assertEquals(0, series.numberOfEpisodes)
         assertEquals(0, series.numberOfSeasons)
         assertEquals(emptyList<String>(), series.originCountry)
@@ -67,10 +73,20 @@ class SeriesTest {
             inProduction = true,
             languages = listOf("English", "Spanish"),
             lastAirDate = "2023-12-31",
-            lastEpisodeToAir = Episode(name = "Last Episode"),
+            lastEpisodeToAir = Episode(
+                name = "Last Episode",
+                crew = crew.map { it.asDomainObject() },
+                episodeType = episodeType,
+                guestStars = guestStars.map { it.asDomainObject() }
+            ),
             name = "Test Series",
             networks = listOf(Network(id = 1, name = "ABC")),
-            nextEpisodeToAir = Episode(name = "Next Episode"),
+            nextEpisodeToAir = Episode(
+                name = "Next Episode",
+                crew = crew.map { it.asDomainObject() },
+                episodeType = episodeType,
+                guestStars = guestStars.map { it.asDomainObject() }
+            ),
             numberOfEpisodes = 10,
             numberOfSeasons = 2,
             originCountry = listOf("US"),
@@ -81,7 +97,9 @@ class SeriesTest {
             posterPath = "/poster.jpg",
             productionCompanies = listOf(ProductionCompany(id = 1, name = "Production Company")),
             productionCountries = listOf(ProductionCountry(iso3166_1 = "US", name = "United States")),
-            seasons = listOf(Season(seasonNumber = 1)),
+            seasons = listOf(Season(
+                seasonNumber = 1,
+                episodes = episodes.map { it.asDomainObject() })),
             spokenLanguages = listOf(SpokenLanguage(englishName = "English", iso639_1 = "en", name = "English")),
             status = "In Progress",
             tagline = "Tagline of the series",
@@ -102,10 +120,20 @@ class SeriesTest {
         assertEquals(true, series.inProduction)
         assertEquals(listOf("English", "Spanish"), series.languages)
         assertEquals("2023-12-31", series.lastAirDate)
-        assertEquals(Episode(name = "Last Episode"), series.lastEpisodeToAir)
+        assertEquals(Episode(
+            name = "Last Episode",
+            crew = crew.map { it.asDomainObject() },
+            episodeType = episodeType,
+            guestStars = guestStars.map { it.asDomainObject() }
+        ), series.lastEpisodeToAir)
         assertEquals("Test Series", series.name)
         assertEquals(listOf(Network(id = 1, name = "ABC")), series.networks)
-        assertEquals(Episode(name = "Next Episode"), series.nextEpisodeToAir)
+        assertEquals(Episode(
+            name = "Next Episode",
+            crew = crew.map { it.asDomainObject() },
+            episodeType = episodeType,
+            guestStars = guestStars.map { it.asDomainObject() }
+        ), series.nextEpisodeToAir)
         assertEquals(10, series.numberOfEpisodes)
         assertEquals(2, series.numberOfSeasons)
         assertEquals(listOf("US"), series.originCountry)
@@ -116,7 +144,9 @@ class SeriesTest {
         assertEquals("/poster.jpg", series.posterPath)
         assertEquals(listOf(ProductionCompany(id = 1, name = "Production Company")), series.productionCompanies)
         assertEquals(listOf(ProductionCountry(iso3166_1 = "US", name = "United States")), series.productionCountries)
-        assertEquals(listOf(Season(seasonNumber = 1)), series.seasons)
+        assertEquals(listOf(Season(
+            seasonNumber = 1,
+            episodes = episodes.map { it.asDomainObject() })), series.seasons)
         assertEquals(listOf(SpokenLanguage(englishName = "English", iso639_1 = "en", name = "English")), series.spokenLanguages)
         assertEquals("In Progress", series.status)
         assertEquals("Tagline of the series", series.tagline)
@@ -140,10 +170,20 @@ class SeriesTest {
             inProduction = true,
             languages = listOf("English", "Spanish"),
             lastAirDate = "2023-12-31",
-            lastEpisodeToAir = Episode(name = "Last Episode"),
+            lastEpisodeToAir = Episode(
+                name = "Last Episode",
+                crew = crew.map { it.asDomainObject() },
+                episodeType = episodeType,
+                guestStars = guestStars.map { it.asDomainObject() }
+            ),
             name = "Test Series",
             networks = listOf(Network(id = 1, name = "ABC")),
-            nextEpisodeToAir = Episode(name = "Next Episode"),
+            nextEpisodeToAir = Episode(
+                name = "Next Episode",
+                crew = crew.map { it.asDomainObject() },
+                episodeType = episodeType,
+                guestStars = guestStars.map { it.asDomainObject() }
+            ),
             numberOfEpisodes = 10,
             numberOfSeasons = 2,
             originCountry = listOf("US"),
@@ -154,7 +194,9 @@ class SeriesTest {
             posterPath = "/poster.jpg",
             productionCompanies = listOf(ProductionCompany(id = 1, name = "Production Company")),
             productionCountries = listOf(ProductionCountry(iso3166_1 = "US", name = "United States")),
-            seasons = listOf(Season(seasonNumber = 1)),
+            seasons = listOf(Season(
+                seasonNumber = 1,
+                episodes = episodes.map { it.asDomainObject() })),
             spokenLanguages = listOf(SpokenLanguage(englishName = "English", iso639_1 = "en", name = "English")),
             status = "In Progress",
             tagline = "Tagline of the series",

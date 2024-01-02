@@ -1,6 +1,7 @@
 package com.example.moviesandseries.model.recommendations
 
 
+import com.example.moviesandseries.domain.MediaIndex
 import com.example.moviesandseries.domain.RecommendationContainer
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
@@ -10,7 +11,7 @@ data class RecommendationContainerApi(
     @Json(name = "page")
     val page: Int,
     @Json(name = "results")
-    val results: List<RecommendationMediaApi>,
+    val results: List<RecommendationMediaApi?>,
     @Json(name = "total_pages")
     val totalPages: Int,
     @Json(name = "total_results")
@@ -19,7 +20,7 @@ data class RecommendationContainerApi(
 fun RecommendationContainerApi.asDomainObject(): RecommendationContainer {
     return RecommendationContainer(
         page = page,
-        results = results.map { it.asDomainObject() },
+        results = results.map { it?.asDomainObject() ?: MediaIndex() },
         totalPages = totalPages,
         totalResults = totalResults,
     )

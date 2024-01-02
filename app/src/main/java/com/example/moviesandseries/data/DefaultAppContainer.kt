@@ -7,12 +7,15 @@ import com.example.moviesandseries.data.database.MovieAndSeriesApplicationDb
 import com.example.moviesandseries.network.CollectionApiService
 import com.example.moviesandseries.network.MovieApiService
 import com.example.moviesandseries.network.NetworkConnectionInterceptor
+import com.example.moviesandseries.network.SeasonApiService
 import com.example.moviesandseries.network.SeriesApiService
 import com.example.moviesandseries.repository.CollectionRepository
 import com.example.moviesandseries.repository.MovieRepository
 import com.example.moviesandseries.repository.NetworkCollectionRepository
 import com.example.moviesandseries.repository.NetworkMovieRepository
+import com.example.moviesandseries.repository.NetworkSeasonRepository
 import com.example.moviesandseries.repository.NetworkSeriesRepository
+import com.example.moviesandseries.repository.SeasonRepository
 import com.example.moviesandseries.repository.SeriesRepository
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -83,6 +86,9 @@ class DefaultAppContainer(private val context: Context) : AppContainer {
     private val collectionApiService: CollectionApiService by lazy {
         retrofit.create(CollectionApiService::class.java)
     }
+    private val seasonApiService: SeasonApiService by lazy {
+        retrofit.create(SeasonApiService::class.java)
+    }
 
     /**
      * DI implementation for blog post repository.
@@ -91,9 +97,12 @@ class DefaultAppContainer(private val context: Context) : AppContainer {
         NetworkMovieRepository(movieApiService, MovieAndSeriesApplicationDb.getDatabase(context = context).movieDao())
     }
     override val seriesRepository: SeriesRepository by lazy {
-        NetworkSeriesRepository(seriesApiService)
+        NetworkSeriesRepository(seriesApiService, MovieAndSeriesApplicationDb.getDatabase(context = context).seriesDao())
     }
     override val collectionRepository: CollectionRepository by lazy {
         NetworkCollectionRepository(collectionApiService)
+    }
+    override val seasonRepository: SeasonRepository by lazy {
+        NetworkSeasonRepository(seasonApiService)
     }
 }

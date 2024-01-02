@@ -33,6 +33,6 @@ fun SeasonApi.asDomainObject(): Season {
         overview = overview,
         posterPath = posterPath ?: "",
         seasonNumber = seasonNumber,
-        voteAverage = voteAverage
+        voteAverage = voteAverage,
     )
 }

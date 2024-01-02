@@ -7,6 +7,8 @@ import com.example.moviesandseries.model.reviews.ReviewContainerApi
 import com.example.moviesandseries.model.series.SeriesContainerApi
 import com.example.moviesandseries.model.series.SeriesDetailApi
 import com.example.moviesandseries.model.videos.VideoContainerApi
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -15,7 +17,7 @@ interface SeriesApiService {
     @GET(ApiEndpoints.Series)
     suspend fun getSeriesContainer(@Query("page") page: Int): SeriesContainerApi
 
-    @GET(ApiEndpoints.SeriesDetail)
+    @GET("tv/{series_id}")
     suspend fun getSeriesDetail(@Path("series_id") seriesId: Int): SeriesDetailApi
 
     @GET(ApiEndpoints.SeriesDetail + "/credits")
@@ -66,8 +68,12 @@ interface SeriesApiService {
         @Query("page") page: Int,
     ): SeriesContainerApi
 
-   @GET(ApiEndpoints.SeriesDetail + "/videos")
+    @GET(ApiEndpoints.SeriesDetail + "/videos")
     suspend fun getSeriesVideos(
         @Path("series_id") seriesId: Int,
     ): VideoContainerApi
+}
+
+fun SeriesApiService.getSeriesDetailAsFlow(seriesId: Int): Flow<SeriesDetailApi> = flow {
+    emit(getSeriesDetail(seriesId))
 }
