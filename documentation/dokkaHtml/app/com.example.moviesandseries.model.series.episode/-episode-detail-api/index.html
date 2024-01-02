@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>EpisodeDetailApi</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../index.html">
+                            app
+                    </a>
+            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":app:dokkaHtml/release">androidJvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="app::com.example.moviesandseries.model.series.episode/EpisodeDetailApi///PointingToDeclaration//492899073">
+  <div class="breadcrumbs"><a href="../../../index.html">app</a><span class="delimiter">/</span><a href="../index.html">com.example.moviesandseries.model.series.episode</a><span class="delimiter">/</span><span class="current">EpisodeDetailApi</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Episode</span><wbr></wbr><span>Detail</span><wbr></wbr><span><span>Api</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="com.squareup.moshi/JsonClass///PointingToDeclaration/"><span class="token annotation builtin">JsonClass</span></span><span class="token punctuation">(</span><span>generateAdapter<span class="token operator"> = </span><span class="breakable-word"><span class="token boolean">true</span></span></span><wbr></wbr><span class="token punctuation">)</span></div></div><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><span class="token keyword">class </span><a href="index.html">EpisodeDetailApi</a></div><p class="paragraph">API representation of detailed information about a TV series episode.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION,EXTENSION_PROPERTY,EXTENSION_FUNCTION">Members &amp; Extensions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="2015884803%2FConstructors%2F492899073" anchor-label="EpisodeDetailApi" id="2015884803%2FConstructors%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-episode-detail-api.html"><span>Episode</span><wbr></wbr><span>Detail</span><wbr></wbr><span><span>Api</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2015884803%2FConstructors%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="index.html">EpisodeDetailApi</a> <a href="-episode-detail-api.html"><span class="token function">EpisodeDetailApi</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span><span class="token annotation builtin">@</span><span data-unresolved-link="com.squareup.moshi/Json///PointingToDeclaration/"><span class="token annotation builtin">Json</span></span><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;air_date&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span> </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> airDate<span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><span data-unresolved-link="com.squareup.moshi/Json///PointingToDeclaration/"><span class="token annotation builtin">Json</span></span><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;crew&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span> </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/util/List.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.example.moviesandseries.model.credits/-credit-api/index.html">CreditApi</a><span class="token operator">&gt;</span> crew<span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><span data-unresolved-link="com.squareup.moshi/Json///PointingToDeclaration/"><span class="token annotation builtin">Json</span></span><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;episode_number&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span> </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> episodeNumber<span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><span data-unresolved-link="com.squareup.moshi/Json///PointingToDeclaration/"><span class="token annotation builtin">Json</span></span><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;episode_type&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span> </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> episodeType<span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><span data-unresolved-link="com.squareup.moshi/Json///PointingToDeclaration/"><span class="token annotation builtin">Json</span></span><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;guest_stars&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span> </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/util/List.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.example.moviesandseries.model.credits/-credit-api/index.html">CreditApi</a><span class="token operator">&gt;</span> guestStars<span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><span data-unresolved-link="com.squareup.moshi/Json///PointingToDeclaration/"><span class="token annotation builtin">Json</span></span><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;id&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span> </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> id<span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><span data-unresolved-link="com.squareup.moshi/Json///PointingToDeclaration/"><span class="token annotation builtin">Json</span></span><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;name&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span> </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> name<span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><span data-unresolved-link="com.squareup.moshi/Json///PointingToDeclaration/"><span class="token annotation builtin">Json</span></span><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;overview&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span> </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> overview<span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><span data-unresolved-link="com.squareup.moshi/Json///PointingToDeclaration/"><span class="token annotation builtin">Json</span></span><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;production_code&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span> </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> productionCode<span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><span data-unresolved-link="com.squareup.moshi/Json///PointingToDeclaration/"><span class="token annotation builtin">Json</span></span><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;runtime&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span> </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> runtime<span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><span data-unresolved-link="com.squareup.moshi/Json///PointingToDeclaration/"><span class="token annotation builtin">Json</span></span><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;season_number&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span> </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> seasonNumber<span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><span data-unresolved-link="com.squareup.moshi/Json///PointingToDeclaration/"><span class="token annotation builtin">Json</span></span><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;show_id&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span> </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> showId<span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><span data-unresolved-link="com.squareup.moshi/Json///PointingToDeclaration/"><span class="token annotation builtin">Json</span></span><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;still_path&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span> </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> stillPath<span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><span data-unresolved-link="com.squareup.moshi/Json///PointingToDeclaration/"><span class="token annotation builtin">Json</span></span><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;vote_average&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span> </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Double.html">Double</a> voteAverage<span class="token punctuation">, </span></span><span class="parameter "><span><span class="token annotation builtin">@</span><span data-unresolved-link="com.squareup.moshi/Json///PointingToDeclaration/"><span class="token annotation builtin">Json</span></span><span class="token punctuation">(</span><span>name<span class="token operator"> = </span><span class="breakable-word"><span class="token string">&quot;vote_count&quot;</span></span></span><wbr></wbr><span class="token punctuation">)</span> </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> voteCount</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-1901933132%2FProperties%2F492899073" anchor-label="airDate" id="-1901933132%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1901933132%2FProperties%2F492899073"><span>air</span><wbr></wbr><span><span>Date</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1901933132%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> <a href="index.html#-1901933132%2FProperties%2F492899073">airDate</a></div><div class="brief "><p class="paragraph">The air date of the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1612575949%2FProperties%2F492899073" anchor-label="crew" id="1612575949%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1612575949%2FProperties%2F492899073"><span><span>crew</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1612575949%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/util/List.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.example.moviesandseries.model.credits/-credit-api/index.html">CreditApi</a><span class="token operator">&gt;</span> <a href="index.html#1612575949%2FProperties%2F492899073">crew</a></div><div class="brief "><p class="paragraph">List of crew members associated with the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1386555672%2FProperties%2F492899073" anchor-label="episodeNumber" id="-1386555672%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1386555672%2FProperties%2F492899073"><span>episode</span><wbr></wbr><span><span>Number</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1386555672%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> <a href="index.html#-1386555672%2FProperties%2F492899073">episodeNumber</a></div><div class="brief "><p class="paragraph">The episode number.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1765165335%2FProperties%2F492899073" anchor-label="episodeType" id="1765165335%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1765165335%2FProperties%2F492899073"><span>episode</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1765165335%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> <a href="index.html#1765165335%2FProperties%2F492899073">episodeType</a></div><div class="brief "><p class="paragraph">The type of episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1884928261%2FProperties%2F492899073" anchor-label="guestStars" id="1884928261%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1884928261%2FProperties%2F492899073"><span>guest</span><wbr></wbr><span><span>Stars</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1884928261%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/util/List.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.example.moviesandseries.model.credits/-credit-api/index.html">CreditApi</a><span class="token operator">&gt;</span> <a href="index.html#1884928261%2FProperties%2F492899073">guestStars</a></div><div class="brief "><p class="paragraph">List of guest stars in the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-421853549%2FProperties%2F492899073" anchor-label="id" id="-421853549%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-421853549%2FProperties%2F492899073"><span><span>id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-421853549%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> <a href="index.html#-421853549%2FProperties%2F492899073">id</a></div><div class="brief "><p class="paragraph">The unique identifier of the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-773064989%2FProperties%2F492899073" anchor-label="name" id="-773064989%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-773064989%2FProperties%2F492899073"><span><span>name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-773064989%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> <a href="index.html#-773064989%2FProperties%2F492899073">name</a></div><div class="brief "><p class="paragraph">The name of the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1870791883%2FProperties%2F492899073" anchor-label="overview" id="-1870791883%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1870791883%2FProperties%2F492899073"><span><span>overview</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1870791883%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> <a href="index.html#-1870791883%2FProperties%2F492899073">overview</a></div><div class="brief "><p class="paragraph">A brief overview or synopsis of the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-27702712%2FProperties%2F492899073" anchor-label="productionCode" id="-27702712%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-27702712%2FProperties%2F492899073"><span>production</span><wbr></wbr><span><span>Code</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-27702712%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> <a href="index.html#-27702712%2FProperties%2F492899073">productionCode</a></div><div class="brief "><p class="paragraph">The production code of the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1180261876%2FProperties%2F492899073" anchor-label="runtime" id="1180261876%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1180261876%2FProperties%2F492899073"><span><span>runtime</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1180261876%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> <a href="index.html#1180261876%2FProperties%2F492899073">runtime</a></div><div class="brief "><p class="paragraph">The duration of the episode in minutes.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1657952130%2FProperties%2F492899073" anchor-label="seasonNumber" id="1657952130%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1657952130%2FProperties%2F492899073"><span>season</span><wbr></wbr><span><span>Number</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1657952130%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> <a href="index.html#1657952130%2FProperties%2F492899073">seasonNumber</a></div><div class="brief "><p class="paragraph">The season number to which the episode belongs.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-574821162%2FProperties%2F492899073" anchor-label="showId" id="-574821162%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-574821162%2FProperties%2F492899073"><span>show</span><wbr></wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-574821162%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> <a href="index.html#-574821162%2FProperties%2F492899073">showId</a></div><div class="brief "><p class="paragraph">The unique identifier of the TV show to which the episode belongs.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-442592833%2FProperties%2F492899073" anchor-label="stillPath" id="-442592833%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-442592833%2FProperties%2F492899073"><span>still</span><wbr></wbr><span><span>Path</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-442592833%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> <a href="index.html#-442592833%2FProperties%2F492899073">stillPath</a></div><div class="brief "><p class="paragraph">The path to the still image of the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1195473191%2FProperties%2F492899073" anchor-label="voteAverage" id="-1195473191%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1195473191%2FProperties%2F492899073"><span>vote</span><wbr></wbr><span><span>Average</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1195473191%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Double.html">Double</a> <a href="index.html#-1195473191%2FProperties%2F492899073">voteAverage</a></div><div class="brief "><p class="paragraph">The average vote score of the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-484459929%2FProperties%2F492899073" anchor-label="voteCount" id="-484459929%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-484459929%2FProperties%2F492899073"><span>vote</span><wbr></wbr><span><span>Count</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-484459929%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> <a href="index.html#-484459929%2FProperties%2F492899073">voteCount</a></div><div class="brief "><p class="paragraph">The total number of votes received by the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="611798096%2FFunctions%2F492899073" anchor-label="asDomainObject" id="611798096%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#611798096%2FExtensions%2F492899073"><span>as</span><wbr></wbr><span>Domain</span><wbr></wbr><span><span>Object</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="611798096%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="../../com.example.moviesandseries.domain.series/-episode/index.html">Episode</a> <a href="index.html#611798096%2FExtensions%2F492899073"><span class="token function">asDomainObject</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Extension function to convert <a href="index.html">EpisodeDetailApi</a> to <a href="../../com.example.moviesandseries.domain.series/-episode/index.html">Episode</a> domain object.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="759295148%2FFunctions%2F492899073" anchor-label="getAirDate" id="759295148%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-air-date.html"><span>get</span><wbr></wbr><span>Air</span><wbr></wbr><span><span>Date</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="759295148%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> <a href="get-air-date.html"><span class="token function">getAirDate</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The air date of the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="127138005%2FFunctions%2F492899073" anchor-label="getCrew" id="127138005%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-crew.html"><span>get</span><wbr></wbr><span><span>Crew</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="127138005%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/util/List.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.example.moviesandseries.model.credits/-credit-api/index.html">CreditApi</a><span class="token operator">&gt;</span> <a href="get-crew.html"><span class="token function">getCrew</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">List of crew members associated with the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-759899168%2FFunctions%2F492899073" anchor-label="getEpisodeNumber" id="-759899168%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-episode-number.html"><span>get</span><wbr></wbr><span>Episode</span><wbr></wbr><span><span>Number</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-759899168%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> <a href="get-episode-number.html"><span class="token function">getEpisodeNumber</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The episode number.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1421683727%2FFunctions%2F492899073" anchor-label="getEpisodeType" id="1421683727%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-episode-type.html"><span>get</span><wbr></wbr><span>Episode</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1421683727%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> <a href="get-episode-type.html"><span class="token function">getEpisodeType</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The type of episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1735300877%2FFunctions%2F492899073" anchor-label="getGuestStars" id="1735300877%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-guest-stars.html"><span>get</span><wbr></wbr><span>Guest</span><wbr></wbr><span><span>Stars</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1735300877%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/util/List.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.example.moviesandseries.model.credits/-credit-api/index.html">CreditApi</a><span class="token operator">&gt;</span> <a href="get-guest-stars.html"><span class="token function">getGuestStars</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">List of guest stars in the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1634571109%2FFunctions%2F492899073" anchor-label="getId" id="-1634571109%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-id.html"><span>get</span><wbr></wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1634571109%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> <a href="get-id.html"><span class="token function">getId</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The unique identifier of the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2036464363%2FFunctions%2F492899073" anchor-label="getName" id="2036464363%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-name.html"><span>get</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2036464363%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> <a href="get-name.html"><span class="token function">getName</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The name of the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-977093827%2FFunctions%2F492899073" anchor-label="getOverview" id="-977093827%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-overview.html"><span>get</span><wbr></wbr><span><span>Overview</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-977093827%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> <a href="get-overview.html"><span class="token function">getOverview</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">A brief overview or synopsis of the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2076187568%2FFunctions%2F492899073" anchor-label="getProductionCode" id="-2076187568%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-production-code.html"><span>get</span><wbr></wbr><span>Production</span><wbr></wbr><span><span>Code</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2076187568%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> <a href="get-production-code.html"><span class="token function">getProductionCode</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The production code of the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-453477140%2FFunctions%2F492899073" anchor-label="getRuntime" id="-453477140%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-runtime.html"><span>get</span><wbr></wbr><span><span>Runtime</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-453477140%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> <a href="get-runtime.html"><span class="token function">getRuntime</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The duration of the episode in minutes.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-400043126%2FFunctions%2F492899073" anchor-label="getSeasonNumber" id="-400043126%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-season-number.html"><span>get</span><wbr></wbr><span>Season</span><wbr></wbr><span><span>Number</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-400043126%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> <a href="get-season-number.html"><span class="token function">getSeasonNumber</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The season number to which the episode belongs.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2143424222%2FFunctions%2F492899073" anchor-label="getShowId" id="2143424222%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-show-id.html"><span>get</span><wbr></wbr><span>Show</span><wbr></wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2143424222%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> <a href="get-show-id.html"><span class="token function">getShowId</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The unique identifier of the TV show to which the episode belongs.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1492243127%2FFunctions%2F492899073" anchor-label="getStillPath" id="1492243127%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-still-path.html"><span>get</span><wbr></wbr><span>Still</span><wbr></wbr><span><span>Path</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1492243127%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> <a href="get-still-path.html"><span class="token function">getStillPath</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The path to the still image of the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1538954799%2FFunctions%2F492899073" anchor-label="getVoteAverage" id="-1538954799%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-vote-average.html"><span>get</span><wbr></wbr><span>Vote</span><wbr></wbr><span><span>Average</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1538954799%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Double.html">Double</a> <a href="get-vote-average.html"><span class="token function">getVoteAverage</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The average vote score of the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1450376031%2FFunctions%2F492899073" anchor-label="getVoteCount" id="1450376031%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-vote-count.html"><span>get</span><wbr></wbr><span>Vote</span><wbr></wbr><span><span>Count</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1450376031%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> <a href="get-vote-count.html"><span class="token function">getVoteCount</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The total number of votes received by the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1478708660%2FFunctions%2F492899073" anchor-label="setAirDate" id="-1478708660%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-air-date.html"><span>set</span><wbr></wbr><span>Air</span><wbr></wbr><span><span>Date</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1478708660%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="set-air-date.html"><span class="token function">setAirDate</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> airDate</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The air date of the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1115431817%2FFunctions%2F492899073" anchor-label="setCrew" id="1115431817%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-crew.html"><span>set</span><wbr></wbr><span><span>Crew</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1115431817%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="set-crew.html"><span class="token function">setCrew</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/util/List.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.example.moviesandseries.model.credits/-credit-api/index.html">CreditApi</a><span class="token operator">&gt;</span> crew</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">List of crew members associated with the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-664345974%2FFunctions%2F492899073" anchor-label="setEpisodeNumber" id="-664345974%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-episode-number.html"><span>set</span><wbr></wbr><span>Episode</span><wbr></wbr><span><span>Number</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-664345974%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="set-episode-number.html"><span class="token function">setEpisodeNumber</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> episodeNumber</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The episode number.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="508326345%2FFunctions%2F492899073" anchor-label="setEpisodeType" id="508326345%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-episode-type.html"><span>set</span><wbr></wbr><span>Episode</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="508326345%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="set-episode-type.html"><span class="token function">setEpisodeType</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> episodeType</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The type of episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="137119425%2FFunctions%2F492899073" anchor-label="setGuestStars" id="137119425%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-guest-stars.html"><span>set</span><wbr></wbr><span>Guest</span><wbr></wbr><span><span>Stars</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="137119425%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="set-guest-stars.html"><span class="token function">setGuestStars</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/util/List.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.example.moviesandseries.model.credits/-credit-api/index.html">CreditApi</a><span class="token operator">&gt;</span> guestStars</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">List of guest stars in the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2038371603%2FFunctions%2F492899073" anchor-label="setId" id="-2038371603%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-id.html"><span>set</span><wbr></wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2038371603%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="set-id.html"><span class="token function">setId</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> id</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The unique identifier of the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1348569605%2FFunctions%2F492899073" anchor-label="setName" id="1348569605%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-name.html"><span>set</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1348569605%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="set-name.html"><span class="token function">setName</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> name</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The name of the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1959954189%2FFunctions%2F492899073" anchor-label="setOverview" id="-1959954189%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-overview.html"><span>set</span><wbr></wbr><span><span>Overview</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1959954189%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="set-overview.html"><span class="token function">setOverview</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> overview</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">A brief overview or synopsis of the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1041345984%2FFunctions%2F492899073" anchor-label="setProductionCode" id="1041345984%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-production-code.html"><span>set</span><wbr></wbr><span>Production</span><wbr></wbr><span><span>Code</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1041345984%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="set-production-code.html"><span class="token function">setProductionCode</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> productionCode</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The production code of the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="387014038%2FFunctions%2F492899073" anchor-label="setRuntime" id="387014038%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-runtime.html"><span>set</span><wbr></wbr><span><span>Runtime</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="387014038%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="set-runtime.html"><span class="token function">setRuntime</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> runtime</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The duration of the episode in minutes.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-115461604%2FFunctions%2F492899073" anchor-label="setSeasonNumber" id="-115461604%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-season-number.html"><span>set</span><wbr></wbr><span>Season</span><wbr></wbr><span><span>Number</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-115461604%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="set-season-number.html"><span class="token function">setSeasonNumber</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> seasonNumber</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The season number to which the episode belongs.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1214874768%2FFunctions%2F492899073" anchor-label="setShowId" id="-1214874768%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-show-id.html"><span>set</span><wbr></wbr><span>Show</span><wbr></wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1214874768%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="set-show-id.html"><span class="token function">setShowId</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> showId</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The unique identifier of the TV show to which the episode belongs.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1286066658%2FFunctions%2F492899073" anchor-label="setStillPath" id="1286066658%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-still-path.html"><span>set</span><wbr></wbr><span>Still</span><wbr></wbr><span><span>Path</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1286066658%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="set-still-path.html"><span class="token function">setStillPath</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/String.html">String</a> stillPath</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The path to the still image of the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-843265145%2FFunctions%2F492899073" anchor-label="setVoteAverage" id="-843265145%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-vote-average.html"><span>set</span><wbr></wbr><span>Vote</span><wbr></wbr><span><span>Average</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-843265145%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="set-vote-average.html"><span class="token function">setVoteAverage</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Double.html">Double</a> voteAverage</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The average vote score of the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="754144585%2FFunctions%2F492899073" anchor-label="setVoteCount" id="754144585%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-vote-count.html"><span>set</span><wbr></wbr><span>Vote</span><wbr></wbr><span><span>Count</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="754144585%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a> <a href="set-vote-count.html"><span class="token function">setVoteCount</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/java/lang/Integer.html">Integer</a> voteCount</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">The total number of votes received by the episode.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

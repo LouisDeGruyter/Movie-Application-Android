@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>MovieDetailListState</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../index.html">
+                            app
+                    </a>
+            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":app:dokkaHtml/release">androidJvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="app::com.example.moviesandseries.screens.movies.detail/MovieDetailListState///PointingToDeclaration//492899073">
+  <div class="breadcrumbs"><a href="../../../index.html">app</a><span class="delimiter">/</span><a href="../index.html">com.example.moviesandseries.screens.movies.detail</a><span class="delimiter">/</span><span class="current">MovieDetailListState</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Movie</span><wbr></wbr><span>Detail</span><wbr></wbr><span>List</span><wbr></wbr><span><span>State</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><span class="token keyword">class </span><a href="index.html">MovieDetailListState</a></div><p class="paragraph">Data class representing the state of the MovieDetail screen.</p><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>movie</span><wbr></wbr><span><span>Detail</span></span></u></div></span></div><div><div class="title"><p class="paragraph">The detailed information about the movie.</p></div></div></div></div><div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>images</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Container holding images related to the movie.</p></div></div></div></div><div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>credits</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Container holding credits information for the movie.</p></div></div></div></div><div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>videos</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Container holding video information related to the movie.</p></div></div></div></div><div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>collection</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Information about the collection to which the movie belongs.</p></div></div></div></div><div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>recommended</span><wbr></wbr><span><span>Media</span></span></u></div></span></div><div><div class="title"><p class="paragraph">Flow of <a href="https://developer.android.com/reference/kotlin/androidx/paging/PagingData.html">PagingData</a> representing recommended media for the movie.</p></div></div></div></div></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="1290897958%2FConstructors%2F492899073" anchor-label="MovieDetailListState" id="1290897958%2FConstructors%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-movie-detail-list-state.html"><span>Movie</span><wbr></wbr><span>Detail</span><wbr></wbr><span>List</span><wbr></wbr><span><span>State</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1290897958%2FConstructors%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="index.html">MovieDetailListState</a> <a href="-movie-detail-list-state.html"><span class="token function">MovieDetailListState</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="../../com.example.moviesandseries.domain.movie/-movie/index.html">Movie</a> movieDetail<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="../../com.example.moviesandseries.domain.images/-images-container/index.html">ImagesContainer</a> images<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="../../com.example.moviesandseries.domain.credits/-credits-container/index.html">CreditsContainer</a> credits<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="../../com.example.moviesandseries.model.videos/-video-container/index.html">VideoContainer</a> videos<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="../../com.example.moviesandseries.domain/-collection/index.html">Collection</a> collection<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/paging/PagingData.html">PagingData</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.example.moviesandseries.domain/-media-index/index.html">MediaIndex</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span> recommendedMedia</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-2053927376%2FProperties%2F492899073" anchor-label="collection" id="-2053927376%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-2053927376%2FProperties%2F492899073"><span><span>collection</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2053927376%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword">final </span><span class="token keyword"></span><a href="../../com.example.moviesandseries.domain/-collection/index.html">Collection</a> <a href="index.html#-2053927376%2FProperties%2F492899073">collection</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="488443570%2FProperties%2F492899073" anchor-label="credits" id="488443570%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#488443570%2FProperties%2F492899073"><span><span>credits</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="488443570%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword">final </span><span class="token keyword"></span><a href="../../com.example.moviesandseries.domain.credits/-credits-container/index.html">CreditsContainer</a> <a href="index.html#488443570%2FProperties%2F492899073">credits</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-135842794%2FProperties%2F492899073" anchor-label="images" id="-135842794%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-135842794%2FProperties%2F492899073"><span><span>images</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-135842794%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword">final </span><span class="token keyword"></span><a href="../../com.example.moviesandseries.domain.images/-images-container/index.html">ImagesContainer</a> <a href="index.html#-135842794%2FProperties%2F492899073">images</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-611087861%2FProperties%2F492899073" anchor-label="movieDetail" id="-611087861%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-611087861%2FProperties%2F492899073"><span>movie</span><wbr></wbr><span><span>Detail</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-611087861%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword">final </span><span class="token keyword"></span><a href="../../com.example.moviesandseries.domain.movie/-movie/index.html">Movie</a> <a href="index.html#-611087861%2FProperties%2F492899073">movieDetail</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1084473307%2FProperties%2F492899073" anchor-label="recommendedMedia" id="-1084473307%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1084473307%2FProperties%2F492899073"><span>recommended</span><wbr></wbr><span><span>Media</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1084473307%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword">final </span><span class="token keyword"></span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/paging/PagingData.html">PagingData</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.example.moviesandseries.domain/-media-index/index.html">MediaIndex</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span> <a href="index.html#-1084473307%2FProperties%2F492899073">recommendedMedia</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-595658954%2FProperties%2F492899073" anchor-label="videos" id="-595658954%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-595658954%2FProperties%2F492899073"><span><span>videos</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-595658954%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">private </span><span class="token keyword">final </span><span class="token keyword"></span><a href="../../com.example.moviesandseries.model.videos/-video-container/index.html">VideoContainer</a> <a href="index.html#-595658954%2FProperties%2F492899073">videos</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="1250456248%2FFunctions%2F492899073" anchor-label="getCollection" id="1250456248%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-collection.html"><span>get</span><wbr></wbr><span><span>Collection</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1250456248%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="../../com.example.moviesandseries.domain/-collection/index.html">Collection</a> <a href="get-collection.html"><span class="token function">getCollection</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2135050454%2FFunctions%2F492899073" anchor-label="getCredits" id="-2135050454%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-credits.html"><span>get</span><wbr></wbr><span><span>Credits</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2135050454%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="../../com.example.moviesandseries.domain.credits/-credits-container/index.html">CreditsContainer</a> <a href="get-credits.html"><span class="token function">getCredits</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-774660962%2FFunctions%2F492899073" anchor-label="getImages" id="-774660962%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-images.html"><span>get</span><wbr></wbr><span><span>Images</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-774660962%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="../../com.example.moviesandseries.domain.images/-images-container/index.html">ImagesContainer</a> <a href="get-images.html"><span class="token function">getImages</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1254410621%2FFunctions%2F492899073" anchor-label="getMovieDetail" id="-1254410621%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-movie-detail.html"><span>get</span><wbr></wbr><span>Movie</span><wbr></wbr><span><span>Detail</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1254410621%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="../../com.example.moviesandseries.domain.movie/-movie/index.html">Movie</a> <a href="get-movie-detail.html"><span class="token function">getMovieDetail</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="610639533%2FFunctions%2F492899073" anchor-label="getRecommendedMedia" id="610639533%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-recommended-media.html"><span>get</span><wbr></wbr><span>Recommended</span><wbr></wbr><span><span>Media</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="610639533%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><span data-unresolved-link="kotlinx.coroutines.flow/Flow///PointingToDeclaration/">Flow</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://developer.android.com/reference/kotlin/androidx/paging/PagingData.html">PagingData</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../com.example.moviesandseries.domain/-media-index/index.html">MediaIndex</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span> <a href="get-recommended-media.html"><span class="token function">getRecommendedMedia</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1234477122%2FFunctions%2F492899073" anchor-label="getVideos" id="-1234477122%2FFunctions%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-videos.html"><span>get</span><wbr></wbr><span><span>Videos</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1234477122%2FFunctions%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword">final </span><span class="token keyword"></span><a href="../../com.example.moviesandseries.model.videos/-video-container/index.html">VideoContainer</a> <a href="get-videos.html"><span class="token function">getVideos</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

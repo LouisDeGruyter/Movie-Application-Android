@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>app</title>
+    <link href="images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="scripts/sourceset_dependencies.js" async="async"></script>
+<link href="styles/style.css" rel="Stylesheet">
+<link href="styles/main.css" rel="Stylesheet">
+<link href="styles/prism.css" rel="Stylesheet">
+<link href="styles/logo-styles.css" rel="Stylesheet">
+<link href="styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="index.html">
+                            app
+                    </a>
+            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":app:dokkaHtml/release">androidJvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" id="content" pageIds="app::////PointingToDeclaration//492899073">
+  <div class="breadcrumbs"></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>app</span></span></h1>
+  </div>
+  <h2 class="">Packages</h2>
+  <div class="table"><a data-name="1172785564%2FPackages%2F492899073" anchor-label="com.example.moviesandseries" id="1172785564%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries/index.html">com.example.moviesandseries</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1172785564%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-1631021248%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.data" id="-1631021248%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.data/index.html">com.example.moviesandseries.data</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1631021248%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="710489773%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.data.database" id="710489773%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.data.database/index.html">com.example.moviesandseries.data.database</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="710489773%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="708049016%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.data.database.converters" id="708049016%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.data.database.converters/index.html">com.example.moviesandseries.data.database.converters</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="708049016%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-620131014%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.data.database.converters.movie" id="-620131014%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.data.database.converters.movie/index.html">com.example.moviesandseries.data.database.converters.movie</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-620131014%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-1703431055%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.data.database.converters.series" id="-1703431055%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.data.database.converters.series/index.html">com.example.moviesandseries.data.database.converters.series</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1703431055%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="830832849%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.data.database.dao" id="830832849%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.data.database.dao/index.html">com.example.moviesandseries.data.database.dao</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="830832849%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-787645085%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.data.database.db" id="-787645085%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.data.database.db/index.html">com.example.moviesandseries.data.database.db</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-787645085%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1459544818%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.data.database.db.movies" id="1459544818%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.data.database.db.movies/index.html">com.example.moviesandseries.data.database.db.movies</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1459544818%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-1269440218%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.data.database.db.series" id="-1269440218%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.data.database.db.series/index.html">com.example.moviesandseries.data.database.db.series</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1269440218%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-2024410406%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.domain" id="-2024410406%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.domain/index.html">com.example.moviesandseries.domain</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2024410406%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1040744582%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.domain.credits" id="1040744582%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.domain.credits/index.html">com.example.moviesandseries.domain.credits</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1040744582%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="126368912%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.domain.images" id="126368912%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.domain.images/index.html">com.example.moviesandseries.domain.images</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="126368912%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="829077020%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.domain.movie" id="829077020%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.domain.movie/index.html">com.example.moviesandseries.domain.movie</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="829077020%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1195471047%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.domain.reviews" id="1195471047%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.domain.reviews/index.html">com.example.moviesandseries.domain.reviews</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1195471047%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="272345039%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.domain.series" id="272345039%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.domain.series/index.html">com.example.moviesandseries.domain.series</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="272345039%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1408350743%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.model" id="1408350743%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.model/index.html">com.example.moviesandseries.model</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1408350743%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-1095722279%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.model.collection" id="-1095722279%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.model.collection/index.html">com.example.moviesandseries.model.collection</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1095722279%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-969164093%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.model.credits" id="-969164093%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.model.credits/index.html">com.example.moviesandseries.model.credits</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-969164093%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-1323940173%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.model.images" id="-1323940173%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.model.images/index.html">com.example.moviesandseries.model.images</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1323940173%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1890671513%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.model.movie" id="1890671513%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.model.movie/index.html">com.example.moviesandseries.model.movie</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1890671513%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="629372675%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.model.recommendations" id="629372675%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.model.recommendations/index.html">com.example.moviesandseries.model.recommendations</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="629372675%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-814437628%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.model.reviews" id="-814437628%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.model.reviews/index.html">com.example.moviesandseries.model.reviews</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-814437628%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-1177964046%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.model.series" id="-1177964046%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.model.series/index.html">com.example.moviesandseries.model.series</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1177964046%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1411893695%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.model.series.episode" id="1411893695%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.model.series.episode/index.html">com.example.moviesandseries.model.series.episode</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1411893695%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1597750051%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.model.series.season" id="1597750051%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.model.series.season/index.html">com.example.moviesandseries.model.series.season</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1597750051%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1601628051%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.model.videos" id="1601628051%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.model.videos/index.html">com.example.moviesandseries.model.videos</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1601628051%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1153108444%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.network" id="1153108444%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.network/index.html">com.example.moviesandseries.network</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1153108444%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1322508243%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.paging.movies" id="1322508243%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.paging.movies/index.html">com.example.moviesandseries.paging.movies</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1322508243%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-1406476793%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.paging.series" id="-1406476793%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.paging.series/index.html">com.example.moviesandseries.paging.series</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1406476793%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="376439776%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.repository" id="376439776%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.repository/index.html">com.example.moviesandseries.repository</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="376439776%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-574550027%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.screens" id="-574550027%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.screens/index.html">com.example.moviesandseries.screens</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-574550027%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-118145869%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.screens.components" id="-118145869%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.screens.components/index.html">com.example.moviesandseries.screens.components</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-118145869%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-1887804112%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.screens.components.detail" id="-1887804112%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.screens.components.detail/index.html">com.example.moviesandseries.screens.components.detail</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1887804112%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1873394775%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.screens.components.index" id="1873394775%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.screens.components.index/index.html">com.example.moviesandseries.screens.components.index</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1873394775%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-167269571%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.screens.components.index.mediaCard" id="-167269571%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.screens.components.index.mediaCard/index.html">com.example.moviesandseries.screens.components.index.mediaCard</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-167269571%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-33577087%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.screens.components.loading" id="-33577087%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.screens.components.loading/index.html">com.example.moviesandseries.screens.components.loading</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-33577087%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="311958908%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.screens.home" id="311958908%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.screens.home/index.html">com.example.moviesandseries.screens.home</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="311958908%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1375909155%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.screens.movies.detail" id="1375909155%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.screens.movies.detail/index.html">com.example.moviesandseries.screens.movies.detail</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1375909155%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="1157849904%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.screens.movies.list" id="1157849904%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.screens.movies.list/index.html">com.example.moviesandseries.screens.movies.list</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1157849904%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="614064689%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.screens.navigation" id="614064689%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.screens.navigation/index.html">com.example.moviesandseries.screens.navigation</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="614064689%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-332458897%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.screens.series.detail" id="-332458897%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.screens.series.detail/index.html">com.example.moviesandseries.screens.series.detail</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-332458897%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-1793645188%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.screens.series.list" id="-1793645188%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.screens.series.list/index.html">com.example.moviesandseries.screens.series.list</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1793645188%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-765713595%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.ui.theme" id="-765713595%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.ui.theme/index.html">com.example.moviesandseries.ui.theme</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-765713595%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-659662440%2FPackages%2F492899073" anchor-label="com.example.moviesandseries.util" id="-659662440%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.moviesandseries.util/index.html">com.example.moviesandseries.util</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-659662440%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+<a data-name="-592594748%2FPackages%2F492899073" anchor-label="com.example.templateapplication.screens.appBar" id="-592594748%2FPackages%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+    <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+      <div>
+        <div class="main-subrow ">
+          <div class=""><span class="inline-flex">
+              <div><a href="app/com.example.templateapplication.screens.appBar/index.html">com.example.templateapplication.screens.appBar</a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-592594748%2FPackages%2F492899073"></span>
+                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+              </span></span></div>
+          <div class="pull-right">
+            <div class="platform-tags no-gutters">
+              <div class="platform-tag jvm-like">androidJvm</div>
+            </div>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

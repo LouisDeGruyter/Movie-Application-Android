@@ -1,0 +1,61 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:com.example.moviesandseries.data.database/MovieAndSeriesApplicationDb.Companion///PointingToDeclaration/com/example/moviesandseries/data/database/MovieAndSeriesApplicationDb.Companion.html
+$dokka.location:com.example.moviesandseries.screens.home/HomeViewModel.Companion///PointingToDeclaration/com/example/moviesandseries/screens/home/HomeViewModel.Companion.html
+$dokka.location:com.example.moviesandseries.screens.movies.detail/MovieDetailApiState.Error///PointingToDeclaration/com/example/moviesandseries/screens/movies/detail/MovieDetailApiState.Error.html
+$dokka.location:com.example.moviesandseries.screens.movies.detail/MovieDetailApiState.Loading///PointingToDeclaration/com/example/moviesandseries/screens/movies/detail/MovieDetailApiState.Loading.html
+$dokka.location:com.example.moviesandseries.screens.movies.detail/MovieDetailApiState.Success///PointingToDeclaration/com/example/moviesandseries/screens/movies/detail/MovieDetailApiState.Success.html
+$dokka.location:com.example.moviesandseries.screens.movies.detail/MovieDetailViewModel.Companion///PointingToDeclaration/com/example/moviesandseries/screens/movies/detail/MovieDetailViewModel.Companion.html
+$dokka.location:com.example.moviesandseries.screens.movies.list/MovieViewModel.Companion///PointingToDeclaration/com/example/moviesandseries/screens/movies/list/MovieViewModel.Companion.html
+$dokka.location:com.example.moviesandseries.screens.series.detail/SeriesDetailApiState.Error///PointingToDeclaration/com/example/moviesandseries/screens/series/detail/SeriesDetailApiState.Error.html
+$dokka.location:com.example.moviesandseries.screens.series.detail/SeriesDetailApiState.Loading///PointingToDeclaration/com/example/moviesandseries/screens/series/detail/SeriesDetailApiState.Loading.html
+$dokka.location:com.example.moviesandseries.screens.series.detail/SeriesDetailApiState.Success///PointingToDeclaration/com/example/moviesandseries/screens/series/detail/SeriesDetailApiState.Success.html
+$dokka.location:com.example.moviesandseries.screens.series.detail/SeriesDetailViewModel.Companion///PointingToDeclaration/com/example/moviesandseries/screens/series/detail/SeriesDetailViewModel.Companion.html
+$dokka.location:com.example.moviesandseries.screens.series.list/SeriesViewModel.Companion///PointingToDeclaration/com/example/moviesandseries/screens/series/list/SeriesViewModel.Companion.html
+com.example.moviesandseries
+com.example.moviesandseries.data
+com.example.moviesandseries.data.database
+com.example.moviesandseries.data.database.converters
+com.example.moviesandseries.data.database.converters.movie
+com.example.moviesandseries.data.database.converters.series
+com.example.moviesandseries.data.database.dao
+com.example.moviesandseries.data.database.db
+com.example.moviesandseries.data.database.db.movies
+com.example.moviesandseries.data.database.db.series
+com.example.moviesandseries.domain
+com.example.moviesandseries.domain.credits
+com.example.moviesandseries.domain.images
+com.example.moviesandseries.domain.movie
+com.example.moviesandseries.domain.reviews
+com.example.moviesandseries.domain.series
+com.example.moviesandseries.model
+com.example.moviesandseries.model.collection
+com.example.moviesandseries.model.credits
+com.example.moviesandseries.model.images
+com.example.moviesandseries.model.movie
+com.example.moviesandseries.model.recommendations
+com.example.moviesandseries.model.reviews
+com.example.moviesandseries.model.series
+com.example.moviesandseries.model.series.episode
+com.example.moviesandseries.model.series.season
+com.example.moviesandseries.model.videos
+com.example.moviesandseries.network
+com.example.moviesandseries.paging.movies
+com.example.moviesandseries.paging.series
+com.example.moviesandseries.repository
+com.example.moviesandseries.screens
+com.example.moviesandseries.screens.components
+com.example.moviesandseries.screens.components.detail
+com.example.moviesandseries.screens.components.index
+com.example.moviesandseries.screens.components.index.mediaCard
+com.example.moviesandseries.screens.components.loading
+com.example.moviesandseries.screens.home
+com.example.moviesandseries.screens.movies.detail
+com.example.moviesandseries.screens.movies.list
+com.example.moviesandseries.screens.navigation
+com.example.moviesandseries.screens.series.detail
+com.example.moviesandseries.screens.series.list
+com.example.moviesandseries.ui.theme
+com.example.moviesandseries.util
+com.example.templateapplication.screens.appBar
+
